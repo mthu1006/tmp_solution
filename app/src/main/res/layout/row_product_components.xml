@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerrow"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/draw_round_bg"
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="1dp"
+        android:background="@drawable/draw_nghiphep_quanly"
+        android:orientation="horizontal"
+        android:padding="@dimen/space_23">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:gravity="center">
+
+                    <com.github.akashandroid90.imageletter.MaterialLetterIcon
+                        android:id="@+id/imamages"
+                        android:layout_width="@dimen/space_156"
+                        android:layout_height="@dimen/space_156"
+                        android:layout_weight="0.5"
+                        app:letter="E"
+                        app:letter_color="@color/white"
+                        app:shape_color="@color/colorAccent"
+                        app:shape_type="circle" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/space_23"
+                    android:layout_weight="0.6"
+                    android:orientation="vertical">
+
+                    <com.daniribalbert.customfontlib.views.CustomFontTextView
+                        android:id="@+id/txt_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_name"
+                        android:textSize="@dimen/font_48"
+                        app:font="Roboto_Regular" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.daniribalbert.customfontlib.views.CustomFontTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/txt_price"
+                            android:textSize="@dimen/font_48"
+                            app:font="Roboto_Light" />
+
+                        <com.daniribalbert.customfontlib.views.CustomFontTextView
+                            android:id="@+id/txt_price"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.6"
+                            android:text="0"
+                            android:textSize="@dimen/font_48"
+                            app:font="Roboto_Light" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.9"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.daniribalbert.customfontlib.views.CustomFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/txt_Quantity"
+                    android:textSize="@dimen/font_48"
+                    app:font="Roboto_Light" />
+
+                <com.daniribalbert.customfontlib.views.CustomFontTextView
+                    android:id="@+id/txt_qty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:text="000"
+                    android:textSize="@dimen/font_48"
+                    app:font="Roboto_Light" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.daniribalbert.customfontlib.views.CustomFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/txt_unit"
+                    android:textSize="@dimen/font_48"
+                    app:font="Roboto_Light" />
+
+                <com.daniribalbert.customfontlib.views.CustomFontTextView
+                    android:id="@+id/txt_unit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="@string/txt_unit"
+                    android:textSize="@dimen/font_48"
+                    app:font="Roboto_Light" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#e6e6e6" />
+</LinearLayout>

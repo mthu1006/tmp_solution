@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/expandablelayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/row_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/row_selected"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/image_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space_54"
+            android:background="@drawable/ic_giaovien" />
+
+        <com.daniribalbert.customfontlib.views.CustomFontTextView
+            android:id="@+id/textTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="text"
+            android:textSize="@dimen/font_48"
+            app:font="Roboto_Thin"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorNavigationbarLine" />
+</LinearLayout>

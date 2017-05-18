@@ -1,0 +1,140 @@
+<resources>
+    <string name="app_name">TPMResolution</string>
+    <string name="title_activity_main2">MainActivity</string>
+
+    <string name="txt_t1">Pungkook Sài gòn II</string>
+    <string name="txt_login_savepass">Remember Account</string>
+    <string name="hint_edt_name">Username</string>
+    <string name="txt_title">Tài khoản</string>
+    <string name="hint_edt_password">Password</string>
+    <string name="txt_t2">Bình Dương</string>
+    <string name="txt_ok">Yes</string>
+    <string name="txt_no">No</string>
+    <string name="txt_cancel">Cancel</string>
+
+    <string name="txt_tkb01">11</string>
+    <string name="txt_tkb02">22</string>
+    <string name="txt_tkb03">33</string>
+    <string name="txt_tkb04">44</string>
+    <string name="txt_tkb05">55</string>
+    <string name="txt_tkb06">66</string>
+    <string name="txt_tkb07">77</string>
+    <string name="txt_footer1">PDF</string>
+    <string name="txt_footer2">Video</string>
+
+    <string name="txt_mon">Mon</string>
+    <string name="txt_tue">Tue</string>
+    <string name="txt_wed">Wed</string>
+    <string name="txt_thu">Thu</string>
+    <string name="txt_fri">Fri</string>
+    <string name="txt_sat">Sat</string>
+    <string name="txt_sun">Sun</string>
+
+    <string name="txt_profile1">Function</string>
+    <string name="txt_profile2">Series Number</string>
+    <string name="txt_profile3">Purchase Date</string>
+    <string name="txt_profile4">Status</string>
+    <string name="txt_profile5">Valid Date</string>
+    <string name="txt_profile6">Location</string>
+    <string name="txt_profile7">Change Status</string>
+    <string name="txt_profile8">Corporation</string>
+    <string name="txt_profile9">Factory</string>
+    <string name="txt_profile10">Line</string>
+    <string name="txt_profile13">Cancel</string>
+    <string name="txt_profile11">Thông tin cá nhân</string>
+    <string name="txt_profile14">Bạn thật sự muốn</string>
+
+
+    <string name="txt_model">Model</string>
+    <string name="txt_Request_date">Request date</string>
+    <string name="txt_Machine">Machine ID</string>
+    <string name="txt_Accept_user">Accept user</string>
+    <string name="txt_user">Accept user</string>
+    <string name="txt_reason">Reason</string>
+    <string name="hint_reason">Enter Reason</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_logout">Logout</string>
+    <string name="action_change_pass">Change Password</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="txt_thongbao1">Notification</string>
+    <string name="txt_dialog_accept">ADD</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_loading">Loading...</string>
+    <string name="txt_loading_login">Đang kiểm tra...</string>
+    <string name="txt_loading_send">Đang đăng ký...</string>
+    <string name="txt_login_error">Kiểm tra lại thông tin đăng nhập</string>
+
+    <string name="txt_dialog_title">Notification</string>
+    <string name="txt_name">Name</string>
+    <string name="txt_product_name">Product Name</string>
+    <string name="txt_unit">Unit</string>
+    <string name="txt_price">Price</string>
+    <string name="txt_Quantity">Quantity</string>
+    <string name="txt_btn_dialog">ADD</string>
+
+
+    <string name="txt_from_corparation">From </string>
+    <string name="txt_to_corparation">To </string>
+    <string name="txt_morving_date">Moving Date</string>
+    <string name="txt_receive_user">Receive User</string>
+    <string name="txt_remark">Remark</string>
+    <string name="txt_save">Save</string>
+    <string name="hint_morving_date">Enter date</string>
+    <string name="hint_receive_user">Enter name or id of user</string>
+
+    <string name="hint_machine">Enter name or id</string>
+    <string name="hint_remark">Enter Remark</string>
+
+    <string name="machine_information">Machine Information</string>
+
+    <string name="checklist_tab_title1">Daily</string>
+    <string name="checklist_tab_title2">Weekly</string>
+    <string name="checklist_daily">Daily Checklist</string>
+    <string name="checklist_weekly">Weekly Checklist</string>
+    <string name="checklist_monthly">Monthly Checklist</string>
+
+
+    <string name="setting_title">Change Password</string>
+    <string name="setting_pass">Password</string>
+    <string name="setting_repass">New password</string>
+    <string name="setting_new_repass">New password</string>
+    <string name="setting_btn_logout">Logout</string>
+    <string name="setting_btn_refresh">Reset</string>
+
+    <string name="setting_title_information">Please choose guide type</string>
+    <string name="setting_txt_pdf">File PDF</string>
+    <string name="setting_txt_video">Video</string>
+
+    <string name="txt_menu_logout">Logout</string>
+    <string name="txt_menu_changepass">Change Password</string>
+    <string name="txt_changepass_adresscompany">Đơn vị công tác</string>
+
+
+    <string name="txt_factory">Factory</string>
+    <string name="txt_line">Line</string>
+    <string name="txt_warehouse">Warehouse</string>
+
+    <string name="txt_maintenace">Maintenance</string>
+    <string name="txt_descriptions">Descriptions</string>
+    <string name="txt_status">Status</string>
+    <string name="txt_please">Please scan QR code!</string>
+    <string name="title_activity_login2">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+</resources>

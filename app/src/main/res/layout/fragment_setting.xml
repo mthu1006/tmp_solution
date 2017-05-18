@@ -1,0 +1,289 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context="com.example.pk.tpmresolution.fragment.ChangeLoctionFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="@dimen/space_23"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/appCompatImageView"
+            style="@style/SubIcon"
+            android:background="@drawable/ic_menu_account" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_48"
+            android:orientation="vertical">
+
+
+            <com.daniribalbert.customfontlib.views.CustomFontTextView
+                android:id="@+id/txtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/txtGender"
+                android:textColor="@color/color_txt_filter"
+                android:textSize="@dimen/font_42"
+                app:font="Roboto_Regular" />
+
+            <com.daniribalbert.customfontlib.views.CustomFontTextView
+                android:id="@+id/txtDOB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/font_42"
+                app:font="Roboto_Light" />
+
+            <com.daniribalbert.customfontlib.views.CustomFontTextView
+                android:id="@+id/txtLevel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textColor="@color/color_txt_filter"
+                android:textSize="@dimen/font_40"
+                app:font="Roboto_Regular" />
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/space_64"
+        android:layout_height="0.5dp"
+        android:background="#000000" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/space_60"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_change_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_search"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/space_24"
+                android:layout_marginLeft="@dimen/space_152"
+                android:layout_marginRight="@dimen/space_152"
+                android:paddingBottom="@dimen/space_65"
+                android:paddingTop="@dimen/space_65"
+                android:paddingLeft="@dimen/space_23"
+                android:paddingRight="@dimen/space_23">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/image_io"
+                    style="@style/SubIcon"
+                    android:background="@drawable/change_pss" />
+
+                <com.daniribalbert.customfontlib.views.CustomFontTextView
+                    android:id="@+id/textTit"
+                    style="@style/TextSubThietLap"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:text="@string/setting_title"
+                    app:font="Roboto_Light" />
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/img_change_pass"
+                    style="@style/SubIcon"
+                    android:background="@drawable/ic_add_top" />
+            </LinearLayout>
+
+            <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                android:id="@+id/exp_change_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/space_85"
+                android:paddingRight="@dimen/space_85"
+                app:ael_duration="500"
+                app:ael_expanded="false"
+                app:ael_interpolator="bounce"
+                app:ael_orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_23"
+                        android:layout_marginLeft="@dimen/space_180"
+                        android:layout_marginRight="@dimen/space_180"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_changepass_lastpass" />
+
+                        <com.daniribalbert.customfontlib.views.CustomFontEditText
+                            android:id="@+id/edt_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_40"
+                            android:background="@color/transparent"
+                            android:gravity="center"
+                            android:hint="@string/setting_pass"
+                            android:imeOptions="actionNext"
+                            android:inputType="textPassword"
+                            android:textColorHighlight="@color/dark_gray"
+                            android:textColorHint="@color/dark_gray"
+                            android:textSize="@dimen/font_48"
+                            app:font="Roboto_Regular" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/space_40"
+                            android:background="@color/dark_gray" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/space_180"
+                        android:layout_marginRight="@dimen/space_180"
+                        android:layout_marginTop="@dimen/space_100"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_changepass_password" />
+
+                        <com.daniribalbert.customfontlib.views.CustomFontEditText
+                            android:id="@+id/edt_new_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_40"
+                            android:background="@color/transparent"
+                            android:gravity="center"
+                            android:hint="@string/setting_repass"
+                            android:imeOptions="actionNext"
+                            android:inputType="textPassword"
+                            android:textColorHint="@color/dark_gray"
+                            android:textSize="@dimen/font_48"
+                            app:font="Roboto_Regular" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/space_40"
+                            android:background="@color/dark_gray" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/space_180"
+                        android:layout_marginRight="@dimen/space_180"
+                        android:layout_marginTop="@dimen/space_100"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_changepass_confirmpassword" />
+
+                        <com.daniribalbert.customfontlib.views.CustomFontEditText
+                            android:id="@+id/edt_new_repassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_40"
+                            android:background="@color/transparent"
+                            android:gravity="center"
+                            android:hint="@string/setting_new_repass"
+                            android:imeActionId="@+id/button_changepass"
+                            android:imeActionLabel="Custom"
+                            android:inputType="textPassword"
+                            android:textColorHint="@color/dark_gray"
+                            android:textSize="@dimen/font_48"
+                            android:textStyle="italic"
+                            app:font="Roboto_Regular" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/space_40"
+                            android:background="@color/dark_gray" />
+                    </LinearLayout>
+
+                    <com.daniribalbert.customfontlib.views.CustomFontButton
+                        android:id="@+id/btn_save_pass"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/space_19"
+                        android:paddingBottom="@dimen/space_19"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/space_23"
+                        android:layout_marginLeft="@dimen/space_180"
+                        android:layout_marginRight="@dimen/space_180"
+                        android:layout_marginTop="@dimen/space_100"
+                        android:background="@drawable/button_login"
+                        android:text="@string/txt_save"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_48"
+                        app:font="Roboto_Medium" />
+                </LinearLayout>
+            </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layout_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_buttonred"
+                android:layout_marginBottom="@dimen/space_50"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/space_152"
+                android:layout_marginRight="@dimen/space_152"
+                android:layout_marginTop="@dimen/space_60"
+                android:paddingBottom="@dimen/space_65"
+                android:paddingLeft="@dimen/space_23"
+                android:paddingRight="@dimen/space_23"
+                android:paddingTop="@dimen/space_65">
+
+                <android.support.v7.widget.AppCompatImageView
+                    style="@style/SubIcon"
+                    android:background="@drawable/logout" />
+
+                <com.daniribalbert.customfontlib.views.CustomFontTextView
+                    android:id="@+id/customFontTextView"
+                    style="@style/TextSubThietLap"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/txt_menu_logout"
+                    android:textColor="@color/white"
+                    app:font="Roboto_Light" />
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/img_logout"
+                    style="@style/SubIcon"
+                    android:background="@drawable/ic_add_top" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

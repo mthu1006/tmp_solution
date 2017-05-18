@@ -1,0 +1,174 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorTab_bg"
+        android:orientation="vertical"
+        tools:context="com.example.pk.tpmresolution.fragment.ChangeLoctionFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:weightSum="2"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_weight="1.7"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_notification_main" />
+
+        <com.daniribalbert.customfontlib.views.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:paddingBottom="@dimen/space_64"
+            android:paddingTop="@dimen/space_64"
+            android:text="@string/setting_title_information"
+            android:textColor="@color/colorTab_orange"
+            android:textSize="@dimen/font_54"
+            app:font="Roboto_Medium" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#000000" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_pdf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_34"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/space_67"
+                android:paddingLeft="@dimen/space_24"
+                android:paddingRight="@dimen/space_24"
+                android:paddingTop="@dimen/space_67">
+
+                <android.support.v7.widget.AppCompatImageView
+                    style="@style/SubIcon"
+                    android:background="@drawable/ic_pdf" />
+
+                <com.daniribalbert.customfontlib.views.CustomFontTextView
+                    style="@style/TextSubThietLap"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/setting_txt_pdf"
+                    app:font="Roboto_Regular" />
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/img_pdf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/space_66" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="@dimen/space_91"
+                android:layout_marginRight="@dimen/space_91"
+                android:background="#e6e6e6" />
+
+            <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                android:id="@+id/exp_pdf"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/space_90"
+                android:layout_marginRight="@dimen/space_90"
+                android:background="@drawable/draw_nghiphep_quanly"
+                android:paddingLeft="@dimen/space_25"
+                android:paddingRight="@dimen/space_25"
+                app:ael_duration="500"
+                app:ael_expanded="false"
+                app:ael_interpolator="bounce"
+                app:ael_orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_pdf"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_306"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true" />
+
+            </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_video"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/space_67"
+                android:paddingLeft="@dimen/space_24"
+                android:paddingRight="@dimen/space_24"
+                android:paddingTop="@dimen/space_67">
+
+                <android.support.v7.widget.AppCompatImageView
+                    style="@style/SubIcon"
+                    android:background="@drawable/ic_video" />
+
+                <com.daniribalbert.customfontlib.views.CustomFontTextView
+                    style="@style/TextSubThietLap"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/setting_txt_video"
+                    app:font="Roboto_Regular" />
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/img_video"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/space_66" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="@dimen/space_91"
+                android:layout_marginRight="@dimen/space_91"
+                android:background="#e6e6e6" />
+            <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                android:id="@+id/exp_video"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/space_90"
+                android:layout_marginRight="@dimen/space_90"
+                android:layout_marginBottom="@dimen/space_60"
+                android:background="@drawable/draw_nghiphep_quanly"
+                android:paddingLeft="@dimen/space_25"
+                android:paddingRight="@dimen/space_25"
+                app:ael_duration="500"
+                app:ael_expanded="false"
+                app:ael_interpolator="bounce"
+                app:ael_orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_video"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true" />
+
+            </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>
+

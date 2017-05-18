@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" android:gravity="center"
+        android:orientation="vertical">
+
+            <com.daimajia.slider.library.SliderLayout
+                android:id="@+id/slider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/space_0"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.daniribalbert.customfontlib.views.CustomFontEditText
+            android:id="@+id/edt_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_144"
+            android:layout_marginRight="@dimen/space_144"
+            android:background="@drawable/bg_input"
+            android:drawableLeft="@drawable/ic_userid"
+            android:drawablePadding="@dimen/space_40"
+            android:drawableStart="@drawable/ic_userid"
+            android:hint="@string/hint_edt_name"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:paddingBottom="@dimen/space_86"
+            android:paddingLeft="@dimen/space_89"
+            android:paddingRight="@dimen/space_60"
+            android:paddingTop="@dimen/space_86"
+            android:textColorHint="#000000"
+            android:textSize="@dimen/font_48"
+            app:font="Roboto_Light" />
+
+        <com.daniribalbert.customfontlib.views.CustomFontEditText
+            android:id="@+id/edt_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_144"
+            android:layout_marginRight="@dimen/space_144"
+            android:layout_marginTop="@dimen/space_23"
+            android:background="@drawable/bg_input"
+            android:drawableLeft="@drawable/ic_password"
+            android:drawablePadding="@dimen/space_40"
+            android:drawableStart="@drawable/ic_password"
+            android:hint="@string/hint_edt_password"
+            android:imeActionId="@+id/buttonLogin"
+            android:imeActionLabel="Custom"
+            android:inputType="textPassword"
+            android:paddingBottom="@dimen/space_86"
+            android:paddingLeft="@dimen/space_89"
+            android:paddingRight="@dimen/space_60"
+            android:paddingTop="@dimen/space_86"
+            android:textColorHint="#000000"
+            android:textSize="@dimen/font_48"
+            app:font="Roboto_Light" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_27"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/check_save_pass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/color_checkbox_login" />
+
+            <com.daniribalbert.customfontlib.views.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_login_savepass"
+                android:textColor="@color/color_txt_remember_login"
+                android:textSize="@dimen/font_48"
+                app:font="Roboto_Light" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_144"
+            android:layout_marginRight="@dimen/space_144"
+            android:layout_marginTop="@dimen/space_60"
+            android:background="@drawable/button_login"
+            android:paddingBottom="@dimen/space_60"
+            android:paddingTop="@dimen/space_60">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_key" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

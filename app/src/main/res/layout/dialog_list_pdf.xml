@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bg_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="@dimen/space_48">
+
+    <LinearLayout
+        android:id="@+id/bg_noclick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialogradis"
+        android:orientation="vertical"
+        android:padding="@dimen/space_108">
+
+        <LinearLayout
+            android:id="@+id/noclick1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/space_48"
+            android:paddingRight="@dimen/space_48">
+
+            <com.daniribalbert.customfontlib.views.CustomFontTextView
+                android:id="@+id/textView_titles"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:minWidth="@dimen/space_1000"
+                android:paddingBottom="@dimen/space_64"
+                android:paddingTop="@dimen/space_64"
+                android:text="@string/txt_dialog_title"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="@dimen/font_66"
+                app:font="Roboto_Bold" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/button_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/ic_close" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="@dimen/navigation_icon_padding_left"
+            android:layout_marginRight="@dimen/navigation_icon_padding_left"
+            android:background="#e6e6e6" />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_list_pdf"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/space_108"
+            android:paddingRight="@dimen/space_108"
+            android:paddingTop="@dimen/space_137" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="@dimen/navigation_icon_padding_left"
+            android:layout_marginRight="@dimen/navigation_icon_padding_left"
+            android:background="#e6e6e6" />
+
+        <com.daniribalbert.customfontlib.views.CustomFontButton
+            android:id="@+id/btn_accept"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_85"
+            android:background="@drawable/button_red"
+            android:paddingBottom="@dimen/space_19"
+            android:paddingTop="@dimen/space_19"
+            android:elevation="3dp"
+            android:text="@string/txt_ok"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_56"
+            app:font="Roboto_Bold" />
+    </LinearLayout>
+
+</LinearLayout>

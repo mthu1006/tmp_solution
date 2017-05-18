@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+<item>
+
+    <layer-list>
+
+        <item>
+            <shape>
+                <corners
+                    android:topLeftRadius="8dp"
+                    android:topRightRadius="8dp"
+                    android:bottomRightRadius="8dp"
+                    android:bottomLeftRadius="8dp">
+                </corners>
+
+                <padding
+                    android:left="3dp"
+                    android:right="3dp" />
+            </shape>
+        </item>
+
+        <item android:right="5dp">
+
+            <bitmap android:gravity="center_vertical|right" android:src="@drawable/ic_more" />
+
+        </item>
+
+    </layer-list>
+
+</item>
+
+</selector>

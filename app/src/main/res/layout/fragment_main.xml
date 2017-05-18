@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context="com.example.pk.tpmresolution.fragment.ChangeLoctionFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_header_height"
+            android:background="@drawable/bg_profile"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_profile"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+                <com.github.akashandroid90.imageletter.MaterialLetterIcon
+                    android:id="@+id/img_avatar"
+                    android:layout_width="@dimen/space_301"
+                    android:layout_height="@dimen/space_300"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="@dimen/space_151"
+                    app:letter="E"
+                    app:shape_color="@color/color_7"
+                    app:shape_type="rect" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/space_25">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <com.daniribalbert.customfontlib.views.CustomFontTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="2.2"
+                            android:drawableLeft="@drawable/ic_arrow_small"
+                            android:text="ID"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_40"
+                            app:font="Roboto_Light" />
+
+                        <com.daniribalbert.customfontlib.views.CustomFontTextView
+                            android:id="@+id/txt_product_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="@dimen/space_3"
+                            android:layout_weight="0.8"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_40"
+                            app:font="Roboto_Light" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <com.daniribalbert.customfontlib.views.CustomFontTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="2.2"
+                            android:drawableLeft="@drawable/ic_arrow_small"
+                            android:text="Name"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_40"
+                            app:font="Roboto_Light" />
+
+                        <com.daniribalbert.customfontlib.views.CustomFontTextView
+                            android:id="@+id/txt_product_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_3"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginRight="@dimen/space_48"
+                            android:layout_weight="0.8"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_36"
+                            app:font="Roboto_Light" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <com.daniribalbert.customfontlib.views.CustomFontTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="2.2"
+                            android:drawableLeft="@drawable/ic_arrow_small"
+                            android:text="Model"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_40"
+                            app:font="Roboto_Light" />
+
+                        <com.daniribalbert.customfontlib.views.CustomFontTextView
+                            android:id="@+id/txt_product_model"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="@dimen/space_3"
+                            android:layout_marginRight="@dimen/space_48"
+                            android:layout_weight="0.8"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_40"
+                            app:font="Roboto_Light" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/space_27"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/space_60"
+                android:paddingRight="@dimen/space_60">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/navigation_icon_padding_righ"
+                    android:paddingLeft="@dimen/profile_padding_left"
+                    android:paddingRight="@dimen/profile_padding_left"
+                    android:paddingTop="@dimen/profile_padding_top">
+
+                    <com.daniribalbert.customfontlib.views.CustomFontTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:text="@string/txt_profile1"
+                        android:textSize="@dimen/font_48"
+                        app:font="Roboto_Regular" />
+
+                    <com.daniribalbert.customfontlib.views.CustomFontTextView
+                        android:id="@+id/txt_function"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:textSize="@dimen/font_48"
+                        app:font="Roboto_Light" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#e6e6e6" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/navigation_icon_padding_righ"
+                    android:paddingLeft="@dimen/profile_padding_left"
+                    android:paddingRight="@dimen/profile_padding_left"
+                    android:paddingTop="@dimen/profile_padding_top">
+
+                    <com.daniribalbert.customfontlib.views.CustomFontTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:text="@string/txt_profile2"
+                        android:textSize="@dimen/font_48"
+                        app:font="Roboto_Regular" />
+
+                    <com.daniribalbert.customfontlib.views.CustomFontTextView
+                        android:id="@+id/txt_series_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:textSize="@dimen/font_48"
+                        app:font="Roboto_Light" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#e6e6e6" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/navigation_icon_padding_righ"
+                    android:paddingLeft="@dimen/profile_padding_left"
+                    android:paddingRight="@dimen/profile_padding_left"
+                    android:paddingTop="@dimen/profile_padding_top">
+
+                    <com.daniribalbert.customfontlib.views.CustomFontTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:text="@string/txt_profile3"
+                        android:textSize="@dimen/font_48"
+                        app:font="Roboto_Regular" />
+
+                    <com.daniribalbert.customfontlib.views.CustomFontTextView
+                        android:id="@+id/txt_purchase_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:textSize="@dimen/font_48"
+                        app:font="Roboto_Light" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#e6e6e6" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#e6e6e6" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/navigation_icon_padding_righ"
+                    android:paddingLeft="@dimen/profile_padding_left"
+                    android:paddingRight="@dimen/profile_padding_left"
+                    android:paddingTop="@dimen/profile_padding_top">
+
+                    <com.daniribalbert.customfontlib.views.CustomFontTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:text="@string/txt_profile5"
+                        android:textSize="@dimen/font_48"
+                        app:font="Roboto_Regular" />
+
+                    <com.daniribalbert.customfontlib.views.CustomFontTextView
+                        android:id="@+id/txt_valid_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:textSize="@dimen/font_48"
+                        app:font="Roboto_Light" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#e6e6e6" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/space_23"
+                    android:paddingLeft="@dimen/profile_padding_left"
+                    android:paddingRight="@dimen/space_23"
+                    android:paddingTop="@dimen/space_23">
+
+                    <com.daniribalbert.customfontlib.views.CustomFontTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.8"
+                        android:text="@string/txt_profile6"
+                        android:textSize="@dimen/font_48"
+                        app:font="Roboto_Regular" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/draw_nghiphep_quanly"
+                        android:orientation="vertical"
+                        android:padding="@dimen/space_1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.daniribalbert.customfontlib.views.CustomFontTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/space_23"
+                                android:layout_marginTop="@dimen/space_1"
+                                android:layout_weight="1"
+                                android:text="@string/txt_profile8"
+                                android:textColor="@color/color_9"
+                                android:textSize="@dimen/font_42"
+                                app:font="Roboto_Light" />
+
+                            <View
+                                android:layout_width="0.5dp"
+                                android:layout_height="match_parent"
+                                android:background="#e6e6e6" />
+
+                            <com.daniribalbert.customfontlib.views.CustomFontTextView
+                                android:id="@+id/txt_corporation"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/space_23"
+                                android:layout_marginTop="@dimen/space_1"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/font_40"
+                                app:font="Roboto_Light" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.daniribalbert.customfontlib.views.CustomFontTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/space_23"
+                                android:layout_marginTop="@dimen/space_1"
+                                android:layout_weight="1"
+                                android:text="@string/txt_profile9"
+                                android:textColor="@color/color_9"
+                                android:textSize="@dimen/font_42"
+                                app:font="Roboto_Light" />
+
+                            <View
+                                android:layout_width="0.5dp"
+                                android:layout_height="match_parent"
+                                android:background="#e6e6e6" />
+
+                            <com.daniribalbert.customfontlib.views.CustomFontTextView
+                                android:id="@+id/txt_factory"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/space_23"
+                                android:layout_marginTop="@dimen/space_1"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/font_40"
+                                app:font="Roboto_Light" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.daniribalbert.customfontlib.views.CustomFontTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/space_23"
+                                android:layout_marginTop="@dimen/space_1"
+                                android:layout_weight="1"
+                                android:text="@string/txt_profile10"
+                                android:textColor="@color/color_9"
+                                android:textSize="@dimen/font_42"
+                                app:font="Roboto_Light" />
+
+                            <View
+                                android:layout_width="0.5dp"
+                                android:layout_height="match_parent"
+                                android:background="#e6e6e6" />
+
+                            <com.daniribalbert.customfontlib.views.CustomFontTextView
+                                android:id="@+id/txt_line"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/space_23"
+                                android:layout_marginLeft="@dimen/space_23"
+                                android:layout_marginTop="@dimen/space_1"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/font_40"
+                                app:font="Roboto_Light" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#e6e6e6" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#e6e6e6" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/space_23"
+                    android:paddingLeft="@dimen/profile_padding_left"
+                    android:paddingRight="@dimen/space_23"
+                    android:paddingTop="@dimen/space_23">
+
+                    <com.daniribalbert.customfontlib.views.CustomFontTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.8"
+                        android:text="@string/txt_profile4"
+                        android:textSize="@dimen/font_48"
+                        app:font="Roboto_Regular" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/draw_nghiphep_quanly"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/space_27">
+
+                        <com.daniribalbert.customfontlib.views.CustomFontTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/space_23"
+                            android:layout_marginTop="@dimen/space_1"
+                            android:text="@string/txt_profile7"
+                            android:textColor="@color/color_9"
+                            android:textSize="@dimen/font_48"
+                            app:font="Roboto_Light" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="#e6e6e6" />
+
+                        <android.support.v7.widget.AppCompatSpinner
+                            android:id="@+id/spn_status"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/space_1"
+                            android:layout_marginTop="@dimen/space_1"
+                            android:background="@drawable/bg_spinner">
+
+                        </android.support.v7.widget.AppCompatSpinner>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="#e6e6e6" />
+
+
+                        <com.daniribalbert.customfontlib.views.CustomFontButton
+                            android:id="@+id/btn_save_status"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/space_139"
+                            android:layout_marginBottom="@dimen/space_1"
+                            android:layout_marginLeft="@dimen/space_152"
+                            android:layout_marginRight="@dimen/space_152"
+                            android:layout_marginTop="@dimen/space_23"
+                            android:background="@drawable/draw_nghiphep_quanly"
+                            android:elevation="3dp"
+                            android:text="@string/txt_save"
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/font_40"
+                            app:font="Roboto_Bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginBottom="@dimen/space_60"
+                    android:background="#e6e6e6" />
+
+
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+</LinearLayout>

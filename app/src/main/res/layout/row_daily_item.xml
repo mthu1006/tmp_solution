@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerrow"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
+    android:layout_marginTop="6dp"
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
+
+    <LinearLayout
+        android:id="@+id/layout_below"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/draw_nghiphep_quanly_acccept"
+        android:orientation="horizontal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:background="@drawable/draw_nghiphep_quanly"
+        android:orientation="vertical"
+        android:padding="@dimen/space_48">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <com.daniribalbert.customfontlib.views.CustomFontTextView
+                android:id="@+id/textView9"
+                android:layout_width="@dimen/space_301"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginBottom="@dimen/space_02"
+                android:layout_marginTop="@dimen/space_02"
+                android:text="@string/txt_maintenace"
+                android:textSize="@dimen/font_42"
+                app:font="Roboto_Medium" />
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView13"
+                android:scrollbars="none">
+
+                <com.daniribalbert.customfontlib.views.CustomFontTextView
+                    android:id="@+id/txt_checklist_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/space_02"
+                    android:layout_marginTop="@dimen/space_02"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="nha co viec phai ve que gap, nghi khong phepnha co viec phai ve que gap, nghi khong phepnha co viec phai ve que gap, nghi khong phepnha co viec phai ve que gap, nghi khong phep"
+                    android:textSize="@dimen/font_36"
+                    app:font="Roboto_Light" />
+
+            </HorizontalScrollView>
+        </LinearLayout>
+        <!--android:background="@drawable/ic_wait"-->
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/textView9"
+            android:background="#e6e6e6" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <com.daniribalbert.customfontlib.views.CustomFontTextView
+                android:id="@+id/textView12"
+                android:layout_width="@dimen/space_301"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view"
+                android:layout_marginBottom="@dimen/space_02"
+                android:layout_marginTop="@dimen/space_02"
+                android:text="@string/txt_descriptions"
+                android:textSize="@dimen/font_42"
+                app:font="Roboto_Medium" />
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textView14"
+                android:layout_alignLeft="@+id/textView13"
+                android:layout_alignStart="@+id/textView13"
+                android:scrollbars="none">
+
+                <com.daniribalbert.customfontlib.views.CustomFontTextView
+                    android:id="@+id/txt_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/space_02"
+                    android:layout_marginTop="@dimen/space_02"
+                    android:lines="1"
+                    android:text="nha co viec phai ve que gap, nghi khong phepnha co viec phai ve que gap, nghi khong phepnha co viec phai ve que gap, nghi khong phepnha co viec phai ve que gap, nghi khong phep"
+                    android:textSize="@dimen/font_36"
+                    app:font="Roboto_Light" />
+
+            </HorizontalScrollView>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/textView12"
+            android:background="#e6e6e6" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <com.daniribalbert.customfontlib.views.CustomFontTextView
+                android:layout_width="@dimen/space_301"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_02"
+                android:text="@string/txt_status"
+                android:textSize="@dimen/font_42"
+                app:font="Roboto_Medium" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spn_status_checklist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="@dimen/space_00"
+                android:layout_marginTop="@dimen/space_000"
+                android:background="@drawable/bg_spinner_checklist"
+                android:gravity="center_vertical">
+
+            </android.support.v7.widget.AppCompatSpinner>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</FrameLayout>

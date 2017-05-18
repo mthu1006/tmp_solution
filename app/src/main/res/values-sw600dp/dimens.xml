@@ -1,0 +1,56 @@
+<resources>
+
+    <dimen name="size_text_drawable">20sp</dimen>
+    <dimen name="size_text_list_drawable">28sp</dimen>
+    <dimen name="size_text_bangdiem">15sp</dimen>
+    <dimen name="nav_header_height">220dp</dimen>
+    <dimen name="main_header_height">200dp</dimen>
+
+    <dimen name="space_00">-10dp</dimen>
+    <dimen name="space_000">-8dp</dimen>
+    <dimen name="space_0">-36dp</dimen>
+    <dimen name="space_01">-3dp</dimen>
+    <dimen name="space_02">8dp</dimen>
+    <dimen name="space_2">15dp</dimen>
+    <dimen name="space_3">5dp</dimen>
+
+
+    <dimen name="space_19">14dp</dimen>
+    <dimen name="space_24">35dp</dimen>
+    <dimen name="space_25">12dp</dimen>
+    <dimen name="space_26">16dp</dimen>
+    <dimen name="space_28">17dp</dimen>
+    <dimen name="space_31">20dp</dimen>
+    <dimen name="space_32">19.5dp</dimen>
+
+
+    <dimen name="space_40">16dp</dimen>
+    <dimen name="space_59">45dp</dimen>
+    <dimen name="space_65">26.5dp</dimen>
+    <dimen name="space_86">25.5dp</dimen>
+    <dimen name="space_90">60dp</dimen>
+    <dimen name="space_91">68dp</dimen>
+    <dimen name="space_100">25dp</dimen>
+    <dimen name="space_137">34.5dp</dimen>
+    <dimen name="space_139">48dp</dimen>
+    <dimen name="space_151">23dp</dimen>
+    <dimen name="space_152">43dp</dimen>
+    <dimen name="space_157">69dp</dimen>
+    <dimen name="space_158">85dp</dimen>
+    <dimen name="space_180">86dp</dimen>
+
+    <dimen name="space_300">107dp</dimen>
+    <dimen name="space_301">150dp</dimen>
+
+
+    <dimen name="font_30">12sp</dimen>
+    <dimen name="font_36">16sp</dimen>
+    <dimen name="font_40">17.3sp</dimen>
+    <dimen name="font_42">18sp</dimen>
+    <dimen name="font_48">20sp</dimen>
+    <dimen name="font_54">22sp</dimen>
+    <dimen name="space_306">207dp</dimen>
+    <dimen name="space_1001">320dp</dimen>
+
+
+</resources>

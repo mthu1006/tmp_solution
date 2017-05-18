@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bg_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="@dimen/space_48">
+
+    <LinearLayout
+        android:id="@+id/bg_noclick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialogradis"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/space_60"
+        android:paddingLeft="@dimen/space_59"
+        android:paddingRight="@dimen/space_59"
+        android:paddingTop="@dimen/space_29">
+
+        <LinearLayout
+            android:id="@+id/noclick1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/space_60"
+            android:paddingRight="@dimen/space_60">
+
+            <com.daniribalbert.customfontlib.views.CustomFontTextView
+                android:id="@+id/textView_titles"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:minWidth="@dimen/space_1000"
+                android:paddingBottom="@dimen/space_64"
+                android:text="@string/txt_dialog_title"
+                android:textColor="@android:color/holo_orange_light"
+                android:textSize="@dimen/font_66"
+                app:font="Roboto_Bold" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/button_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/ic_close" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#e6e6e6" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/space_23"
+            android:layout_marginTop="@dimen/space_23"
+            android:background="@drawable/draw_nghiphep_quanly"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.3"
+                android:orientation="vertical">
+
+                <com.daniribalbert.customfontlib.views.CustomFontTextView
+                    android:id="@+id/edt_seach_machine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/space_48"
+                    android:layout_marginTop="@dimen/space_48"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:text="@string/txt_please"
+                    android:textSize="@dimen/font_48"
+                    app:font="Roboto_Light" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.7"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/btn_seach_machine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/space_40"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:src="@drawable/ic_hamburger" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_input_type"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <com.daniribalbert.customfontlib.views.CustomFontEditText
+                android:id="@+id/edt_seach_machine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:hint="@string/hint_morving_date"
+                android:paddingBottom="@dimen/space_28"
+                android:paddingLeft="@dimen/space_60"
+                android:paddingRight="@dimen/space_34"
+                android:paddingTop="@dimen/space_28"
+                android:textSize="@dimen/font_42"
+                app:font="Roboto_Light" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/btn_seach_machine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:src="@drawable/ic_search_small" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#e6e6e6" />
+
+        <LinearLayout
+            android:id="@+id/layout_denngay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <com.daniribalbert.customfontlib.views.CustomFontTextView
+                android:id="@+id/text_denngay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3.3"
+                android:minWidth="@dimen/space_1000"
+                android:paddingBottom="@dimen/space_64"
+                android:paddingTop="@dimen/space_64"
+                android:text="@string/txt_factory"
+                android:textSize="@dimen/font_48"
+                app:font="Roboto_Medium" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spn_factory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1.7"
+                android:background="@drawable/bg_spinner"
+                android:paddingLeft="@dimen/space_29">
+
+            </android.support.v7.widget.AppCompatSpinner>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#e6e6e6" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/space_29"
+            android:paddingTop="@dimen/space_29"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="@dimen/space_27"
+                android:paddingRight="@dimen/space_60"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/check_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:buttonTint="@color/color_checkbox_login" />
+
+                <com.daniribalbert.customfontlib.views.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_line"
+                    android:textColor="@color/color_txt_remember_login"
+                    android:textSize="@dimen/font_48"
+                    app:font="Roboto_Light" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_27"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/check_warehouse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:buttonTint="@color/color_checkbox_login" />
+
+                <com.daniribalbert.customfontlib.views.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_warehouse"
+                    android:textColor="@color/color_txt_remember_login"
+                    android:textSize="@dimen/font_48"
+                    app:font="Roboto_Light" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+       <!-- <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/space_64"
+            android:paddingTop="@dimen/space_64">
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/radio_line"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="Line"
+                android:textColor="@color/color_gray"
+                android:textSize="@dimen/font_42"
+                app:buttonTint="@color/color_checkbox_login"
+                app:font="Roboto_Light" />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/radio_warehouse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity=""
+                android:text="Warehouse"
+                android:textColor="@color/color_gray"
+                android:textSize="@dimen/font_42"
+                app:buttonTint="@color/color_checkbox_login"
+                app:font="Roboto_Light" />
+        </RadioGroup>
+-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#e6e6e6" />
+
+        <LinearLayout
+            android:id="@+id/layout_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="5">
+
+            <com.daniribalbert.customfontlib.views.CustomFontTextView
+                android:id="@+id/texdenngay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3.3"
+                android:minWidth="@dimen/space_1000"
+                android:paddingBottom="@dimen/space_64"
+                android:paddingTop="@dimen/space_64"
+                android:text="@string/txt_line"
+                android:textSize="@dimen/font_48"
+                app:font="Roboto_Medium" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spn_line"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1.7"
+                android:background="@drawable/bg_spinner"
+                android:paddingLeft="@dimen/space_29">
+
+            </android.support.v7.widget.AppCompatSpinner>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_warehouse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="5">
+
+            <com.daniribalbert.customfontlib.views.CustomFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3.3"
+                android:minWidth="@dimen/space_1000"
+                android:paddingBottom="@dimen/space_64"
+                android:paddingTop="@dimen/space_64"
+                android:text="@string/txt_warehouse"
+                android:textSize="@dimen/font_48"
+                app:font="Roboto_Medium" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spn_warehouse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1.7"
+                android:background="@drawable/bg_spinner"
+                android:paddingLeft="@dimen/space_29">
+
+            </android.support.v7.widget.AppCompatSpinner>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/space_1"
+            android:background="#e6e6e6" />
+        <!--- -->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_40"
+            android:orientation="horizontal">
+
+            <com.daniribalbert.customfontlib.views.CustomFontButton
+                android:id="@+id/btn_accept"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_login"
+                android:elevation="3dp"
+                android:paddingBottom="@dimen/space_19"
+                android:paddingTop="@dimen/space_19"
+                android:text="@string/txt_btn_dialog"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:font="Roboto_Bold" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
