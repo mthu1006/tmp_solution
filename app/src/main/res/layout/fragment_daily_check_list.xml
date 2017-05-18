@@ -314,8 +314,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
         <!-- layout daily-->
-            <LinearLayout
+           <!-- <LinearLayout
                 android:id="@+id/layout_daily"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -344,6 +345,56 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/checkbox_selector"
                     android:buttonTint="@android:color/transparent"/>
+            </LinearLayout>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:weightSum="2"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/layout_daily"
+                    android:layout_width="match_parent"
+                    android:layout_weight="0.3"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_marginBottom="@dimen/space_60"
+                        android:layout_marginTop="@dimen/space_60"
+                        style="@style/SubIcon"
+                        android:background="@drawable/ic_main_thoikhoabieu" />
+
+                    <com.daniribalbert.customfontlib.views.CustomFontTextView
+                        style="@style/TextSubThietLap"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:text="@string/checklist_weekly"
+                        app:font="Roboto_Regular" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="1.7"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/space_002"
+                    android:paddingTop="@dimen/space_002"
+                    android:paddingLeft="@dimen/space_61"
+                    android:paddingRight="@dimen/space_61"
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.AppCompatCheckBox
+                        android:id="@+id/check_daily"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_marginBottom="@dimen/space_60"
+                        android:layout_marginTop="@dimen/space_60"
+                        android:background="@drawable/checkbox_selector"
+                        android:buttonTint="@android:color/transparent" />
+
+                </LinearLayout>
             </LinearLayout>
 
             <com.github.aakira.expandablelayout.ExpandableRelativeLayout
@@ -375,7 +426,7 @@
             android:background="#e6e6e6" />
 
         <!--  weekly checklist-->
-            <LinearLayout
+           <!-- <LinearLayout
                 android:id="@+id/layout_weekly"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -404,6 +455,56 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/checkbox_selector"
                     android:buttonTint="@android:color/transparent" />
+            </LinearLayout>
+-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:weightSum="2"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/layout_weekly"
+                    android:layout_width="match_parent"
+                    android:layout_weight="0.3"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_marginBottom="@dimen/space_60"
+                        android:layout_marginTop="@dimen/space_60"
+                        style="@style/SubIcon"
+                        android:background="@drawable/ic_main_thoikhoabieu" />
+
+                    <com.daniribalbert.customfontlib.views.CustomFontTextView
+                        style="@style/TextSubThietLap"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:text="@string/checklist_weekly"
+                        app:font="Roboto_Regular" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="1.7"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/space_002"
+                    android:paddingTop="@dimen/space_002"
+                    android:paddingLeft="@dimen/space_61"
+                    android:paddingRight="@dimen/space_61"
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.AppCompatCheckBox
+                        android:id="@+id/check_weekly"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_marginBottom="@dimen/space_60"
+                        android:layout_marginTop="@dimen/space_60"
+                        android:background="@drawable/checkbox_selector"
+                        android:buttonTint="@android:color/transparent" />
+
+                </LinearLayout>
             </LinearLayout>
 
             <com.github.aakira.expandablelayout.ExpandableRelativeLayout
@@ -436,34 +537,57 @@
 
             <!--  Monthly checklist-->
         <LinearLayout
-            android:id="@+id/layout_monthly"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:paddingRight="@dimen/space_60"
-            android:paddingBottom="@dimen/space_60"
-            android:paddingTop="@dimen/space_60"
+            android:weightSum="2"
             android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/layout_monthly"
+                android:layout_width="match_parent"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content">
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/image_io"
+                android:layout_marginBottom="@dimen/space_60"
+                android:layout_marginTop="@dimen/space_60"
                 style="@style/SubIcon"
                 android:background="@drawable/ic_main_thoikhoabieu" />
+
+
 
             <com.daniribalbert.customfontlib.views.CustomFontTextView
                 android:id="@+id/textTit"
                 style="@style/TextSubThietLap"
+                android:layout_gravity="center"
                 android:layout_width="match_parent"
-                android:layout_weight="1"
                 android:text="@string/checklist_monthly"
                 app:font="Roboto_Regular" />
 
-            <android.support.v7.widget.AppCompatCheckBox
-                android:id="@+id/check_monthly"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/checkbox_selector"
-                android:buttonTint="@android:color/transparent" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1.7"
+                android:gravity="center"
+                android:paddingBottom="@dimen/space_002"
+                android:paddingTop="@dimen/space_002"
+                android:paddingLeft="@dimen/space_61"
+                android:paddingRight="@dimen/space_61"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/check_monthly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/space_60"
+                    android:layout_marginTop="@dimen/space_60"
+                    android:background="@drawable/checkbox_selector"
+                    android:buttonTint="@android:color/transparent" />
+
+            </LinearLayout>
         </LinearLayout>
 
         <com.github.aakira.expandablelayout.ExpandableRelativeLayout
