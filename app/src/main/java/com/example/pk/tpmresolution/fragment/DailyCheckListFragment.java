@@ -41,6 +41,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.solovyev.android.views.llm.DividerItemDecoration;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -280,7 +281,13 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
         mDialogLoading.show();
         listDaily.clear();
         listWeekly.clear();
-        listDaily.clear();
+        listMonthly.clear();
+        cbDaily.setChecked(false);
+        cbWeekly.setChecked(false);
+        cbMonthly.setChecked(false);
+        expDaily.collapse();
+        expWeekly.collapse();
+        expMonthly.collapse();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String url = AppConstants.URL_GET_CHECKLIST
                 .replace(AppConstants.KEY_TOKEN, sharedPref.getString(AppConstants.PREF_KEY_LOGIN_TOKEN, ""))
@@ -550,7 +557,16 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
     @Override
     public void onClick(View v) {
         TextView tv = (TextView)v;
-        if(Integer.parseInt(tv.getText().toString())<=Calendar.getInstance().getTime().getDate()) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date currentDate = Calendar.getInstance().getTime();
+        Date choosedDate = null;
+        try {
+            choosedDate = sdf.parse(CheckListFragment.txtDateMonthYear.getText().toString());
+        } catch (ParseException e) {
+            Log.d("Kien", "Loi parse date "+e.toString());
+        }
+        Log.d("Kien", "Compare date "+String.valueOf(choosedDate.compareTo(currentDate)));
+        if(choosedDate.compareTo(currentDate)<=0) {
             resetWeek();
             setupWeek(CheckListFragment.calendar);
             v.setBackgroundResource(R.drawable.ring_fill_blue);
