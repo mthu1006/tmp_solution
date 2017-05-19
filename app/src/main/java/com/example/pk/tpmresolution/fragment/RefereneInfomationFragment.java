@@ -118,12 +118,13 @@ public class RefereneInfomationFragment extends Fragment {
         layoutVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expVideo.toggle();
+
+                /*expVideo.toggle();
                 if(expVideo.isExpanded()) {
                     imgVideo.setImageResource(R.drawable.ic_show_close);
                 }else {
                     imgVideo.setImageResource(R.drawable.ic_down);
-                }
+                }*/
 
             }
         });
