@@ -263,9 +263,7 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
         img_scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDialogLoading.show();
-                ((MainActivity)getActivity()).isRequest = false;
-                ((MainActivity)getActivity()).qrScan.initiateScan();
+                ShowDialogChoice();
             }
         });
         spnFactory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -305,6 +303,40 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
 
     }
 
+    void ShowDialogChoice() {
+        final Dialog dialog = AppDialogManager.onShowCustomDialog(getActivity(), R.layout.dialog_choice);
+        CustomFontButton choice1 = (CustomFontButton) dialog.findViewById(R.id.btn_choice1);
+        CustomFontButton choice2 = (CustomFontButton) dialog.findViewById(R.id.btn_choice2);
+        final CustomFontEditText txt = (CustomFontEditText) dialog.findViewById(R.id.edt_content);
+        choice1.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onClick(View view) {
+                if(!Validation.checkNullOrEmpty(txt.getText().toString())) {
+                    getMachine(txt.getText().toString().toUpperCase());
+                    dialog.dismiss();
+                }else txt.setError("Please enter machine id");
+            }
+        });
+        choice2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                mDialogLoading.show();
+                ((MainActivity)getActivity()).isRequest = false;
+                ((MainActivity)getActivity()).qrScan.initiateScan();
+            }
+        });
+        AppCompatImageView img_close = (AppCompatImageView) mDialog.findViewById(R.id.button_close);
+        img_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
     private void showDialogAdd(){
         edtMachine.setText("Please scan qr code");
         btnAccept.setText("Add");
@@ -322,19 +354,38 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                 mc.setFrLine(machine_for_moving.getLine());
                 mc.setFrWh(machine_for_moving.getWarehouse());
                 mc.setMachineId(machine_for_moving.getMachineID());
+                if(!factoryList.isEmpty() && spnFactory.getSelectedItemPosition() >=0)
                 mc.setToFactory(factoryList.get(spnFactory.getSelectedItemPosition()).getId());
                 if(!lineList.isEmpty() && radio_line.isChecked() && spnLine.getSelectedItemPosition() >=0)
                 mc.setToLine(lineList.get(spnLine.getSelectedItemPosition()).getId());
                 if(!warehouseList.isEmpty() && radio_warehouse.isChecked() && spnWarehouse.getSelectedItemPosition()>=0)
                 mc.setToWh(warehouseList.get(spnWarehouse.getSelectedItemPosition()).getId());
-                listMachine.add(mc);
-                machineAdapter.notifyDataSetChanged();
-                Log.d("Kien", "listMachine.size "+String.valueOf(listMachine.size()));
-                machine_for_moving = null;
                 mDialog.dismiss();
+                if(!checkDulicate(mc.getMachineId())) {
+                    listMachine.add(mc);
+                    machineAdapter.notifyDataSetChanged();
+                    machine_for_moving = null;
+
+                }else {
+                    ShowDialogError("Machine has already added", "Please scan another machine!");
+                    mBtn_dialog.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mDialog.dismiss();
+                        }
+                    });
+                }
+                Log.d("Kien", "listMachine.size " + String.valueOf(listMachine.size()));
             }
         });
         mDialog.show();
+    }
+
+    private boolean checkDulicate(String id){
+        for (int i=0; i<listMachine.size(); i++)
+            if(listMachine.get(i).getMachineId().equals(id))
+                return true;
+        return false;
     }
 
     private void getFromCorparation(){
@@ -421,8 +472,9 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                         c.setName(arr.getJSONObject(i).getString("FactoryName"));
                         factoryList.add(c);
                     }
-                    if (lineList.isEmpty() && factoryList.size()>0) getLine(factoryList.get(0).getId());
                     factoryAdapter.notifyDataSetChanged();
+                    if (lineList.isEmpty() && factoryList.size()>0) getLine(factoryList.get(0).getId());
+
                 } catch (JSONException e) {
                     Log.d("Kien", "Loi json "+e.toString());
                 }
@@ -574,10 +626,16 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
     }
 
     private void ShowDialogError(String title, String message) {
-        Dialog mDialog = AppDialogManager.onShowCustomDialog(getActivity(), R.layout.dialog_error);
+        final Dialog mDialog = AppDialogManager.onShowCustomDialog(getActivity(), R.layout.dialog_error);
         CustomFontTextView txt1 = (CustomFontTextView) mDialog.findViewById(R.id.txt_content1);
         CustomFontTextView txt2 = (CustomFontTextView) mDialog.findViewById(R.id.txt_content2);
         mBtn_dialog = (CustomFontButton) mDialog.findViewById(R.id.btn_accept);
+        mBtn_dialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDialog.dismiss();
+            }
+        });
         txt1.setText(title);
         txt2.setText(message);
         mDialog.show();

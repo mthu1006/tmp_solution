@@ -114,7 +114,9 @@ public class MainFragment extends Fragment {
                         JSONObject obj = new JSONObject(output);
                         if(obj.getString("Status").equals("Y")){
                             mDialogLoading.dismiss();
+                            ((MainActivity) getActivity()).mItem.setStatus(((MainActivity)getActivity()).stt_list.get(spn_status.getSelectedItemPosition()).getName());
                              AppTransaction.Toast(getActivity(),"Change status successfully");
+
                         }else {
                             ShowDialogError(obj.getString("Message"));
                             mDialogLoading.dismiss();
@@ -188,10 +190,16 @@ public class MainFragment extends Fragment {
     }
 
     void ShowDialogError(String message) {
-        Dialog mDialog = AppDialogManager.onShowCustomDialog(getActivity(), R.layout.dialog_error);
+        final Dialog mDialog = AppDialogManager.onShowCustomDialog(getActivity(), R.layout.dialog_error);
         CustomFontTextView txt1 = (CustomFontTextView) mDialog.findViewById(R.id.txt_content1);
         CustomFontTextView txt2 = (CustomFontTextView) mDialog.findViewById(R.id.txt_content2);
         mBtn_dialog = (CustomFontButton) mDialog.findViewById(R.id.btn_accept);
+        mBtn_dialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDialog.dismiss();
+            }
+        });
         txt1.setText("Change status failed");
         txt2.setText(message);
         mDialog.show();

@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TPMResolution.iml" filepath="$PROJECT_DIR$/TPMResolution.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tmp_solution.iml" filepath="$PROJECT_DIR$/tmp_solution.iml" />
     </modules>
   </component>
 </project>

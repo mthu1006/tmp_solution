@@ -75,6 +75,7 @@ public class RequestMaintenanceFragment extends Fragment {
     AppCompatAutoCompleteTextView edtAcceptUser;
     MaterialDialog mDialogLoading;
     CustomFontButton mBtn_dialog;
+    Dialog mDialogError;
     SharedPreferences prefs;
 
     public RequestMaintenanceFragment() {
@@ -255,6 +256,19 @@ public class RequestMaintenanceFragment extends Fragment {
         ((MainActivity) getActivity()).toolbar.setTitle(getActivity().getResources().getTextArray(R.array.navigation_array_tile)[2]);
         ButterKnife.bind(getActivity());
         mItem = ((MainActivity) getActivity()).mItem;
+        if(mItem!=null)
+        if(!mItem.getStatus().equalsIgnoreCase("Broken")){
+            ShowDialogError("Machine is not broken", "Can not request maintenance");
+            mBtn_dialog.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mDialogError.dismiss();
+                    Fragment frag = MainFragment.newInstance();
+                    AppTransaction.replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), frag);
+                }
+            });
+
+        }
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         txtName = (CustomFontTextView) root.findViewById(R.id.txt_name);
         txtModel = (CustomFontTextView) root.findViewById(R.id.txt_model);
@@ -337,6 +351,7 @@ public class RequestMaintenanceFragment extends Fragment {
                 ob.put("Quantity", list.get(i).getPartbook_qty());
                 ob.put("Price", list.get(i).getPartbook_price());
                 ob.put("PriceUnitId", list.get(i).getPartbook_unit_id());
+                arr.put(ob);
             }
             obj.put("PartBook", arr);
             new HTTPRequest(new HTTPRequest.AsyncResponse() {
@@ -357,7 +372,7 @@ public class RequestMaintenanceFragment extends Fragment {
                                         AppTransaction.replaceActivityWithAnimation(getActivity(), LoginActivity.class);
                                     }
                                 });
-                            }
+                            }else mDialog.dismiss();
 
                         }
                     } catch (JSONException e) {
@@ -450,7 +465,6 @@ public class RequestMaintenanceFragment extends Fragment {
         }, getActivity()).execute(url);
     }
 
-
     private  void InitData(){
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         txtRequestDate.setText(sdf.format(Calendar.getInstance().getTime()));
@@ -459,13 +473,20 @@ public class RequestMaintenanceFragment extends Fragment {
     }
 
     private void ShowDialogError(String title, String message) {
-        Dialog mDialog = AppDialogManager.onShowCustomDialog(getActivity(), R.layout.dialog_error);
-        CustomFontTextView txt1 = (CustomFontTextView) mDialog.findViewById(R.id.txt_content1);
-        CustomFontTextView txt2 = (CustomFontTextView) mDialog.findViewById(R.id.txt_content2);
-        mBtn_dialog = (CustomFontButton) mDialog.findViewById(R.id.btn_accept);
+        mDialogError = AppDialogManager.onShowCustomDialog(getActivity(), R.layout.dialog_error);
+        CustomFontTextView txt1 = (CustomFontTextView) mDialogError.findViewById(R.id.txt_content1);
+        CustomFontTextView txt2 = (CustomFontTextView) mDialogError.findViewById(R.id.txt_content2);
+        mBtn_dialog = (CustomFontButton) mDialogError.findViewById(R.id.btn_accept);
+        mBtn_dialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDialogError.dismiss();
+            }
+        });
+
         txt1.setText(title);
         txt2.setText(message);
-        mDialog.show();
+        mDialogError.show();
     }
 
 

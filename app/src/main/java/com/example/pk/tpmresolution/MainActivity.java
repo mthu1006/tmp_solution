@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.daniribalbert.customfontlib.views.CustomFontButton;
+import com.daniribalbert.customfontlib.views.CustomFontEditText;
 import com.daniribalbert.customfontlib.views.CustomFontTextView;
 import com.example.pk.tpmresolution.adapter.NavAdapter;
 import com.example.pk.tpmresolution.fragment.ChangeLoctionFragment;
@@ -124,9 +125,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDialogLoading.show();
-                isRequest = true;
-                qrScan.initiateScan();
+                ShowDialogChoice();
             }
         });
 
@@ -141,33 +140,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show();
             } else {
                 if(isRequest) {
-                    mDialogLoading.show();
-                    try {
-                        String url = AppConstants.URL_GET_MACHINE_DETAIL
-                                .replace(AppConstants.KEY_TOKEN, sharedPref.getString(AppConstants.PREF_KEY_LOGIN_TOKEN, ""))
-                                .replace(AppConstants.KEY_MACHINE_ID, result.getContents());
-                        Log.d("kien", "url: " + url);
-                        new HTTPRequest(new HTTPRequest.AsyncResponse() {
-                            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-                            @Override
-                            public void processFinish(String output) {
-                                Log.d("kien", "res: " + output);
-
-                                handlerResultFromQR(output);
-                            }
-                        }, this).execute(url);
-
-                    } catch (Exception e) {
-                        Log.e("kien", "error: " + e.toString());
-                    }
-
-                    Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
+                    requestMachine(result.getContents());
                 }else ((ChangeLoctionFragment)frag).getMachine(result.getContents());
 
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    private void requestMachine(String id){
+        mDialogLoading.show();
+        try {
+            String url = AppConstants.URL_GET_MACHINE_DETAIL
+                    .replace(AppConstants.KEY_TOKEN, sharedPref.getString(AppConstants.PREF_KEY_LOGIN_TOKEN, ""))
+                    .replace(AppConstants.KEY_MACHINE_ID, id);
+            Log.d("kien", "url: " + url);
+            new HTTPRequest(new HTTPRequest.AsyncResponse() {
+                @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+                @Override
+                public void processFinish(String output) {
+                    Log.d("kien", "res: " + output);
+                    handlerResultFromQR(output);
+                }
+            }, this).execute(url);
+
+        } catch (Exception e) {
+            Log.e("kien", "error: " + e.toString());
+        }
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -210,13 +211,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }else{
                     mDialogLoading.dismiss();
                     ShowDialogError(object.getString("Message"));
-                    mBtn_dialog.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit().putBoolean(AppConstants.PREF_KEY_LOGIN_REMEMBERLOGIN, false).commit();
-                            AppTransaction.replaceActivityWithAnimation(MainActivity.this, LoginActivity.class);
-                        }
-                    });
+                    if (object.getString("Type").equals("Login")) {
+                        mBtn_dialog.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit().putBoolean(AppConstants.PREF_KEY_LOGIN_REMEMBERLOGIN, false).commit();
+                                AppTransaction.replaceActivityWithAnimation(MainActivity.this, LoginActivity.class);
+                            }
+                        });
+                    }else {
+                        mBtn_dialog.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                            mDialog.dismiss();
+                            }
+                        });
+
+                    }
                 }
 
             } catch (JSONException e) {
@@ -393,8 +404,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    void ShowDialogChoice() {
+        final Dialog mDialog = AppDialogManager.onShowCustomDialog(this, R.layout.dialog_choice);
+        final CustomFontButton choice1 = (CustomFontButton) mDialog.findViewById(R.id.btn_choice1);
+        CustomFontButton choice2 = (CustomFontButton) mDialog.findViewById(R.id.btn_choice2);
+        final CustomFontEditText txt = (CustomFontEditText) mDialog.findViewById(R.id.edt_content);
+        choice1.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onClick(View view) {
+                if(!Validation.checkNullOrEmpty(txt.getText().toString())) {
+                    requestMachine(txt.getText().toString().toUpperCase());
+                    mDialog.dismiss();
+                }
+                else txt.setError("Please enter machine id");
+            }
+        });
+        choice2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDialogLoading.show();
+                isRequest = true;
+                qrScan.initiateScan();
+            }
+        });
+        AppCompatImageView img_close = (AppCompatImageView) mDialog.findViewById(R.id.button_close);
+        img_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDialog.dismiss();
+            }
+        });
+        mDialog.show();
+    }
+
     void ShowDialogCofirm() {
-        mDialog = AppDialogManager.onShowCustomDialog(this, R.layout.dialog_confirm);
+        final Dialog mDialog = AppDialogManager.onShowCustomDialog(this, R.layout.dialog_confirm);
         CustomFontButton mBtAccept = (CustomFontButton) mDialog.findViewById(R.id.btn_accept);
         CustomFontButton mBtDeny = (CustomFontButton) mDialog.findViewById(R.id.btn_denice);
         mBtAccept.setOnClickListener(new View.OnClickListener() {
@@ -422,9 +467,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     void ShowDialogError(String message) {
-        Dialog mDialog = AppDialogManager.onShowCustomDialog(this, R.layout.dialog_error);
+        mDialog = AppDialogManager.onShowCustomDialog(this, R.layout.dialog_error);
         CustomFontTextView txt = (CustomFontTextView) mDialog.findViewById(R.id.txt_content2);
         mBtn_dialog = (CustomFontButton) mDialog.findViewById(R.id.btn_accept);
+        mBtn_dialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDialog.dismiss();
+            }
+        });
         txt.setText(message);
         mDialog.show();
     }
