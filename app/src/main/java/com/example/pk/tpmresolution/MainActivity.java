@@ -281,14 +281,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_logout) {
+        /*if (id == R.id.action_logout) {
             ShowDialogCofirm();
             return true;
         }else if(id == R.id.action_change_pass){
            Fragment frag = SettingFragment.newInstance();
             AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), frag);
         }
-
+*/
         return super.onOptionsItemSelected(item);
     }
 
