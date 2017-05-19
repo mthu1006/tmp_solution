@@ -16,15 +16,51 @@ public class ProductItem {
     String purchase_date;
     String valid_date;
     String corporation;
+    String corporation_id;
     String master_code;
     String factory;
+    String factory_id;
     String line;
+    String line_id;
     String warehouse;
+    String warehouse_id;
     String status;
     Bitmap avatar;
     String[] listStatus;
     String[] listStatusCode;
 
+
+    public String getCorporation_id() {
+        return corporation_id;
+    }
+
+    public void setCorporation_id(String corporation_id) {
+        this.corporation_id = corporation_id;
+    }
+
+    public String getFactory_id() {
+        return factory_id;
+    }
+
+    public void setFactory_id(String factory_id) {
+        this.factory_id = factory_id;
+    }
+
+    public String getLine_id() {
+        return line_id;
+    }
+
+    public void setLine_id(String line_id) {
+        this.line_id = line_id;
+    }
+
+    public String getWarehouse_id() {
+        return warehouse_id;
+    }
+
+    public void setWarehouse_id(String warehouse_id) {
+        this.warehouse_id = warehouse_id;
+    }
 
     public String getWarehouse() {
         return warehouse;

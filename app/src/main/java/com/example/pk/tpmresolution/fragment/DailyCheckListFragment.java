@@ -1,13 +1,13 @@
 package com.example.pk.tpmresolution.fragment;
 
 import android.app.Dialog;
-import android.app.FragmentManager;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -25,13 +25,12 @@ import com.example.pk.tpmresolution.MainActivity;
 import com.example.pk.tpmresolution.R;
 import com.example.pk.tpmresolution.adapter.CheckListAdapter;
 import com.example.pk.tpmresolution.model.CheckListItem;
-import com.example.pk.tpmresolution.model.InformationItem;
+import com.example.pk.tpmresolution.model.CommonClass;
 import com.example.pk.tpmresolution.model.ProductItem;
 import com.example.pk.tpmresolution.model.RequestMaintenace;
 import com.example.pk.tpmresolution.utils.AppConstants;
 import com.example.pk.tpmresolution.utils.AppDialogManager;
 import com.example.pk.tpmresolution.utils.AppTransaction;
-import com.example.pk.tpmresolution.utils.AppUltils;
 import com.example.pk.tpmresolution.utils.HTTPRequest;
 import com.example.pk.tpmresolution.utils.Validation;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
@@ -39,17 +38,12 @@ import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.solovyev.android.views.llm.DividerItemDecoration;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import static com.example.pk.tpmresolution.R.color.color_1;
-import static com.example.pk.tpmresolution.R.color.color_5;
-import static com.example.pk.tpmresolution.R.color.color_checkbox_login;
 import static com.example.pk.tpmresolution.R.id.layout_daily;
 import static com.example.pk.tpmresolution.R.id.layout_monthly;
 import static com.example.pk.tpmresolution.R.id.layout_weekly;
@@ -67,8 +61,7 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
     ProductItem mItem = null;
     private RequestMaintenace mMaitainItem = null;
     ArrayList<CheckListItem> listDaily, listWeekly, listMonthly, listChanged;
-    String[] status_names;
-    String[] status_codes;
+    ArrayList<CommonClass> status_list;
     CustomFontTextView[] list_tv;
     AppCompatCheckBox cbDaily, cbWeekly, cbMonthly;
     private SharedPreferences sharedPref;
@@ -113,6 +106,7 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
         recyclerWeekly.setLayoutManager(layoutManager2);
         recyclerMonthly.setLayoutManager(layoutManager3);
         mDialogLoading = AppDialogManager.onCreateDialogLoading(getActivity());
+        status_list = new ArrayList<>();
         listDaily = new ArrayList<>();
         listWeekly = new ArrayList<>();
         listMonthly = new ArrayList<>();
@@ -214,11 +208,11 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                 JSONArray arrStatus = null;
                 try {
                     arrStatus = new JSONArray(output);
-                    status_names = new String[arrStatus.length()];
-                    status_codes = new String[arrStatus.length()];
                     for(int i=0; i< arrStatus.length(); i++){
-                        status_names[i] = arrStatus.getJSONObject(i).getString("StatusCheckListName");
-                        status_codes[i] = arrStatus.getJSONObject(i).getString("StatusChecklistId");
+                        CommonClass c = new CommonClass();
+                        c.setName(arrStatus.getJSONObject(i).getString("StatusCheckListName"));
+                        c.setId(arrStatus.getJSONObject(i).getString("StatusChecklistId"));
+                        status_list.add(c);
                     }
                     if(mItem!=null)
                     getChecklist(Calendar.getInstance().getTime());
@@ -245,7 +239,9 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                     objStatus.put("ChklItemCode", listChanged.get(i).getChecklist_id());
                     objStatus.put("ModelId", mItem.getModel_id());
                     objStatus.put("MachineId", mItem.getMachineID());
-                    objStatus.put("StatusCode", listChanged.get(i).getChecklist_status_id());
+                    if(!Validation.checkNullOrEmpty(listChanged.get(i).getChecklist_status_id()))
+                        objStatus.put("StatusCode", listChanged.get(i).getChecklist_status_id());
+                    else objStatus.put("StatusCode", status_list.get(0).getId());
                     objStatus.put("Date", new SimpleDateFormat("yyyy-MM-dd").format(choosedDate));
                     arr.put(objStatus);
                 }
@@ -262,6 +258,7 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                     try {
                         JSONObject obj = new JSONObject(output);
                         if (obj.getString("Status").equals("Y")) {
+                            getChecklist(choosedDate);
                             mDialogLoading.dismiss();
                             AppTransaction.Toast(getActivity(), obj.getString("Message"));
                         } else {
@@ -313,8 +310,14 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                             inf.setChecklist_name(obj.getString("ChklItemName"));
                             inf.setChecklist_action_name(obj.getString("ActionName"));
                             inf.setChecklist_date(obj.getString("DateCheck"));
-                            inf.setChecklist_status_id(obj.getString("StatusCode"));
-                            inf.setChecklist_status_name(obj.getString("StatusName"));
+                            if(!Validation.checkNullOrEmpty(obj.getString("StatusCode")))
+                                inf.setChecklist_status_id(obj.getString("StatusCode"));
+                            else inf.setChecklist_status_id(status_list.get(0).getId());
+
+                            if(!Validation.checkNullOrEmpty(obj.getString("StatusName")))
+                                inf.setChecklist_status_name(obj.getString("StatusName"));
+                            else inf.setChecklist_status_id(status_list.get(0).getId());
+
                             inf.setChecklist_user_name(obj.getString("UserCheckName"));
                             //Log.d("Kien", inf.getDisplayName());
                             listDaily.add(inf);
@@ -328,8 +331,13 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                             inf.setChecklist_name(obj.getString("ChklItemName"));
                             inf.setChecklist_action_name(obj.getString("ActionName"));
                             inf.setChecklist_date(obj.getString("DateCheck"));
-                            inf.setChecklist_status_id(obj.getString("StatusCode"));
-                            inf.setChecklist_status_name(obj.getString("StatusName"));
+                            if(!Validation.checkNullOrEmpty(obj.getString("StatusCode")))
+                                inf.setChecklist_status_id(obj.getString("StatusCode"));
+                            else inf.setChecklist_status_id(status_list.get(0).getId());
+
+                            if(!Validation.checkNullOrEmpty(obj.getString("StatusName")))
+                                inf.setChecklist_status_name(obj.getString("StatusName"));
+                            else inf.setChecklist_status_id(status_list.get(0).getId());
                             inf.setChecklist_user_name(obj.getString("UserCheckName"));
                             //Log.d("Kien", inf.getDisplayName());
                             listWeekly.add(inf);
@@ -343,8 +351,13 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                             inf.setChecklist_name(obj.getString("ChklItemName"));
                             inf.setChecklist_action_name(obj.getString("ActionName"));
                             inf.setChecklist_date(obj.getString("DateCheck"));
-                            inf.setChecklist_status_id(obj.getString("StatusCode"));
-                            inf.setChecklist_status_name(obj.getString("StatusName"));
+                            if(!Validation.checkNullOrEmpty(obj.getString("StatusCode")))
+                                inf.setChecklist_status_id(obj.getString("StatusCode"));
+                            else inf.setChecklist_status_id(status_list.get(0).getId());
+
+                            if(!Validation.checkNullOrEmpty(obj.getString("StatusName")))
+                                inf.setChecklist_status_name(obj.getString("StatusName"));
+                            else inf.setChecklist_status_id(status_list.get(0).getId());
                             inf.setChecklist_user_name(obj.getString("UserCheckName"));
                             //Log.d("Kien", inf.getDisplayName());
                             listMonthly.add(inf);
@@ -385,25 +398,25 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                             cbMonthly.setTag(null);
                         }
 
-                        CheckListAdapter adapterDaily = new CheckListAdapter(getActivity(), listDaily, status_names, status_codes, isNewDaily, 1, DailyCheckListFragment.this, new CheckListAdapter.SpinnerItemClickListener() {
+                        CheckListAdapter adapterDaily = new CheckListAdapter(getActivity(), listDaily, status_list, isNewDaily, 1, DailyCheckListFragment.this, new CheckListAdapter.SpinnerItemClickListener() {
                             @Override
-                            public void onItemClick(String name, String id, int position) {
-                                updateStatusDaily(name, id, position);
+                            public void onItemClick(int position, AppCompatSpinner spn) {
+                                updateStatusDaily(position, spn);
                             }
                         });
                         recyclerDaily.setAdapter(adapterDaily);
 
-                        CheckListAdapter adapterWeekly = new CheckListAdapter(getActivity(), listWeekly, status_names, status_codes, isNewWeekly, 2, DailyCheckListFragment.this, new CheckListAdapter.SpinnerItemClickListener() {
+                        CheckListAdapter adapterWeekly = new CheckListAdapter(getActivity(), listWeekly, status_list, isNewWeekly, 2, DailyCheckListFragment.this, new CheckListAdapter.SpinnerItemClickListener() {
                             @Override
-                            public void onItemClick(String name, String id, int position) {
-                                updateStatusWeekly(name, id, position);
+                            public void onItemClick(int position, AppCompatSpinner spn) {
+                                updateStatusWeekly(position, spn);
                             }
                         });
                         recyclerWeekly.setAdapter(adapterWeekly);
-                        CheckListAdapter adapterMonthly = new CheckListAdapter(getActivity(), listMonthly, status_names, status_codes, isNewMonthly, 3, DailyCheckListFragment.this, new CheckListAdapter.SpinnerItemClickListener() {
+                        CheckListAdapter adapterMonthly = new CheckListAdapter(getActivity(), listMonthly, status_list, isNewMonthly, 3, DailyCheckListFragment.this, new CheckListAdapter.SpinnerItemClickListener() {
                             @Override
-                            public void onItemClick(String name, String id, int position) {
-                                updateStatusMonthly(name, id, position);
+                            public void onItemClick(int position, AppCompatSpinner spn) {
+                                updateStatusMonthly(position, spn);
                             }
                         });
                         recyclerMonthly.setAdapter(adapterMonthly);
@@ -453,22 +466,22 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                 listChanged.add(listMonthly.get(i));
     }
 
-    public void updateStatusDaily(String name, String code, int position){
-        Log.d("Kien","Update status daily name: "+name+" code: "+code);
-        listDaily.get(position).setChecklist_status_id(code);
-        listDaily.get(position).setChecklist_status_name(name);
+    public void updateStatusDaily(int position, AppCompatSpinner spn){
+        Log.d("Kien","Update status daily name: "+status_list.get(spn.getSelectedItemPosition()).getName()+" code: "+status_list.get(spn.getSelectedItemPosition()).getId());
+        listDaily.get(position).setChecklist_status_id(status_list.get(spn.getSelectedItemPosition()).getId());
+        listDaily.get(position).setChecklist_status_name(status_list.get(spn.getSelectedItemPosition()).getName());
     }
 
-    public void updateStatusWeekly(String name, String code, int position){
-        Log.d("Kien","Update status daily name: "+name+" code: "+code);
-        listWeekly.get(position).setChecklist_status_id(code);
-        listWeekly.get(position).setChecklist_status_name(name);
+    public void updateStatusWeekly(int position, AppCompatSpinner spn){
+        Log.d("Kien","Update status weekly name: "+status_list.get(spn.getSelectedItemPosition()).getName()+" code: "+status_list.get(spn.getSelectedItemPosition()).getId());
+        listWeekly.get(position).setChecklist_status_id(status_list.get(spn.getSelectedItemPosition()).getId());
+        listWeekly.get(position).setChecklist_status_name(status_list.get(spn.getSelectedItemPosition()).getName());
     }
 
-    public void updateStatusMonthly(String name, String code, int position){
-        Log.d("Kien","Update status daily name: "+name+" code: "+code);
-        listMonthly.get(position).setChecklist_status_id(code);
-        listMonthly.get(position).setChecklist_status_name(name);
+    public void updateStatusMonthly(int position, AppCompatSpinner spn){
+        Log.d("Kien","Update status monthly name: "+status_list.get(spn.getSelectedItemPosition()).getName()+" code: "+status_list.get(spn.getSelectedItemPosition()).getId());
+        listMonthly.get(position).setChecklist_status_id(status_list.get(spn.getSelectedItemPosition()).getId());
+        listMonthly.get(position).setChecklist_status_name(status_list.get(spn.getSelectedItemPosition()).getName());
     }
 
 
@@ -557,16 +570,8 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
     @Override
     public void onClick(View v) {
         TextView tv = (TextView)v;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date currentDate = Calendar.getInstance().getTime();
-        Date choosedDate = null;
-        try {
-            choosedDate = sdf.parse(CheckListFragment.txtDateMonthYear.getText().toString());
-        } catch (ParseException e) {
-            Log.d("Kien", "Loi parse date "+e.toString());
-        }
-        Log.d("Kien", "Compare date "+String.valueOf(choosedDate.compareTo(currentDate)));
-        if(choosedDate.compareTo(currentDate)<=0) {
+        if(((Date) tv.getTag()).compareTo(currentDate)<=0) {
             resetWeek();
             setupWeek(CheckListFragment.calendar);
             v.setBackgroundResource(R.drawable.ring_fill_blue);

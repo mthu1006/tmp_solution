@@ -8,14 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 
 import com.daniribalbert.customfontlib.views.CustomFontTextView;
 import com.example.pk.tpmresolution.R;
 import com.example.pk.tpmresolution.fragment.DailyCheckListFragment;
 import com.example.pk.tpmresolution.model.CheckListItem;
+import com.example.pk.tpmresolution.model.CommonClass;
+import com.example.pk.tpmresolution.utils.Validation;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by kien on 03/29/2017.
@@ -26,9 +30,10 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.MyVi
     private Context context;
     SpinnerItemClickListener listener;
     private int focusedItem = -1;
-    String[] arr, arrCode;
+    ArrayList<CommonClass> list_stt;
     DailyCheckListFragment dailyCheckListFragment;
-    ArrayAdapter<String> adapter;
+    Map<Integer, Integer> myMap = new HashMap<Integer, Integer>();
+
     int type;
     boolean isNew;
 
@@ -53,14 +58,13 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.MyVi
     }
 
     public interface SpinnerItemClickListener{
-        void onItemClick(String name, String id, int position);
+        void onItemClick(int position, AppCompatSpinner spn);
     }
 
 
-    public CheckListAdapter(Context context, List<CheckListItem> moviesList, String[] arr, String[] arrCode, boolean isNew, int type, DailyCheckListFragment daily, SpinnerItemClickListener listener) {
+    public CheckListAdapter(Context context, List<CheckListItem> moviesList, ArrayList<CommonClass> list_stt, boolean isNew, int type, DailyCheckListFragment daily, SpinnerItemClickListener listener) {
         this.context = context;
-        this.arr = arr;
-        this.arrCode = arrCode;
+        this.list_stt = list_stt;
         this.dailyCheckListFragment = daily;
         this.isNew = isNew;
         this.type = type;
@@ -70,7 +74,7 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.MyVi
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        adapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, arr);
+
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_daily_item, parent, false);
         final MyViewHolder pvh = new MyViewHolder(itemView);
         itemView.setOnClickListener(new View.OnClickListener() {
@@ -128,19 +132,25 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.MyVi
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
+        CommonAdapter adapter = new CommonAdapter(list_stt, context);;
         final CheckListItem menu = mListStatus.get(position);
         holder.txtName.setText(menu.getChecklist_name());
         holder.txtActionName.setText(menu.getChecklist_action_name());
         holder.spnStatusCheckList.setAdapter(adapter);
-        for(int i=0; i<arr.length; i++){
-            if(menu.getChecklist_status_name().equals(arr[i])) holder.spnStatusCheckList.setSelection(i);
+        if(!Validation.checkNullOrEmpty(menu.getChecklist_status_name()))
+        for(int i=0; i<list_stt.size(); i++){
+            if(menu.getChecklist_status_name().equals(list_stt.get(i).getName())) holder.spnStatusCheckList.setSelection(i);
+        }
+        if (myMap.containsKey(position)) {
+            holder.spnStatusCheckList.setSelection(myMap.get(position));
         }
         if(isNew) {
             holder.spnStatusCheckList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    listener.onItemClick(arr[i], arrCode[i], position);
+                    myMap.put(position, i);
+                    listener.onItemClick(position, holder.spnStatusCheckList);
                 }
 
                 @Override
