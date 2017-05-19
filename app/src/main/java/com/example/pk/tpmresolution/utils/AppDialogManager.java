@@ -215,7 +215,7 @@ public class AppDialogManager {
         dialog.setCanceledOnTouchOutside(true);//chạm ở ngoài
         dialog.setContentView(view);
 
-        CustomFontButton btnDenice = (CustomFontButton) view.findViewById(R.id.btn_denice);
+        CustomFontButton btnDenice = (CustomFontButton) view.findViewById(R.id.btn_cancel);
         if(btnDenice!=null) {
             btnDenice.setOnClickListener(new View.OnClickListener() {
                 @Override

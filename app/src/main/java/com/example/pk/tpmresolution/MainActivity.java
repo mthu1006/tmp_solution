@@ -292,14 +292,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        /*if (id == R.id.action_logout) {
+       /* if (id == R.id.action_logout) {
             ShowDialogCofirm();
             return true;
         }else if(id == R.id.action_change_pass){
            Fragment frag = SettingFragment.newInstance();
             AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), frag);
-        }
-*/
+        }*/
         return super.onOptionsItemSelected(item);
     }
 
@@ -406,8 +405,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     void ShowDialogChoice() {
         final Dialog mDialog = AppDialogManager.onShowCustomDialog(this, R.layout.dialog_choice);
-        final CustomFontButton choice1 = (CustomFontButton) mDialog.findViewById(R.id.btn_choice1);
-        CustomFontButton choice2 = (CustomFontButton) mDialog.findViewById(R.id.btn_choice2);
+        final AppCompatImageView choice1 = (AppCompatImageView) mDialog.findViewById(R.id.btn_choice1);
+        final AppCompatImageView choice2 = (AppCompatImageView) mDialog.findViewById(R.id.btn_choice2);
         final CustomFontEditText txt = (CustomFontEditText) mDialog.findViewById(R.id.edt_content);
         choice1.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -445,7 +444,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mBtAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               //PreferenceManager.getDefaultSharedPreferences(MainActivity.this.edit().putBoolean(AppConstants.PREF_KEY_LOGIN_REMEMBERLOGIN, false).commit();
+               PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit().putBoolean(AppConstants.PREF_KEY_LOGIN_REMEMBERLOGIN, false).commit();
                 AppTransaction.replaceActivityWithAnimation(MainActivity.this, LoginActivity.class);
                 mDialog.dismiss();
             }

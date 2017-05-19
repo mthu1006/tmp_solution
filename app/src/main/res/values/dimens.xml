@@ -47,6 +47,7 @@
     <dimen name="space_30">7.5dp</dimen>
     <dimen name="space_31">9dp</dimen>
     <dimen name="space_32">14dp</dimen>
+    <dimen name="space_33">12dp</dimen>
     <dimen name="space_34">8.5dp</dimen>
     <dimen name="space_40">10dp</dimen>
     <dimen name="space_48">12dp</dimen>

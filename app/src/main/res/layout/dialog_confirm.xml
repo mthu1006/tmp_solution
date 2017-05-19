@@ -59,11 +59,18 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:paddingTop="@dimen/space_48"
+            android:paddingTop="@dimen/space_60"
+            android:paddingBottom="@dimen/space_60"
             android:stateListAnimator="@null"
             android:text="You want to sign out ? "
             android:textSize="@dimen/font_54"
             app:font="Roboto_Light" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#e6e6e6" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,7 +81,7 @@
                 android:id="@+id/btn_accept"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/space_29"
+                android:layout_marginRight="@dimen/space_60"
                 android:layout_marginTop="@dimen/space_50"
 
                 android:layout_weight="1"

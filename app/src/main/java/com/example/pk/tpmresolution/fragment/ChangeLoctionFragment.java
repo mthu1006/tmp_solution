@@ -305,8 +305,8 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
 
     void ShowDialogChoice() {
         final Dialog dialog = AppDialogManager.onShowCustomDialog(getActivity(), R.layout.dialog_choice);
-        CustomFontButton choice1 = (CustomFontButton) dialog.findViewById(R.id.btn_choice1);
-        CustomFontButton choice2 = (CustomFontButton) dialog.findViewById(R.id.btn_choice2);
+        AppCompatImageView choice1 = (AppCompatImageView) dialog.findViewById(R.id.btn_choice1);
+        AppCompatImageView choice2 = (AppCompatImageView) dialog.findViewById(R.id.btn_choice2);
         final CustomFontEditText txt = (CustomFontEditText) dialog.findViewById(R.id.edt_content);
         choice1.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
