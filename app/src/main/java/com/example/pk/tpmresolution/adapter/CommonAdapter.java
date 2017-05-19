@@ -48,6 +48,10 @@ public class CommonAdapter extends BaseAdapter{
         this.list = objects;
     }
 
+    public CustomFontTextView getTextView() {
+        return viewHolder.itemView;
+    }
+
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if (convertView == null) {

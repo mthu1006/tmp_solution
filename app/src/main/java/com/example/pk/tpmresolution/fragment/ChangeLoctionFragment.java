@@ -24,6 +24,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.daniribalbert.customfontlib.views.CustomFontButton;
@@ -37,16 +39,19 @@ import com.example.pk.tpmresolution.adapter.MovingMachineAdapter;
 import com.example.pk.tpmresolution.adapter.NavClickAdapter;
 import com.example.pk.tpmresolution.model.CommonClass;
 import com.example.pk.tpmresolution.model.MachineForMoving;
+import com.example.pk.tpmresolution.model.PartBookItem;
 import com.example.pk.tpmresolution.model.ProductItem;
 import com.example.pk.tpmresolution.utils.AppConstants;
 import com.example.pk.tpmresolution.utils.AppDialogManager;
 import com.example.pk.tpmresolution.utils.AppTransaction;
+import com.example.pk.tpmresolution.utils.DialogAcceptClickListener;
 import com.example.pk.tpmresolution.utils.HTTPRequest;
 import com.example.pk.tpmresolution.utils.Validation;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -128,12 +133,23 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
         machineAdapter = new MovingMachineAdapter(getActivity(), listMachine, new NavClickAdapter() {
             @Override
             public void onItemClick(View v, int position) {
-
+                showDialogUpdate(listMachine.get(position), position);
             }
 
             @Override
-            public void onLongItemClick(View v, int position) {
+            public void onLongItemClick(View v, final int position) {
+                AppDialogManager.onCreateDialogConfirm(getActivity(), "Do you want to delete?", new DialogAcceptClickListener() {
+                    @Override
+                    public void onAcceptClick(View v) {
+                        listMachine.remove(position);
+                        machineAdapter.notifyDataSetChanged();
+                    }
 
+                    @Override
+                    public void onCloseClick(View v) {
+
+                    }
+                });
             }
         });
         recyclerMovingMachine.setAdapter(machineAdapter);
@@ -355,7 +371,11 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                 mc.setFrWh(machine_for_moving.getWarehouse());
                 mc.setMachineId(machine_for_moving.getMachineID());
                 if(!factoryList.isEmpty() && spnFactory.getSelectedItemPosition() >=0)
-                mc.setToFactory(factoryList.get(spnFactory.getSelectedItemPosition()).getId());
+                    mc.setToFactory(factoryList.get(spnFactory.getSelectedItemPosition()).getId());
+                else {
+                    AppTransaction.Toast(getActivity(), "Factory can not null");
+                    return;
+                }
                 if(!lineList.isEmpty() && radio_line.isChecked() && spnLine.getSelectedItemPosition() >=0)
                 mc.setToLine(lineList.get(spnLine.getSelectedItemPosition()).getId());
                 if(!warehouseList.isEmpty() && radio_warehouse.isChecked() && spnWarehouse.getSelectedItemPosition()>=0)
@@ -376,6 +396,72 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                     });
                 }
                 Log.d("Kien", "listMachine.size " + String.valueOf(listMachine.size()));
+            }
+        });
+        mDialog.show();
+    }
+
+    private void showDialogUpdate(final MachineForMoving machine, final int postion){
+        edtMachine.setText(machine.getName());
+        btnAccept.setText("Update");
+
+        for (int i = 0; i< factoryList.size(); i++){
+            if(machine.getToFactory().equals(factoryList.get(i))){
+                spnFactory.setSelection(i);
+            }
+        }
+        if(machine.getToLine()!=null)
+        for (int i = 0; i< lineList.size(); i++){
+            if(machine.getToLine().equals(lineList.get(i))){
+                spnLine.setSelection(i);
+            }
+        }
+        if(machine.getToWh()!=null)
+        for (int i = 0; i< warehouseList.size(); i++){
+            if(machine.getToWh().equals(warehouseList.get(i))){
+                spnWarehouse.setSelection(i);
+            }
+        }
+
+        btnAccept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = edtMachine.getText().toString();
+                if (Validation.checkNullOrEmpty(name)) {
+                    ShowDialogError("Add partbook failed", "Please choose name from spiner name");
+                } else {
+
+                    MachineForMoving mc = new MachineForMoving();
+                    if(machine_for_moving!=null) {
+                        mc.setName(machine_for_moving.getProduct_name());
+                        mc.setFrFactory(machine_for_moving.getFactory());
+                        mc.setFrLine(machine_for_moving.getLine());
+                        mc.setFrWh(machine_for_moving.getWarehouse());
+                        mc.setMachineId(machine_for_moving.getMachineID());
+                    }else {
+                        mc.setName(machine.getName());
+                        mc.setFrFactory(machine.getFrFactory());
+                        mc.setFrLine(machine.getFrLine());
+                        mc.setFrWh(machine.getFrWh());
+                        mc.setMachineId(machine.getMachineId());
+                    }
+                    if(!factoryList.isEmpty() && spnFactory.getSelectedItemPosition() >=0)
+                        mc.setToFactory(factoryList.get(spnFactory.getSelectedItemPosition()).getId());
+                    else {
+                        AppTransaction.Toast(getActivity(), "Factory can not null");
+                        return;
+                    }
+                    if(!lineList.isEmpty() && radio_line.isChecked() && spnLine.getSelectedItemPosition() >=0)
+                        mc.setToLine(lineList.get(spnLine.getSelectedItemPosition()).getId());
+                    if(!warehouseList.isEmpty() && radio_warehouse.isChecked() && spnWarehouse.getSelectedItemPosition()>=0)
+                        mc.setToWh(warehouseList.get(spnWarehouse.getSelectedItemPosition()).getId());
+
+                    listMachine.set(postion, mc);
+                    machineAdapter.notifyDataSetChanged();
+                    machine_for_moving = null;
+                    mDialog.dismiss();
+                }
+
             }
         });
         mDialog.show();

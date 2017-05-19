@@ -189,9 +189,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     item.setPurchase_date(obj_product.getString("PurchaseDate"));
                     item.setCorporation(obj_product.getString("CorporationName"));
+                    item.setCorporation_id(obj_product.getString("CorporationId"));
                     item.setValid_date(obj_product.getString("ValidDate"));
                     item.setFactory(obj_product.getString("FactoryName"));
+                    item.setFactory_id(obj_product.getString("FactoryId"));
                     item.setLine(obj_product.getString("LineName"));
+                    item.setLine_id(obj_product.getString("LineId"));
+                    item.setWarehouse(obj_product.getString("WarehouseName"));
+                    item.setWarehouse_id(obj_product.getString("WarehouseId"));
 
 
                     item.setStatus(obj_product.getString("MachineStatus"));
@@ -422,6 +427,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         choice2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mDialog.dismiss();
                 mDialogLoading.show();
                 isRequest = true;
                 qrScan.initiateScan();

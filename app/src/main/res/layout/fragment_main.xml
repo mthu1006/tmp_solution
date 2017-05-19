@@ -365,11 +365,13 @@ tools:context="com.example.pk.tpmresolution.fragment.ChangeLoctionFragment">
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/layout_line"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
                             <com.daniribalbert.customfontlib.views.CustomFontTextView
+                                android:id="@+id/txt_title_line"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/space_23"

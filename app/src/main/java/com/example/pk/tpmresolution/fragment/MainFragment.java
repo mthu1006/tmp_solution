@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -36,7 +37,8 @@ public class MainFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     ProductItem mItem = null;
-    private CustomFontTextView txtID, txtName, txtModel, txtFunction, txtSeriesNumber, txtPuchaseDate, txtValidDate, txtCorporation, txtFactory, txtLine;
+    private CustomFontTextView txtID, txtName, txtModel, txtFunction, txtSeriesNumber, txtPuchaseDate, txtValidDate, txtCorporation, txtFactory, txtLine, txtTitleLine;
+    LinearLayout layoutLine;
     private AppCompatSpinner spn_status;
     private MaterialLetterIcon imgAvatar;
     private CustomFontButton btnSave;
@@ -75,6 +77,8 @@ public class MainFragment extends Fragment {
         txtCorporation = (CustomFontTextView) root.findViewById(R.id.txt_corporation);
         txtFactory = (CustomFontTextView) root.findViewById(R.id.txt_factory);
         txtLine = (CustomFontTextView) root.findViewById(R.id.txt_line);
+        txtTitleLine = (CustomFontTextView) root.findViewById(R.id.txt_title_line);
+        layoutLine = (LinearLayout) root.findViewById(R.id.layout_line);
         spn_status = (AppCompatSpinner) root.findViewById(R.id.spn_status);
         imgAvatar = (MaterialLetterIcon) root.findViewById(R.id.img_avatar);
         if(((MainActivity)getActivity()).stt_list.size()>0) {
@@ -155,7 +159,16 @@ public class MainFragment extends Fragment {
             validationText(txtValidDate, AppUltils.fomatDateFromString(mItem.getValid_date()));
             validationText(txtCorporation, mItem.getCorporation());
             validationText(txtFactory, mItem.getFactory());
-            validationText(txtLine, mItem.getLine());
+
+            if(Validation.checkNullOrEmpty(mItem.getLine())){
+                if(!Validation.checkNullOrEmpty(mItem.getWarehouse())) {
+                    txtTitleLine.setText("Warehouse");
+                    txtLine.setText(mItem.getWarehouse());
+                }else layoutLine.setVisibility(View.GONE);
+            }else {
+                txtTitleLine.setText("Line");
+                txtLine.setText(mItem.getLine());
+            }
             if(((MainActivity)getActivity()).stt_list.size()>0){
                 for (int i = 0; i < ((MainActivity)getActivity()).stt_list.size(); i++) {
                     if (((MainActivity)getActivity()).stt_list.get(i).getName().trim().equalsIgnoreCase(mItem.getStatus().trim())) {
