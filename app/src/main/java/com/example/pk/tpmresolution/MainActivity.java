@@ -29,6 +29,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -113,6 +114,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         mDialogLoading = AppDialogManager.onCreateDialogLoading(this);
+        LinearLayout logo = (LinearLayout) toolbar.findViewById(R.id.img_logo);
+        logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), MainFragment.newInstance());
+            }
+        });
+
         stt_list = new ArrayList<>();
         frag = MainFragment.newInstance();
         main_name = frag.getClass().getName();
@@ -212,6 +221,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                     mItem = item;
                     mDialogLoading.dismiss();
+                    mNavAdapter.notifyItemChanged(mNavAdapter.getFocusedItem());
+                    mNavAdapter.setFocusedItem(-1);
                     AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), MainFragment.newInstance());
                 }else{
                     mDialogLoading.dismiss();
@@ -411,7 +422,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     void ShowDialogChoice() {
         final Dialog mDialog = AppDialogManager.onShowCustomDialog(this, R.layout.dialog_choice);
         final AppCompatImageView choice1 = (AppCompatImageView) mDialog.findViewById(R.id.btn_choice1);
-        final AppCompatImageView choice2 = (AppCompatImageView) mDialog.findViewById(R.id.btn_choice2);
+        LinearLayout choice2 = (LinearLayout) mDialog.findViewById(R.id.layout_scan);
         final CustomFontEditText txt = (CustomFontEditText) mDialog.findViewById(R.id.edt_content);
         choice1.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)

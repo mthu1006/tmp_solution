@@ -69,7 +69,6 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
     private AutoCompleteTextView edtReveiceUser;
     DatePickerDialog datePickerDialog;
     MaterialDialog mDialogLoading;
-    AppCompatImageView img_scan;
     private RecyclerView recyclerMovingMachine;
     ArrayList<CommonClass> fromCorpList, toCorpList, warehouseList, factoryList, lineList;
     ArrayList<MachineForMoving> listMachine;
@@ -230,7 +229,7 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
         spnLine = (AppCompatSpinner)mDialog.findViewById(R.id.spn_line);
         spnWarehouse = (AppCompatSpinner)mDialog.findViewById(R.id.spn_warehouse);
         edtMachine = (CustomFontTextView) mDialog.findViewById(R.id.edt_seach_machine);
-        img_scan = (AppCompatImageView) mDialog.findViewById(R.id.btn_seach_machine);
+        LinearLayout layout_scan = (LinearLayout) mDialog.findViewById(R.id.layout_ask);
 
         radio_line = (CheckBox) mDialog.findViewById(R.id.check_line);
         radio_warehouse = (CheckBox) mDialog.findViewById(R.id.check_warehouse);
@@ -276,7 +275,7 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
             }
         });
 
-        img_scan.setOnClickListener(new View.OnClickListener() {
+        layout_scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ShowDialogChoice();
@@ -322,7 +321,7 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
     void ShowDialogChoice() {
         final Dialog dialog = AppDialogManager.onShowCustomDialog(getActivity(), R.layout.dialog_choice);
         AppCompatImageView choice1 = (AppCompatImageView) dialog.findViewById(R.id.btn_choice1);
-        AppCompatImageView choice2 = (AppCompatImageView) dialog.findViewById(R.id.btn_choice2);
+        LinearLayout choice2 = (LinearLayout) dialog.findViewById(R.id.layout_scan);
         final CustomFontEditText txt = (CustomFontEditText) dialog.findViewById(R.id.edt_content);
         choice1.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)

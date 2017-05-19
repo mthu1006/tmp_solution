@@ -53,6 +53,7 @@
             android:background="#e6e6e6" />
 
         <LinearLayout
+            android:id="@+id/layout_ask"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -88,7 +89,6 @@
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.AppCompatImageView
-                    android:id="@+id/btn_seach_machine"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="@dimen/space_48"
