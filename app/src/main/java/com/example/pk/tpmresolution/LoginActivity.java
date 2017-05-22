@@ -158,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
                         @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                         @Override
                         public void processFinish(String output) {
-                            Log.d("kien", "res: " + output);
+//                            Log.d("kien", "res: " + output);
                             if (Validation.checkNullOrEmpty(output)) {
                                 mDialogLoading.dismiss();
                                 ShowDialogError("Invalid username or password");
@@ -192,14 +192,16 @@ public class LoginActivity extends AppCompatActivity {
                                 } catch (JSONException e) {
                                     ShowDialogError("Server error. Please try again!");
                                     mDialogLoading.dismiss();
+/*
                                     Log.d("Kien", "Error while parse json login" + e.toString());
+*/
                                 }
                             }
 
                         }
                     }, this).execute(AppConstants.URL_LOGIN, object.toString());
                 } catch (JSONException e) {
-                    Log.d("Kien", "Error while parse json before login" + e.toString());
+                   // Log.d("Kien", "Error while parse json before login" + e.toString());
                 }
         }
 

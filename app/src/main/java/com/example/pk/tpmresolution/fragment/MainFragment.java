@@ -107,7 +107,7 @@ public class MainFragment extends Fragment {
             obj.put("MachineStatus", ((MainActivity)getActivity()).stt_list.get(spn_status.getSelectedItemPosition()).getId());
 
         }catch (Exception e){
-            Log.d("Kien", "Loi parse json "+e.toString());
+          // Log.d("Kien", "Loi parse json "+e.toString());
         }
         new HTTPRequest(new HTTPRequest.AsyncResponse() {
             @Override
@@ -139,7 +139,7 @@ public class MainFragment extends Fragment {
                     } catch (JSONException e) {
                         ShowDialogError("Server error, please try again!");
                         mDialogLoading.dismiss();
-                        Log.d("Kien", "Loi parse json "+e.toString());
+                       // Log.d("Kien", "Loi parse json "+e.toString());
                     }
                 }
             }

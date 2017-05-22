@@ -271,7 +271,7 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                     }
                 }
             }, getActivity()).execute(AppConstants.URL_CHANGE_STATUS_CHECKLIST, object.toString());
-        }else AppTransaction.Toast(getActivity(), "Please check one of 3 checkboxs above!");
+        }else ShowDialogError("Please check one of 3 checkboxs above!");
     }
 
     private void getChecklist(Date date) {
@@ -319,7 +319,6 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                             else inf.setChecklist_status_id(status_list.get(0).getId());
 
                             inf.setChecklist_user_name(obj.getString("UserCheckName"));
-                            //Log.d("Kien", inf.getDisplayName());
                             listDaily.add(inf);
                         }
 
@@ -339,7 +338,6 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                                 inf.setChecklist_status_name(obj.getString("StatusName"));
                             else inf.setChecklist_status_id(status_list.get(0).getId());
                             inf.setChecklist_user_name(obj.getString("UserCheckName"));
-                            //Log.d("Kien", inf.getDisplayName());
                             listWeekly.add(inf);
                         }
 
@@ -359,7 +357,6 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                                 inf.setChecklist_status_name(obj.getString("StatusName"));
                             else inf.setChecklist_status_id(status_list.get(0).getId());
                             inf.setChecklist_user_name(obj.getString("UserCheckName"));
-                            //Log.d("Kien", inf.getDisplayName());
                             listMonthly.add(inf);
                         }
 
@@ -562,6 +559,12 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
         CustomFontTextView txt1 = (CustomFontTextView) mDialog.findViewById(R.id.txt_content1);
         CustomFontTextView txt2 = (CustomFontTextView) mDialog.findViewById(R.id.txt_content2);
         mBtn_dialog = (CustomFontButton) mDialog.findViewById(R.id.btn_accept);
+        mBtn_dialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDialog.dismiss();
+            }
+        });
         txt1.setText("Failed");
         txt2.setText(message);
         mDialog.show();

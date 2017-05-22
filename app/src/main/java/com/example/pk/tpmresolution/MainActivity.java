@@ -164,12 +164,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             String url = AppConstants.URL_GET_MACHINE_DETAIL
                     .replace(AppConstants.KEY_TOKEN, sharedPref.getString(AppConstants.PREF_KEY_LOGIN_TOKEN, ""))
                     .replace(AppConstants.KEY_MACHINE_ID, id);
-            Log.d("kien", "url: " + url);
+          //  Log.d("kien", "url: " + url);
             new HTTPRequest(new HTTPRequest.AsyncResponse() {
                 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                 @Override
                 public void processFinish(String output) {
-                    Log.d("kien", "res: " + output);
+                  //  Log.d("kien", "res: " + output);
                     handlerResultFromQR(output);
                 }
             }, this).execute(url);
@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void handlerResultFromQR(String res){
         if(res!=null){
-            Log.d("kien", "res handler: "+res);
+//            Log.d("kien", "res handler: "+res);
             try {
                 JSONObject object = new JSONObject(res);
                 if(object.get("Status").equals("Y")) {
@@ -248,7 +248,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             } catch (JSONException e) {
                 mDialogLoading.dismiss();
-                Log.d("kien", e.toString());
+              //  Log.d("kien", e.toString());
             }
         }else mDialogLoading.dismiss();
     }
@@ -258,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 @Override
                 public void processFinish(String output) {
                     if (!Validation.checkNullOrEmpty(output)) {
-                        Log.d("Kien", output);
+//                        Log.d("Kien", output);
                         try {
                             JSONArray arr = new JSONArray(output);
                             arr_stt = new String[arr.length()];
@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             }
 
                         } catch (JSONException e) {
-                            Log.d("Kien", "Loi get status " + e.toString());
+                          //  Log.d("Kien", "Loi get status " + e.toString());
                         }
 
                     }
@@ -282,7 +282,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onGetData(EmployeeItem employee) {
-       Log.d("kien", "receive data on mainActivity " +employee.getEmployee_name());
+      // Log.d("kien", "receive data on mainActivity " +employee.getEmployee_name());
         mEmployee = employee;
     }
 
@@ -353,17 +353,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     frag = CheckListFragment.newInstance();
                 } else if (position == 4) {
                     frag = SettingFragment.newInstance();
-                } /* else if (position == 5) {
-                    frag = MainFragment.newInstance();
-                } else if (position == 6) {
-                    frag = FragmentNghiphep.newInstance();
-                } else if (position == 7) {
-                    frag = FragmentDsSuckhoe.newInstance();
-                } else if (position == 8) {
-                    frag = FragmentHuongdan.newInstance();
-                }else if (position == 9) {
-                    frag = FragmentThietLap.newInstance();
-                }*/
+                }
 //                toolbar.setTitle(titleitems.get(position));
                 AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), frag);
                 drawer.closeDrawer(GravityCompat.START);
@@ -375,7 +365,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void onSetupHeader(NavigationView navigationView) {
-        Log.d("kien", "setup header");
+       // Log.d("kien", "setup header");
         final View hView = navigationView.getHeaderView(0);
         ImageView mIvHome = (ImageView) hView.findViewById(R.id.img_home);
         final MaterialLetterIcon mIvAvatar = (MaterialLetterIcon) hView.findViewById(R.id.img_avatar);
@@ -386,7 +376,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void run() {
                 if (mEmployee != null){
-                    Log.d("kien", "mEmployee.getID "+mEmployee.getEmployee_id()+ "mEmployee.getName() " +mEmployee.getEmployee_name());
+                  //  Log.d("kien", "mEmployee.getID "+mEmployee.getEmployee_id()+ "mEmployee.getName() " +mEmployee.getEmployee_name());
 
                     txtID.setText(mEmployee.getEmployee_id());
                     txtName.setText(mEmployee.getEmployee_name());
@@ -394,7 +384,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     String[] arr = mEmployee.getEmployee_name().split(" ");
                     String letter = arr[arr.length-1];
                     mIvAvatar.setLetter(letter);
-                    }else Log.d("kien", "emp null");
+                    }
             }
         }, 100);
 
@@ -411,10 +401,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void validationText(TextView tv, String s){
         if(!Validation.checkNullOrEmpty(s)) {
-            Log.d("kien", "settext "+s);
+           // Log.d("kien", "settext "+s);
             tv.setText(s);
         }else {
-            Log.d("kien", "settext default");
+           // Log.d("kien", "settext default");
             tv.setText(AppConstants.DEFAULT_NULL_TEXT);
         }
     }

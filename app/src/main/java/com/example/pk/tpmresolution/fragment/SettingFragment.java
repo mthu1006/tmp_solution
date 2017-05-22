@@ -169,13 +169,13 @@ public class SettingFragment extends Fragment {
                 object.put("NewPassword", new_pwd);
 
             } catch (JSONException e) {
-                Log.d("kien", "Error parse json change password "+ e.toString());
+                //Log.d("kien", "Error parse json change password "+ e.toString());
             }
             new HTTPRequest(new HTTPRequest.AsyncResponse() {
                 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                 @Override
                 public void processFinish(String output) {
-                    Log.d("kien", "res: " + output);
+                   // Log.d("kien", "res: " + output);
                     if (Validation.checkNullOrEmpty(output)) {
                         mDialogLoading.dismiss();
                         ShowDialogError("Server error, please try again!");
@@ -201,7 +201,7 @@ public class SettingFragment extends Fragment {
                             }
 
                         } catch (JSONException e) {
-                            Log.d("Kien", "Error while parse json login" + e.toString());
+                           // Log.d("Kien", "Error while parse json login" + e.toString());
                         }
                     }
 

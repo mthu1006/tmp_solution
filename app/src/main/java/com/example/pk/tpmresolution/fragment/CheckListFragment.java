@@ -80,7 +80,7 @@ public class CheckListFragment extends Fragment  implements DatePickerDialog.OnD
         datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
         txtDateMonthYear = (CustomFontTextView) root.findViewById(R.id.txt_date_month_year);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
-        Log.d("Kien", "Curent date "+sdf.format(calendar.getTime()));
+       // Log.d("Kien", "Curent date "+sdf.format(calendar.getTime()));
         txtDateMonthYear.setText(sdf.format(calendar.getTime()));
         txtDateMonthYear.setOnClickListener(new View.OnClickListener() {
             @Override

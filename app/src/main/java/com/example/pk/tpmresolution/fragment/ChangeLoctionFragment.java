@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatSpinner;
@@ -175,6 +176,8 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                     edtReveiceUser.setError("Please enter id or name of user");
                 if(Validation.checkNullOrEmpty(remark))
                     edtRemark.setError("Please enter remark");
+                else if(listMachine.isEmpty())
+                    ShowDialogError("Machine list can not be empty", "Please add machine and try again");
                 else
                 movingMachine();
             }
@@ -394,7 +397,7 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                         }
                     });
                 }
-                Log.d("Kien", "listMachine.size " + String.valueOf(listMachine.size()));
+              //  Log.d("Kien", "listMachine.size " + String.valueOf(listMachine.size()));
             }
         });
         mDialog.show();
@@ -493,7 +496,7 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                     spnFrom.setAdapter(adapter);
 
                 } catch (Exception e) {
-                    Log.d("Kien", "Loi json "+e.toString());
+                   // Log.d("Kien", "Loi json "+e.toString());
                 }
             }
         }, getActivity()).execute(url);
@@ -516,7 +519,7 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                     spnTo.setAdapter(adapter);
                     getFactory(toCorpList.get(0).getId());
                 } catch (JSONException e) {
-                    Log.d("Kien", "Loi json "+e.toString());
+                   // Log.d("Kien", "Loi json "+e.toString());
                 }
             }
         }, getActivity()).execute(AppConstants.URL_GET_TO_CORPARATION);
@@ -536,7 +539,7 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                     edtReveiceUser.setAdapter(adapter);
 
                 } catch (JSONException e) {
-                    Log.d("Kien", "Loi json "+e.toString());
+                   // Log.d("Kien", "Loi json "+e.toString());
                 }
             }
         }, getActivity()).execute(AppConstants.URL_LIST_USER);
@@ -561,7 +564,7 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                     if (lineList.isEmpty() && factoryList.size()>0) getLine(factoryList.get(0).getId());
 
                 } catch (JSONException e) {
-                    Log.d("Kien", "Loi json "+e.toString());
+                   // Log.d("Kien", "Loi json "+e.toString());
                 }
             }
         }, getActivity()).execute(url);
@@ -583,7 +586,7 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                     }
                     lineAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
-                    Log.d("Kien", "Loi json "+e.toString());
+                   // Log.d("Kien", "Loi json "+e.toString());
                 }
             }
         }, getActivity()).execute(url);
@@ -604,7 +607,7 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                     }
                     warehouseAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
-                    Log.d("Kien", "Loi json "+e.toString());
+                   // Log.d("Kien", "Loi json "+e.toString());
                 }
             }
         }, getActivity()).execute(AppConstants.URL_GET_WAREHOUSE);
@@ -642,7 +645,7 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                         }
                     }
                 } catch (JSONException e) {
-                    Log.d("Kien", "Loi json "+e.toString());
+                   // Log.d("Kien", "Loi json "+e.toString());
                 }
 
             }
@@ -654,6 +657,8 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
         String accept_user = edtReveiceUser.getText().toString().split(" - ")[0];
         JSONObject object = new JSONObject();
         try {
+
+
             object.put("Token", prefs.getString(AppConstants.PREF_KEY_LOGIN_TOKEN, ""));
             if(fromCorpList.get(spnFrom.getSelectedItemPosition()).getId().equals(toCorpList.get(spnTo.getSelectedItemPosition()).getId()))
                 object.put("Type", "ApprovalN");
@@ -700,13 +705,13 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                             }
                         }
                     } catch (JSONException e) {
-                        Log.d("Kien", "Loi json "+e.toString());
+                       // Log.d("Kien", "Loi json "+e.toString());
                     }
                 }
             }, getActivity()).execute(AppConstants.URL_MOVING_MACHINE, object.toString());
 
         } catch (JSONException e) {
-            Log.d("Kien", "Loi json "+e.toString());
+           // Log.d("Kien", "Loi json "+e.toString());
         }
     }
 

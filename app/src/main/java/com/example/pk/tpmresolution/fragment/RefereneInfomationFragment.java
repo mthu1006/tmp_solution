@@ -152,7 +152,7 @@ public class RefereneInfomationFragment extends Fragment {
                                 fos.write(output);
                                 fos.close();
                             } catch (Exception e) {
-                                Log.d("kien", "error while writing file " + e.toString() );
+                               // Log.d("kien", "error while writing file " + e.toString() );
                             }
 
                             copyReadAssets();
@@ -160,7 +160,7 @@ public class RefereneInfomationFragment extends Fragment {
                         }
                     }).execute(url);
                 } catch (Exception e) {
-                    Log.d("kien", "Loi pdf " + e.toString() );
+                   // Log.d("kien", "Loi pdf " + e.toString() );
                     Fragment frag = LoadPDFFragment.newInstance();
                     AppTransaction.replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), frag);
                 }
@@ -187,11 +187,11 @@ public class RefereneInfomationFragment extends Fragment {
                             inf.setDisplayName(obj.getString("DisplayFileName"));
                             inf.setFile_dir(obj.getString("FilePath"));
                             list_pdf.add(inf);
-                            Log.d("Kien", inf.getDisplayName());
+                           // Log.d("Kien", inf.getDisplayName());
                         }
                         setupRecyclerview();
 
-                        Log.d("Kien", "recyclePDF heihgt 1 :"+ String.valueOf(recyclePDF.getLayoutParams().height));
+                        //Log.d("Kien", "recyclePDF heihgt 1 :"+ String.valueOf(recyclePDF.getLayoutParams().height));
 
                     }else{
                         ShowDialogError(object.getString("Message"));
@@ -208,7 +208,7 @@ public class RefereneInfomationFragment extends Fragment {
                     }
 
                 } catch (JSONException e) {
-                    Log.d("Kien", "loi json inf "+e.toString());
+                   // Log.d("Kien", "loi json inf "+e.toString());
                 }
             }
         }, getActivity()).execute(url);
