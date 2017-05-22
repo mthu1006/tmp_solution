@@ -69,7 +69,6 @@
                     android:id="@+id/txt_work_base"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:drawableLeft="@drawable/ic_arrow_small"

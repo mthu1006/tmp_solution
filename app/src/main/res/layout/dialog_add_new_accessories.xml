@@ -64,7 +64,7 @@
                 android:id="@+id/text_denngay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="3.3"
+                android:layout_weight="3.6"
                 android:minWidth="@dimen/space_1000"
                 android:paddingBottom="@dimen/space_64"
                 android:paddingTop="@dimen/space_64"
@@ -77,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="1.7"
+                android:layout_weight="1.4"
                 android:background="@drawable/bg_spinner"
                 android:paddingLeft="@dimen/space_29"></android.support.v7.widget.AppCompatSpinner>
 
@@ -99,7 +99,7 @@
             <com.daniribalbert.customfontlib.views.CustomFontTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="3.3"
+                android:layout_weight="3.6"
                 android:minWidth="@dimen/space_1000"
                 android:paddingBottom="@dimen/space_64"
                 android:paddingTop="@dimen/space_64"
@@ -112,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="1.7"
+                android:layout_weight="1.4"
                 android:background="@drawable/bg_spinner"
                 android:paddingLeft="@dimen/space_29">
 
