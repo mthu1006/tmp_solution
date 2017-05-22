@@ -370,7 +370,7 @@
                         style="@style/TextSubThietLap"
                         android:layout_gravity="center"
                         android:layout_width="match_parent"
-                        android:text="@string/checklist_weekly"
+                        android:text="@string/checklist_daily"
                         app:font="Roboto_Regular" />
 
                 </LinearLayout>
