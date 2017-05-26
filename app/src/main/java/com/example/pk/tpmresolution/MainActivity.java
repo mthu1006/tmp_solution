@@ -207,14 +207,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), tool);
                         }
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Log.d(AppConstants.TAG, "Loi json "+ e.toString());
                     }
 
 
                 }
             }, this).execute(url);
         } catch (Exception e) {
-            Log.e("kien", "error: " + e.toString());
+            Log.e(AppConstants.TAG, "error: " + e.toString());
         }
     }
 
@@ -475,7 +475,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 if(!Validation.checkNullOrEmpty(txt.getText().toString())) {
+                    if(!isToolManager)
                     requestMachine(txt.getText().toString().toUpperCase());
+                    else requestToolManager(txt.getText().toString().toUpperCase());
                     mDialog.dismiss();
                 }
                 else txt.setError("Please enter machine id");
