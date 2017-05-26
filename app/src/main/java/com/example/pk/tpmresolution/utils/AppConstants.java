@@ -54,4 +54,6 @@ public class AppConstants {
 
     public static final String URL_TOOL_MANGAGER = ip+"/api/v1/Scan/ToolScan?token="+KEY_TOKEN+"&toolId="+KEY_TOOL_ID;;
 
+    public static final String URL_GET_TOOl_MANAGEMENT = "http://113.161.168.2:35/api/v1/Scan/ToolScan";
+
 }

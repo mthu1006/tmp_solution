@@ -8,8 +8,8 @@ import android.graphics.Bitmap;
 
 public class ToolManagementtItem {
     Bitmap avatar;
-    String style_name, buyer_name, jing_name, jing_serial_no, jing_meterial, part, machine_model, jing_type,
-            corporation, line, warehouse, factory, status, jing_date, video_file, pattem_file, attach_file, process;
+    String tool_code, style_name, buyer_name, jing_name, jing_serial_no, jing_meterial, part, machine_model, jing_type,
+            corporation, line, warehouse, factory, status, video_file, pattem_file, attach_file, process;
 
 
     public Bitmap getAvatar() {
@@ -18,6 +18,14 @@ public class ToolManagementtItem {
 
     public void setAvatar(Bitmap avatar) {
         this.avatar = avatar;
+    }
+
+    public String getTool_code() {
+        return tool_code;
+    }
+
+    public void setTool_code(String tool_code) {
+        this.tool_code = tool_code;
     }
 
     public String getStyle_name() {
@@ -122,14 +130,6 @@ public class ToolManagementtItem {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getJing_date() {
-        return jing_date;
-    }
-
-    public void setJing_date(String jing_date) {
-        this.jing_date = jing_date;
     }
 
     public String getVideo_file() {

@@ -44,10 +44,12 @@ import com.example.pk.tpmresolution.fragment.MainFragment;
 import com.example.pk.tpmresolution.fragment.RefereneInfomationFragment;
 import com.example.pk.tpmresolution.fragment.RequestMaintenanceFragment;
 import com.example.pk.tpmresolution.fragment.SettingFragment;
+import com.example.pk.tpmresolution.fragment.ToolManagementFragment;
 import com.example.pk.tpmresolution.model.CommonClass;
 import com.example.pk.tpmresolution.model.EmployeeItem;
 import com.example.pk.tpmresolution.model.NavigationItem;
 import com.example.pk.tpmresolution.model.ProductItem;
+import com.example.pk.tpmresolution.model.ToolManagementtItem;
 import com.example.pk.tpmresolution.utils.AppConstants;
 import com.example.pk.tpmresolution.utils.AppDialogManager;
 import com.example.pk.tpmresolution.utils.AppTransaction;
@@ -175,6 +177,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 @Override
                 public void processFinish(String output) {
                     //  Log.d("kien", "res: " + output);
+                    try {
+                        JSONObject  object = new JSONObject(output);
+                        if(object.getString("Status").equals("Y")){
+                            JSONObject oj = object.getJSONObject("ToolInfo");
+                            ToolManagementtItem item = new ToolManagementtItem();
+
+                            item.setTool_code(oj.getString("ToolCode"));
+                            item.setJing_name(oj.getString("ToolName"));
+                            item.setStyle_name(oj.getString("StyleName"));
+                            item.setBuyer_name(oj.getString("BuyerName"));
+                            item.setJing_name(oj.getString("ToolName"));
+                            item.setJing_serial_no(oj.getString("ToolSerialNo"));
+                            item.setJing_meterial(oj.getString("MaterialInfo"));
+                            item.setPart(oj.getString("ToolPartName"));
+                            item.setMachine_model(oj.getString("ModelName"));
+                            item.setJing_type(oj.getString("ToolTypeName"));
+                            item.setCorporation(oj.getString("CorporationName"));
+                            item.setFactory(oj.getString("FactoryName"));
+                            item.setLine(oj.getString("LineName"));
+                            item.setWarehouse(oj.getString("WarehouseName"));
+                            item.setStatus(oj.getString("ToolStatusName"));
+                            item.setVideo_file(oj.getString("VideoClipFile"));
+                            item.setPattem_file(oj.getString("PatternFile"));
+                            item.setAttach_file(oj.getString("AttachFile"));
+                            item.setProcess(oj.getString("Proccess"));
+
+                            ToolManagementFragment tool = ToolManagementFragment.newInstance(item);
+                            AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), tool);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
 
                 }
@@ -334,13 +368,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-       /* if (id == R.id.action_logout) {
-            ShowDialogCofirm();
-            return true;
-        }else if(id == R.id.action_change_pass){
-           Fragment frag = SettingFragment.newInstance();
-            AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), frag);
-        }*/
         return super.onOptionsItemSelected(item);
     }
 

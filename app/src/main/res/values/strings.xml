@@ -157,4 +157,7 @@
     <string name="txt_product_jing_date">Production Jing Date</string>
     <string name="txt_process">Process</string>
 
+    <string name="txt_tool_code">Tool Code</string>
+    <string name="txt_tool_name">Tool Name</string>
+
 </resources>

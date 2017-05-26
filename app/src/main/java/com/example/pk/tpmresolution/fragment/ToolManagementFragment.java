@@ -37,7 +37,7 @@ public class ToolManagementFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     ToolManagementtItem mItem = null;
-    private CustomFontTextView txtStyleName, txtBuyerName, txtJingName, txtJingSeriarNo, txtJingMeterial, txtPart, txtMachineModel, txtJingType,
+    private CustomFontTextView txtToolCode,txtStyleName, txtBuyerName, txtJingName, txtJingSeriarNo, txtJingMeterial, txtPart, txtMachineModel, txtJingType,
                     txtCorporation,  txtFactory, txtLine, txtTitleLine, txtStatus, txtJingDate, txtVideoFile, txtPattemFile, txtAttachFile, txtProcess ;
     LinearLayout layoutLine;
     private MaterialLetterIcon imgAvatar;
@@ -67,6 +67,7 @@ public class ToolManagementFragment extends Fragment {
         ((MainActivity) getActivity()).frag = this;
         mDialogLoading = AppDialogManager.onCreateDialogLoading(getActivity());
 
+        txtToolCode = (CustomFontTextView) root.findViewById(R.id.txt_tool_code);
         txtStyleName = (CustomFontTextView) root.findViewById(R.id.txt_style_name);
         txtBuyerName = (CustomFontTextView) root.findViewById(R.id.txt_buyer_name);
         txtJingName = (CustomFontTextView) root.findViewById(R.id.txt_jing_name);
@@ -78,14 +79,15 @@ public class ToolManagementFragment extends Fragment {
         txtCorporation = (CustomFontTextView) root.findViewById(R.id.txt_corporation);
         txtFactory = (CustomFontTextView) root.findViewById(R.id.txt_factory);
         txtLine = (CustomFontTextView) root.findViewById(R.id.txt_line);
+
         txtTitleLine = (CustomFontTextView) root.findViewById(R.id.txt_title_line);
+
         txtStatus = (CustomFontTextView) root.findViewById(R.id.txt_status);
         txtJingDate = (CustomFontTextView) root.findViewById(R.id.txt_jing_date);
         txtVideoFile = (CustomFontTextView) root.findViewById(R.id.txt_video_file);
         txtPattemFile = (CustomFontTextView) root.findViewById(R.id.txt_pattem_file_info);
         txtAttachFile = (CustomFontTextView) root.findViewById(R.id.txt_attach_file);
         txtProcess = (CustomFontTextView) root.findViewById(R.id.txt_process);
-
 
         layoutLine = (LinearLayout) root.findViewById(R.id.layout_line);
         imgAvatar = (MaterialLetterIcon) root.findViewById(R.id.img_avatar);
@@ -100,6 +102,7 @@ public class ToolManagementFragment extends Fragment {
         if(mItem!=null){
             if(mItem.getAvatar()!=null)
             imgAvatar.setImageBitmap(mItem.getAvatar());
+            validationText(txtToolCode, mItem.getTool_code());
             validationText(txtStyleName, mItem.getStyle_name());
             validationText(txtBuyerName, mItem.getBuyer_name());
             validationText(txtJingName, mItem.getJing_name());
@@ -108,9 +111,7 @@ public class ToolManagementFragment extends Fragment {
             validationText(txtPart,mItem.getPart());
             validationText(txtMachineModel, mItem.getMachine_model());
             validationText(txtJingType, mItem.getJing_type());
-            validationText(txtLine, mItem.getLine());
             validationText(txtStatus, mItem.getStatus());
-            validationText(txtJingDate, mItem.getJing_date());
             validationText(txtVideoFile, mItem.getVideo_file());
             validationText(txtPattemFile, mItem.getPattem_file());
             validationText(txtAttachFile, mItem.getAttach_file());
