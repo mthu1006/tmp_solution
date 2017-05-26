@@ -44,7 +44,6 @@ import com.example.pk.tpmresolution.fragment.MainFragment;
 import com.example.pk.tpmresolution.fragment.RefereneInfomationFragment;
 import com.example.pk.tpmresolution.fragment.RequestMaintenanceFragment;
 import com.example.pk.tpmresolution.fragment.SettingFragment;
-import com.example.pk.tpmresolution.fragment.ToolManagementFragment;
 import com.example.pk.tpmresolution.model.CommonClass;
 import com.example.pk.tpmresolution.model.EmployeeItem;
 import com.example.pk.tpmresolution.model.NavigationItem;
@@ -89,11 +88,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public ArrayList<CommonClass> stt_list;
     public String[] arr_stt;
     CustomFontButton mBtn_dialog;
-    public boolean isRequest;
+    public boolean isRequest, isToolManager;
 
     public Fragment frag;
     String main_name;
     ArrayList<Fragment> list_stack_fraggments;
+
 
 
     @Override
@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         frag = MainFragment.newInstance();
         main_name = frag.getClass().getName();
         list_stack_fraggments = new ArrayList<>();
+        isToolManager = false;
 
         LoadNav();
         getListStatus();
@@ -151,11 +152,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             } else {
                 if(isRequest) {
                     requestMachine(result.getContents());
+
+                }else if(isToolManager){
+                    isToolManager = false;
+                    requestToolManager(result.getContents());
                 }else ((ChangeLoctionFragment)frag).getMachine(result.getContents());
 
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    private void requestToolManager(String id){
+        try {
+            String url = AppConstants.URL_TOOL_MANGAGER
+                    .replace(AppConstants.KEY_TOKEN, sharedPref.getString(AppConstants.PREF_KEY_LOGIN_TOKEN, ""))
+                    .replace(AppConstants.KEY_TOOL_ID, id);
+            //  Log.d("kien", "url: " + url);
+            new HTTPRequest(new HTTPRequest.AsyncResponse() {
+                @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+                @Override
+                public void processFinish(String output) {
+                    //  Log.d("kien", "res: " + output);
+
+
+                }
+            }, this).execute(url);
+        } catch (Exception e) {
+            Log.e("kien", "error: " + e.toString());
         }
     }
 
@@ -165,12 +190,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             String url = AppConstants.URL_GET_MACHINE_DETAIL
                     .replace(AppConstants.KEY_TOKEN, sharedPref.getString(AppConstants.PREF_KEY_LOGIN_TOKEN, ""))
                     .replace(AppConstants.KEY_MACHINE_ID, id);
-          //  Log.d("kien", "url: " + url);
+            //  Log.d("kien", "url: " + url);
             new HTTPRequest(new HTTPRequest.AsyncResponse() {
                 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                 @Override
                 public void processFinish(String output) {
-                  //  Log.d("kien", "res: " + output);
+                    //  Log.d("kien", "res: " + output);
                     handlerResultFromQR(output);
                 }
             }, this).execute(url);
@@ -351,7 +376,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 } else if (position == 2) {
                     frag = RequestMaintenanceFragment.newInstance();
                 } else if (position == 3) {
-                    frag = ToolManagementFragment.newInstance();
+                    isToolManager = true;
+                    ShowDialogChoice();
                 }else if (position == 4 ) {
                     frag = CheckListFragment.newInstance();
                 } else if (position == 5) {
@@ -433,7 +459,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View view) {
                 mDialog.dismiss();
                 mDialogLoading.show();
-                isRequest = true;
+                if(!isToolManager)
+                    isRequest = true;
                 qrScan.initiateScan();
             }
         });

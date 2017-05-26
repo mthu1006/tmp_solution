@@ -149,8 +149,11 @@ public class MainFragment extends Fragment {
 
     private void setupProduct(){
         if(mItem!=null){
-            if(mItem.getAvatar()!=null)
-            imgAvatar.setImageBitmap(mItem.getAvatar());
+            if(mItem.getAvatar()!=null) {
+                imgAvatar.setShapeColor(android.R.color.transparent);
+                imgAvatar.setImageBitmap(mItem.getAvatar());
+            }
+
             validationText(txtID, mItem.getMachineID());
             validationText(txtName, mItem.getProduct_name());
             validationText(txtModel, mItem.getProduct_model());

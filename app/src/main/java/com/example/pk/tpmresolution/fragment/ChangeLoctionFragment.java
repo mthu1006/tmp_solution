@@ -356,7 +356,9 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
     }
 
     private void showDialogAdd(){
-        edtMachine.setText("Please scan qr code");
+        radio_line.setChecked(false);
+        radio_line.performClick();
+        edtMachine.setText("Please scan QR code");
         btnAccept.setText("Add");
         btnAccept.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -404,6 +406,8 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
     }
 
     private void showDialogUpdate(final MachineForMoving machine, final int postion){
+        radio_line.setChecked(false);
+        radio_warehouse.setChecked(false);
         edtMachine.setText(machine.getName());
         btnAccept.setText("Update");
 
@@ -412,16 +416,20 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                 spnFactory.setSelection(i);
             }
         }
-        if(machine.getToLine()!=null)
-        for (int i = 0; i< lineList.size(); i++){
-            if(machine.getToLine().equals(lineList.get(i))){
-                spnLine.setSelection(i);
+        if(machine.getToLine()!=null) {
+            radio_line.performClick();
+            for (int i = 0; i < lineList.size(); i++) {
+                if (machine.getToLine().equals(lineList.get(i))) {
+                    spnLine.setSelection(i);
+                }
             }
         }
-        if(machine.getToWh()!=null)
-        for (int i = 0; i< warehouseList.size(); i++){
-            if(machine.getToWh().equals(warehouseList.get(i))){
-                spnWarehouse.setSelection(i);
+        if(machine.getToWh()!=null) {
+            radio_warehouse.performClick();
+            for (int i = 0; i < warehouseList.size(); i++) {
+                if (machine.getToWh().equals(warehouseList.get(i))) {
+                    spnWarehouse.setSelection(i);
+                }
             }
         }
 

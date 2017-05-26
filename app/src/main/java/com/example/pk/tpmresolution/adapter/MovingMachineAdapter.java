@@ -79,6 +79,8 @@ public class MovingMachineAdapter extends RecyclerView.Adapter<MovingMachineAdap
         holder.mId.setText(menu.getMachineId());
         //Picasso.with(context).load().into(holder.image);
         holder.itemView.setSelected(focusedItem == position);
+
+
     }
 
     @Override

@@ -44,11 +44,12 @@ public class ToolManagementFragment extends Fragment {
     MaterialDialog mDialogLoading;
     CustomFontButton mBtn_dialog;
 
-    public ToolManagementFragment() {
+    public ToolManagementFragment(ToolManagementtItem item) {
+        this.mItem = item;
     }
 
-    public static ToolManagementFragment newInstance() {
-        ToolManagementFragment fragment = new ToolManagementFragment();
+    public static ToolManagementFragment newInstance(ToolManagementtItem item) {
+        ToolManagementFragment fragment = new ToolManagementFragment(item);
         return fragment;
     }
 
@@ -65,8 +66,6 @@ public class ToolManagementFragment extends Fragment {
         ((MainActivity) getActivity()).toolbar.setTitle(getActivity().getResources().getString(R.string.machine_information));
         ((MainActivity) getActivity()).frag = this;
         mDialogLoading = AppDialogManager.onCreateDialogLoading(getActivity());
-
-        mItem = new ToolManagementtItem();
 
         txtStyleName = (CustomFontTextView) root.findViewById(R.id.txt_style_name);
         txtBuyerName = (CustomFontTextView) root.findViewById(R.id.txt_buyer_name);
