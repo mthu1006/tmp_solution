@@ -4,26 +4,19 @@
         <item>Change Location</item>
         <item>Reference Infomation</item>
         <item>Request Maintenance</item>
+        <item>Tool Management</item>
         <item>Create Check List</item>
         <item>Setting</item>
 
-
-        <!--<item>Main</item>
-        <item>Nghỉ phép</item>
-        <item>Change Status</item>
-       <item>Thông tin sức khỏe</item>
-       <item>Hướng dẫn</item>-->
     </string-array>
     <integer-array name="navigation_array_icon">
         <item>@drawable/ic_bangdiem</item>
         <item>@drawable/ic_diemdanh</item>
         <item>@drawable/ic_giaovien</item>
+        <item>@drawable/ic_solienlac_dientu</item>
         <item>@drawable/ic_thoikhoabieu</item>
         <item>@drawable/ic_thietlap</item>
-       <!-- <item>@drawable/ic_danhsachlop</item>
-        <item>@drawable/ic_notification</item>
-        <item>@drawable/ic_health</item>
-        <item>@drawable/ic_guide</item>-->
+
     </integer-array>
 
     <string-array name="aray_buoihoc">

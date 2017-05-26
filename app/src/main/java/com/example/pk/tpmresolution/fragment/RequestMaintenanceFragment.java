@@ -490,7 +490,6 @@ public class RequestMaintenanceFragment extends Fragment {
         mDialogError.show();
     }
 
-
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);

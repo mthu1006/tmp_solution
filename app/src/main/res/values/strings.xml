@@ -135,8 +135,26 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="permission_rationale">Contacts permissions are needed for providing emailcompletions.</string>
+
+
+    <string name="txt_style_name">Style Name</string>
+    <string name="txt_buyer_name">Buyer Name</string>
+    <string name="txt_jing_name">Jing Name</string>
+
+    <string name="txt_jing_serial_no">Jing Serial no</string>
+    <string name="txt_jing_meterial">Jing Meterial</string>
+
+    <string name="txt_part">Part</string>
+    <string name="txt_machine_model">Machine model</string>
+    <string name="txt_jing_type">Jing Type</string>
+
+    <string name="txt_location">Location</string>
+    <string name="txt_corparation">Corparation</string>
+    <string name="txt_video_file">Video File</string>
+    <string name="txt_pattem_file_info">Pattem File</string>
+    <string name="txt_attach_file">Attach File</string>
+    <string name="txt_product_jing_date">Production Jing Date</string>
+    <string name="txt_process">Process</string>
 
 </resources>

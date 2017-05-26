@@ -44,6 +44,7 @@ import com.example.pk.tpmresolution.fragment.MainFragment;
 import com.example.pk.tpmresolution.fragment.RefereneInfomationFragment;
 import com.example.pk.tpmresolution.fragment.RequestMaintenanceFragment;
 import com.example.pk.tpmresolution.fragment.SettingFragment;
+import com.example.pk.tpmresolution.fragment.ToolManagementFragment;
 import com.example.pk.tpmresolution.model.CommonClass;
 import com.example.pk.tpmresolution.model.EmployeeItem;
 import com.example.pk.tpmresolution.model.NavigationItem;
@@ -349,9 +350,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     frag = RefereneInfomationFragment.newInstance();
                 } else if (position == 2) {
                     frag = RequestMaintenanceFragment.newInstance();
-                }else if (position == 3 ) {
+                } else if (position == 3) {
+                    frag = ToolManagementFragment.newInstance();
+                }else if (position == 4 ) {
                     frag = CheckListFragment.newInstance();
-                } else if (position == 4) {
+                } else if (position == 5) {
                     frag = SettingFragment.newInstance();
                 }
 //                toolbar.setTitle(titleitems.get(position));

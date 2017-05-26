@@ -14,7 +14,7 @@ import com.example.pk.tpmresolution.model.PartBookItem;
 import java.util.List;
 
 /**
- * Created by vinh on 07/29/2016.
+ * Created by kien on 07/29/2016.
  */
 public class MaintenaceAdapter extends RecyclerView.Adapter<MaintenaceAdapter.MyViewHolder> {
 

@@ -37,7 +37,8 @@ public class MainFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     ProductItem mItem = null;
-    private CustomFontTextView txtID, txtName, txtModel, txtFunction, txtSeriesNumber, txtPuchaseDate, txtValidDate, txtCorporation, txtFactory, txtLine, txtTitleLine;
+    private CustomFontTextView txtID, txtName, txtModel, txtFunction, txtSeriesNumber, txtPuchaseDate,
+                                txtValidDate, txtCorporation, txtFactory, txtLine, txtTitleLine;
     LinearLayout layoutLine;
     private AppCompatSpinner spn_status;
     private MaterialLetterIcon imgAvatar;

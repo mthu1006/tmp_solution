@@ -5,7 +5,7 @@
     <dimen name="nav_header_height">180dp</dimen>
     <dimen name="navigation_right">27dp</dimen>
     <dimen name="row_height_profile">165dp</dimen>
-    <dimen name="profile_padding_left">22.5dp</dimen>
+    <dimen name="profile_padding_left">14.5dp</dimen>
     <dimen name="profile_padding_top">24dp</dimen>
     <dimen name="profile_margin_left">37.5dp</dimen>
     <dimen name="navigation_icon_padding_left">12dp</dimen>
