@@ -210,7 +210,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         e.printStackTrace();
                     }
 
-
                 }
             }, this).execute(url);
         } catch (Exception e) {

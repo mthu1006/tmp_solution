@@ -5,7 +5,7 @@ package com.example.pk.tpmresolution.utils;
  */
 
 public class AppConstants {
-    public static final String ip = "203.113.151.193:35";
+    public static final String ip = "http://113.161.168.2:35";
     public static final String PREF_KEY_LOGIN_REMEMBERLOGIN = "login_remember";
     public static final String PREF_KEY_LOGIN_USERNAME = "login_username";
     public static final String PREF_KEY_LOGIN_PASSWORD = "login_password";
