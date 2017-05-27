@@ -102,6 +102,7 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
          View root = inflater.inflate(R.layout.fragment_change_loction, container, false);
+        ((MainActivity)getActivity()).fab.setVisibility(View.VISIBLE);
         ((MainActivity) getActivity()).toolbar.setTitle(getActivity().getResources().getTextArray(R.array.navigation_array_tile)[0]);
         imgAdd = (LinearLayout) root.findViewById(R.id.img_add_location);
         imgAdd.setOnClickListener(new View.OnClickListener() {

@@ -66,6 +66,7 @@ public class ToolManagementFragment extends Fragment {
         ((MainActivity) getActivity()).toolbar.setTitle(getActivity().getResources().getString(R.string.machine_information));
         ((MainActivity) getActivity()).frag = this;
         mDialogLoading = AppDialogManager.onCreateDialogLoading(getActivity());
+        ((MainActivity)getActivity()).fab.setVisibility(View.GONE);
 
         txtToolCode = (CustomFontTextView) root.findViewById(R.id.txt_tool_code);
         txtStyleName = (CustomFontTextView) root.findViewById(R.id.txt_style_name);
@@ -83,7 +84,6 @@ public class ToolManagementFragment extends Fragment {
         txtTitleLine = (CustomFontTextView) root.findViewById(R.id.txt_title_line);
 
         txtStatus = (CustomFontTextView) root.findViewById(R.id.txt_status);
-        txtJingDate = (CustomFontTextView) root.findViewById(R.id.txt_jing_date);
         txtVideoFile = (CustomFontTextView) root.findViewById(R.id.txt_video_file);
         txtPattemFile = (CustomFontTextView) root.findViewById(R.id.txt_pattem_file_info);
         txtAttachFile = (CustomFontTextView) root.findViewById(R.id.txt_attach_file);
@@ -116,6 +116,8 @@ public class ToolManagementFragment extends Fragment {
             validationText(txtPattemFile, mItem.getPattem_file());
             validationText(txtAttachFile, mItem.getAttach_file());
             validationText(txtProcess,mItem.getProcess());
+            validationText(txtFactory,mItem.getFactory());
+            validationText(txtCorporation,mItem.getCorporation());
 
 
 

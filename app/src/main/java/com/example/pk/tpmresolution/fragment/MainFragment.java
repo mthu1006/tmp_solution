@@ -64,6 +64,8 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root =  inflater.inflate(R.layout.fragment_main, container, false);
+        ((MainActivity)getActivity()).fab.setVisibility(View.VISIBLE);
+
         ((MainActivity) getActivity()).toolbar.setTitle(getActivity().getResources().getString(R.string.machine_information));
         ((MainActivity) getActivity()).frag = this;
         mDialogLoading = AppDialogManager.onCreateDialogLoading(getActivity());

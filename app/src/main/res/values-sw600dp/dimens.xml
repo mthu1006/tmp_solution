@@ -17,6 +17,7 @@
 
 
     <dimen name="space_19">14dp</dimen>
+    <dimen name="space_21">20dp</dimen>
     <dimen name="space_24">35dp</dimen>
     <dimen name="space_25">12dp</dimen>
     <dimen name="space_26">16dp</dimen>
@@ -28,7 +29,7 @@
 
     <dimen name="space_40">16dp</dimen>
     <dimen name="space_59">45dp</dimen>
-    <dimen name="space_61">31.5dp</dimen>
+    <dimen name="space_61">21.5dp</dimen>
 
     <dimen name="space_65">26.5dp</dimen>
     <dimen name="space_86">25.5dp</dimen>
@@ -44,7 +45,9 @@
     <dimen name="space_180">86dp</dimen>
 
     <dimen name="space_300">107dp</dimen>
+    <dimen name="space_303">92dp</dimen>
     <dimen name="space_301">150dp</dimen>
+    <dimen name="space_302">130dp</dimen>
 
 
     <dimen name="font_30">12sp</dimen>

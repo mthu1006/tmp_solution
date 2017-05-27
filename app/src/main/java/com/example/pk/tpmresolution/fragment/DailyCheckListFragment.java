@@ -90,7 +90,8 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_daily_check_list, container, false);
-
+        ((MainActivity)getActivity()).fab.setVisibility(View.VISIBLE);
+        
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         editor = sharedPref.edit();
 //        ((MainActivity) getActivity()).toolbar.setTitle(getActivity().getResources().getString(R.string.checklist_daily));

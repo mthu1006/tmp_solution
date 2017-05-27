@@ -74,7 +74,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static RecyclerView mRecycler_nav;
     public static NavAdapter mNavAdapter;
-    FloatingActionButton fab;
+    public FloatingActionButton fab;
     public Toolbar toolbar;
     private List<NavigationItem> mListNav;
     private DrawerLayout drawer;
@@ -176,6 +176,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                 @Override
                 public void processFinish(String output) {
+                    mDialogLoading.dismiss();
                     //  Log.d("kien", "res: " + output);
                     try {
                         JSONObject  object = new JSONObject(output);
@@ -203,17 +204,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             item.setAttach_file(oj.getString("AttachFile"));
                             item.setProcess(oj.getString("Proccess"));
 
+                            String picture_data = oj.getString("PictureData");
+                            if (!Validation.checkNullOrEmpty(picture_data)) {
+                                byte[] decodedString = Base64.decode(picture_data, Base64.DEFAULT);
+                                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                                item.setAvatar(Bitmap.createScaledBitmap(decodedByte, 282, 200, false));
+                            }
+
                             ToolManagementFragment tool = ToolManagementFragment.newInstance(item);
                             AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), tool);
+                        }else {
+                            ShowDialogError(object.getString("Message"));
                         }
                     } catch (JSONException e) {
-                        Log.d(AppConstants.TAG, "Loi json "+ e.toString());
+                        Log.d("Kien", "Loi json "+ e.toString());
                     }
 
                 }
             }, this).execute(url);
         } catch (Exception e) {
-            Log.e(AppConstants.TAG, "error: " + e.toString());
+            Log.e("Kien", "error: " + e.toString());
         }
     }
 
@@ -229,6 +239,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 @Override
                 public void processFinish(String output) {
                     //  Log.d("kien", "res: " + output);
+                    mDialogLoading.dismiss();
                     handlerResultFromQR(output);
                 }
             }, this).execute(url);
@@ -473,6 +484,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View view) {
+                mDialogLoading.show();
                 if(!Validation.checkNullOrEmpty(txt.getText().toString())) {
                     if(!isToolManager)
                     requestMachine(txt.getText().toString().toUpperCase());
@@ -490,34 +502,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if(!isToolManager)
                     isRequest = true;
                 qrScan.initiateScan();
-            }
-        });
-        AppCompatImageView img_close = (AppCompatImageView) mDialog.findViewById(R.id.button_close);
-        img_close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mDialog.dismiss();
-            }
-        });
-        mDialog.show();
-    }
-
-    void ShowDialogCofirm() {
-        final Dialog mDialog = AppDialogManager.onShowCustomDialog(this, R.layout.dialog_confirm);
-        CustomFontButton mBtAccept = (CustomFontButton) mDialog.findViewById(R.id.btn_accept);
-        CustomFontButton mBtDeny = (CustomFontButton) mDialog.findViewById(R.id.btn_denice);
-        mBtAccept.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit().putBoolean(AppConstants.PREF_KEY_LOGIN_REMEMBERLOGIN, false).commit();
-                AppTransaction.replaceActivityWithAnimation(MainActivity.this, LoginActivity.class);
-                mDialog.dismiss();
-            }
-        });
-        mBtDeny.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDialog.dismiss();
             }
         });
         AppCompatImageView img_close = (AppCompatImageView) mDialog.findViewById(R.id.button_close);

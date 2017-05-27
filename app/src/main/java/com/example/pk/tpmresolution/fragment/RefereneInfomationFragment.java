@@ -77,6 +77,8 @@ public class RefereneInfomationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.fragment_reference_infomation, container, false);
+        ((MainActivity)getActivity()).fab.setVisibility(View.VISIBLE);
+
         ((MainActivity) getActivity()).toolbar.setTitle(getActivity().getResources().getTextArray(R.array.navigation_array_tile)[1]);
         mDialogLoading = AppDialogManager.onCreateDialogLoading(getActivity());
 

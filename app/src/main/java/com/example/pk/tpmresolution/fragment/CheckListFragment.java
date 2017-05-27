@@ -65,6 +65,7 @@ public class CheckListFragment extends Fragment  implements DatePickerDialog.OnD
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root =  inflater.inflate(R.layout.fragment_check_list, container, false);
+        ((MainActivity)getActivity()).fab.setVisibility(View.VISIBLE);
 
         ((MainActivity) getActivity()).toolbar.setTitle(getActivity().getResources().getTextArray(R.array.navigation_array_tile)[3]);
         mViewPager = (ViewPager)root.findViewById(R.id.view_pager);

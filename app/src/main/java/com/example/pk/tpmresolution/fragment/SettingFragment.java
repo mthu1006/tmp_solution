@@ -65,6 +65,8 @@ public class SettingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_setting, container, false);
+        ((MainActivity)getActivity()).fab.setVisibility(View.VISIBLE);
+
         ((MainActivity) getActivity()).toolbar.setTitle(getActivity().getResources().getTextArray(R.array.navigation_array_tile)[4]);
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         editor = sharedPref.edit();
