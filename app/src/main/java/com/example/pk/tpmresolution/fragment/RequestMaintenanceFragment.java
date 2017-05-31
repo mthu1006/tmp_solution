@@ -138,7 +138,7 @@ public class RequestMaintenanceFragment extends Fragment {
                     price = edtPrice.getText().toString();
 
                     if (Validation.checkNullOrEmpty(name)) {
-                        ShowDialogError("Add partbook failed", "Please place name from spiner name");
+                        ShowDialogError("Add partbook failed", "Please place name from spiner name", true);
                     } else if (Validation.checkNullOrEmpty(price)) {
                         edtPrice.setError("Please enter price!");
                     } else if (Validation.checkNullOrEmpty(quantity)) {
@@ -193,7 +193,7 @@ public class RequestMaintenanceFragment extends Fragment {
                 String quantity  = edtQantity.getText().toString();
                 String price = edtPrice.getText().toString();
                 if (Validation.checkNullOrEmpty(name)) {
-                    ShowDialogError("Add partbook failed", "Please choose name from spiner name");
+                    ShowDialogError("Add partbook failed", "Please choose name from spiner name", true);
                 } else if (Validation.checkNullOrEmpty(price)) {
                     edtPrice.setError("Please enter price!");
                 }else if (Validation.checkNullOrEmpty(quantity)) {
@@ -259,9 +259,23 @@ public class RequestMaintenanceFragment extends Fragment {
         ((MainActivity) getActivity()).toolbar.setTitle(getActivity().getResources().getTextArray(R.array.navigation_array_tile)[2]);
         ButterKnife.bind(getActivity());
         mItem = ((MainActivity) getActivity()).mItem;
-        if(mItem!=null)
-        if(!mItem.getStatus().equalsIgnoreCase("Broken")){
-            ShowDialogError("Machine is not broken", "Can not request maintenance");
+        if(mItem!=null) {
+            if (!mItem.getStatus().equalsIgnoreCase("Broken")) {
+                ShowDialogError("Machine is not broken", "Can not request maintenance", false);
+                mBtn_dialog.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mDialogError.dismiss();
+                        Fragment frag = MainFragment.newInstance();
+                        AppTransaction.replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), frag);
+                    }
+                });
+
+            }
+        }else {
+            ShowDialogError("Can not request maintain", "Please scan machine and try again!", false);
+            mDialogError.setCancelable(false);
+            mDialogError.setCanceledOnTouchOutside(false);
             mBtn_dialog.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -270,7 +284,6 @@ public class RequestMaintenanceFragment extends Fragment {
                     AppTransaction.replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), frag);
                 }
             });
-
         }
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         txtName = (CustomFontTextView) root.findViewById(R.id.txt_name);
@@ -366,7 +379,7 @@ public class RequestMaintenanceFragment extends Fragment {
                         JSONObject obj = new JSONObject(output);
                         if (obj.getString("Status").equals("Y")) Toast.makeText(getActivity(), "Save request maintenance success", Toast.LENGTH_LONG).show();
                         else {
-                            ShowDialogError("Save request maintenance failed", obj.getString("Message"));
+                            ShowDialogError("Save request maintenance failed", obj.getString("Message"), true);
                             if (obj.getString("Type").equals("Login")) {
                                 mBtn_dialog.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -475,10 +488,17 @@ public class RequestMaintenanceFragment extends Fragment {
 
     }
 
-    private void ShowDialogError(String title, String message) {
+    void ShowDialogError(String title, String message, boolean isClose) {
         mDialogError = AppDialogManager.onShowCustomDialog(getActivity(), R.layout.dialog_error);
         CustomFontTextView txt1 = (CustomFontTextView) mDialogError.findViewById(R.id.txt_content1);
         CustomFontTextView txt2 = (CustomFontTextView) mDialogError.findViewById(R.id.txt_content2);
+        AppCompatImageView img_close = (AppCompatImageView) mDialogError.findViewById(R.id.button_close);
+        if(!isClose) img_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         mBtn_dialog = (CustomFontButton) mDialogError.findViewById(R.id.btn_accept);
         mBtn_dialog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -486,7 +506,6 @@ public class RequestMaintenanceFragment extends Fragment {
                 mDialogError.dismiss();
             }
         });
-
         txt1.setText(title);
         txt2.setText(message);
         mDialogError.show();

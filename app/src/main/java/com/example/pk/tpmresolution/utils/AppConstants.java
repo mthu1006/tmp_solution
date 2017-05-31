@@ -5,6 +5,8 @@ package com.example.pk.tpmresolution.utils;
  */
 
 public class AppConstants {
+    public static final String TAG = "tpm";
+//    public static final String ip = "http://203.113.151.193:35";
     public static final String ip = "http://113.161.168.2:35";
     public static final String PREF_KEY_LOGIN_REMEMBERLOGIN = "login_remember";
     public static final String PREF_KEY_LOGIN_USERNAME = "login_username";
@@ -53,7 +55,5 @@ public class AppConstants {
     public static final String URL_MOVING_MACHINE = ip+"/api/v1/Moving/MovingMachine";
 
     public static final String URL_TOOL_MANGAGER = ip+"/api/v1/Scan/ToolScan?token="+KEY_TOKEN+"&toolId="+KEY_TOOL_ID;;
-
-    public static final String URL_GET_TOOl_MANAGEMENT = "http://113.161.168.2:35/api/v1/Scan/ToolScan";
 
 }

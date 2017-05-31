@@ -44,9 +44,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import static android.R.id.message;
 import static com.example.pk.tpmresolution.R.id.layout_daily;
 import static com.example.pk.tpmresolution.R.id.layout_monthly;
 import static com.example.pk.tpmresolution.R.id.layout_weekly;
+import static com.example.pk.tpmresolution.R.id.view;
 
 public class DailyCheckListFragment extends Fragment implements View.OnClickListener{
     private ExpandableRelativeLayout expDaily, expWeekly, expMonthly;
@@ -69,7 +71,7 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
     public Date choosedDate;
     int[] maxDay = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     private boolean isFirstTime = true;
-    Dialog mDialog;
+    Dialog mDialogError;
 
     public DailyCheckListFragment() {
     }
@@ -96,6 +98,7 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
         editor = sharedPref.edit();
 //        ((MainActivity) getActivity()).toolbar.setTitle(getActivity().getResources().getString(R.string.checklist_daily));
         mItem = ((MainActivity) getActivity()).mItem;
+
         mMaitainItem = new RequestMaintenace();
         recyclerDaily = (RecyclerView) root.findViewById(R.id.recycler_daily);
         recyclerWeekly = (RecyclerView) root.findViewById(R.id.recycler_weekly);
@@ -124,6 +127,31 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
         cbDaily = (AppCompatCheckBox) root.findViewById(R.id.check_daily);
         cbWeekly = (AppCompatCheckBox) root.findViewById(R.id.check_weekly);
         cbMonthly = (AppCompatCheckBox) root.findViewById(R.id.check_monthly);
+
+        if(mItem == null){
+            cbDaily.setClickable(false);
+            cbDaily.setBackgroundResource(R.drawable.checkbox_red);
+            cbDaily.setTag(false);
+
+            cbWeekly.setClickable(false);
+            cbWeekly.setBackgroundResource(R.drawable.checkbox_red);
+            cbWeekly.setTag(false);
+
+            cbMonthly.setClickable(false);
+            cbMonthly.setBackgroundResource(R.drawable.checkbox_red);
+            cbMonthly.setTag(false);
+            ShowDialogError("Can not create checklist", "Please scan machine and try again!", false);
+            mDialogError.setCancelable(false);
+            mDialogError.setCanceledOnTouchOutside(false);
+            mBtn_dialog.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mDialogError.dismiss();
+                    Fragment frag = MainFragment.newInstance();
+                    AppTransaction.replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), frag);
+                }
+            });
+        }
 
         list_tv = new CustomFontTextView[]{tv_mon, tv_tue, tv_wed, tv_thu, tv_fri, tv_sat, tv_sun};
 
@@ -264,7 +292,7 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                             AppTransaction.Toast(getActivity(), obj.getString("Message"));
                         } else {
                             mDialogLoading.dismiss();
-                            ShowDialogError(obj.getString("Message"));
+                            ShowDialogError("Message from server:",obj.getString("Message"), true);
                         }
                     } catch (JSONException e) {
                         mDialogLoading.dismiss();
@@ -272,7 +300,7 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                     }
                 }
             }, getActivity()).execute(AppConstants.URL_CHANGE_STATUS_CHECKLIST, object.toString());
-        }else ShowDialogError("Please check one of 3 checkboxs above!");
+        }else ShowDialogError("Can not send to server","Please check one of 3 checkboxs above!", true);
     }
 
     private void getChecklist(Date date) {
@@ -368,7 +396,6 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                         if(!isNewDaily || listDaily.isEmpty()){
                             cbDaily.setClickable(false);
                             cbDaily.setBackgroundResource(R.drawable.checkbox_red);
-                            Log.d("Kien", "cbDaily.getButtonDrawable() "+cbDaily.getBackground().toString());
                             cbDaily.setTag(false);
                         }else {
                             cbDaily.setClickable(true);
@@ -378,7 +405,6 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                         if(!isNewWeekly || listWeekly.isEmpty()){
                             cbWeekly.setClickable(false);
                             cbWeekly.setBackgroundResource(R.drawable.checkbox_red);
-                            Log.d("Kien", "cbWeekly.getButtonDrawable() "+cbWeekly.getBackground().toString());
                             cbWeekly.setTag(false);
                         }else {
                             cbWeekly.setClickable(true);
@@ -420,7 +446,7 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                         recyclerMonthly.setAdapter(adapterMonthly);
 
                     }else{
-                        ShowDialogError(object.getString("Message"));
+                        ShowDialogError("Message from server:", object.getString("Message"), true);
                         if (object.getString("Type").equals("Login")) {
                             mBtn_dialog.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -433,7 +459,7 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                             mBtn_dialog.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mDialog.dismiss();
+                                    mDialogError.dismiss();
                                     AppTransaction.replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), MainFragment.newInstance());
                                 }
                             });
@@ -555,20 +581,27 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
         }
     }
 
-    void ShowDialogError(String message) {
-        mDialog = AppDialogManager.onShowCustomDialog(getActivity(), R.layout.dialog_error);
-        CustomFontTextView txt1 = (CustomFontTextView) mDialog.findViewById(R.id.txt_content1);
-        CustomFontTextView txt2 = (CustomFontTextView) mDialog.findViewById(R.id.txt_content2);
-        mBtn_dialog = (CustomFontButton) mDialog.findViewById(R.id.btn_accept);
+    void ShowDialogError(String title, String message, boolean isClose) {
+        mDialogError = AppDialogManager.onShowCustomDialog(getActivity(), R.layout.dialog_error);
+        CustomFontTextView txt1 = (CustomFontTextView) mDialogError.findViewById(R.id.txt_content1);
+        CustomFontTextView txt2 = (CustomFontTextView) mDialogError.findViewById(R.id.txt_content2);
+        AppCompatImageView img_close = (AppCompatImageView) mDialogError.findViewById(R.id.button_close);
+        if(!isClose) img_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mBtn_dialog = (CustomFontButton) mDialogError.findViewById(R.id.btn_accept);
         mBtn_dialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDialog.dismiss();
+                mDialogError.dismiss();
             }
         });
-        txt1.setText("Failed");
+        txt1.setText(title);
         txt2.setText(message);
-        mDialog.show();
+        mDialogError.show();
     }
 
     @Override
