@@ -121,6 +121,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MainActivity.mNavAdapter.notifyItemChanged(MainActivity.mNavAdapter.getFocusedItem());
+                MainActivity.mNavAdapter.setFocusedItem(-1);
                 AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), MainFragment.newInstance());
             }
         });
@@ -402,14 +404,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     frag = RefereneInfomationFragment.newInstance();
                 } else if (position == 2) {
                     frag = RequestMaintenanceFragment.newInstance();
-                } else if (position == 3 ) {
-                    frag = CheckListFragment.newInstance();
-                } else if (position == 4) {
-                    frag = SettingFragment.newInstance();
-                }/*else if (position == 3) {
+
+                } else if (position == 3) {
                     isToolManager = true;
                     ShowDialogChoice();
-                }*/
+
+                }else if (position == 4 ) {
+                    frag = CheckListFragment.newInstance();
+                } else if (position == 5) {
+                    frag = SettingFragment.newInstance();
+                }
 //                toolbar.setTitle(titleitems.get(position));
                 AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), frag);
                 drawer.closeDrawer(GravityCompat.START);
@@ -455,7 +459,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
-    public void validationText(TextView tv, String s){
+   /* public void validationText(TextView tv, String s){
         if(!Validation.checkNullOrEmpty(s)) {
            // Log.d("kien", "settext "+s);
             tv.setText(s);
@@ -463,7 +467,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
            // Log.d("kien", "settext default");
             tv.setText(AppConstants.DEFAULT_NULL_TEXT);
         }
-    }
+    }*/
 
     void ShowDialogChoice() {
         final Dialog mDialog = AppDialogManager.onShowCustomDialog(this, R.layout.dialog_choice);
@@ -493,34 +497,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 qrScan.initiateScan();
             }
         });
-        AppCompatImageView img_close = (AppCompatImageView) mDialog.findViewById(R.id.button_close);
-        img_close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mDialog.dismiss();
-            }
-        });
-        mDialog.show();
-    }
-
-    void ShowDialogCofirm() {
-        final Dialog mDialog = AppDialogManager.onShowCustomDialog(this, R.layout.dialog_confirm);
-        CustomFontButton mBtAccept = (CustomFontButton) mDialog.findViewById(R.id.btn_accept);
-        CustomFontButton mBtDeny = (CustomFontButton) mDialog.findViewById(R.id.btn_denice);
-        mBtAccept.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit().putBoolean(AppConstants.PREF_KEY_LOGIN_REMEMBERLOGIN, false).commit();
-                AppTransaction.replaceActivityWithAnimation(MainActivity.this, LoginActivity.class);
-                mDialog.dismiss();
-            }
-        });
-        mBtDeny.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDialog.dismiss();
-            }
-        });
+        CustomFontButton btnDenice = (CustomFontButton) mDialog.findViewById(R.id.btn_cancel);
+        if(btnDenice!=null) {
+            btnDenice.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mDialog.dismiss();
+                    MainActivity.mNavAdapter.notifyItemChanged(MainActivity.mNavAdapter.getFocusedItem());
+                    MainActivity.mNavAdapter.setFocusedItem(-1);
+                    Fragment frag = MainFragment.newInstance();
+                    AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), frag);
+                }
+            });
+        }
         AppCompatImageView img_close = (AppCompatImageView) mDialog.findViewById(R.id.button_close);
         img_close.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,12 +1,9 @@
 package com.example.pk.tpmresolution.fragment;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.AppCompatSpinner;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,22 +13,15 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.daniribalbert.customfontlib.views.CustomFontButton;
 import com.daniribalbert.customfontlib.views.CustomFontTextView;
-import com.example.pk.tpmresolution.LoginActivity;
 import com.example.pk.tpmresolution.MainActivity;
 import com.example.pk.tpmresolution.R;
-import com.example.pk.tpmresolution.adapter.CommonAdapter;
-import com.example.pk.tpmresolution.model.ProductItem;
 import com.example.pk.tpmresolution.model.ToolManagementtItem;
 import com.example.pk.tpmresolution.utils.AppConstants;
 import com.example.pk.tpmresolution.utils.AppDialogManager;
-import com.example.pk.tpmresolution.utils.AppTransaction;
-import com.example.pk.tpmresolution.utils.AppUltils;
-import com.example.pk.tpmresolution.utils.HTTPRequest;
+
 import com.example.pk.tpmresolution.utils.Validation;
 import com.github.akashandroid90.imageletter.MaterialLetterIcon;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class ToolManagementFragment extends Fragment {
 

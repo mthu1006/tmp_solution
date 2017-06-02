@@ -153,6 +153,34 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
             });
         }
 
+
+        if(mItem == null){
+            cbDaily.setClickable(false);
+            cbDaily.setBackgroundResource(R.drawable.checkbox_red);
+            cbDaily.setTag(false);
+
+            cbWeekly.setClickable(false);
+            cbWeekly.setBackgroundResource(R.drawable.checkbox_red);
+            cbWeekly.setTag(false);
+
+            cbMonthly.setClickable(false);
+            cbMonthly.setBackgroundResource(R.drawable.checkbox_red);
+            cbMonthly.setTag(false);
+            ShowDialogError("Can not create checklist", "Please scan machine and try again!", false);
+            mDialogError.setCancelable(false);
+            mDialogError.setCanceledOnTouchOutside(false);
+            mBtn_dialog.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mDialogError.dismiss();
+                    MainActivity.mNavAdapter.notifyItemChanged(MainActivity.mNavAdapter.getFocusedItem());
+                    MainActivity.mNavAdapter.setFocusedItem(-1);
+                    Fragment frag = MainFragment.newInstance();
+                    AppTransaction.replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), frag);
+                }
+            });
+        }
+
         list_tv = new CustomFontTextView[]{tv_mon, tv_tue, tv_wed, tv_thu, tv_fri, tv_sat, tv_sun};
 
         tv_mon.setOnClickListener(this);
@@ -210,6 +238,8 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.mNavAdapter.notifyItemChanged(MainActivity.mNavAdapter.getFocusedItem());
+                MainActivity.mNavAdapter.setFocusedItem(-1);
                 Fragment frag = MainFragment.newInstance();
                 AppTransaction.replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), frag);
             }
@@ -509,7 +539,7 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
     }
 
 
-    private void checkRestoreStatus(){
+   /* private void checkRestoreStatus(){
         // to make sure that all status not restore
         for(CheckListItem item: listDaily)
             for(int i=0;i<listChanged.size(); i++){
@@ -527,7 +557,7 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                 if(listChanged.get(i).getChecklist_id().equals(item.getChecklist_id()) && listChanged.get(i).getChecklist_status_name().equals(item.getChecklist_status_name()))
                     listChanged.remove(i);
             }
-    }
+    }*/
 
     private int CheckExist(String id){
         for (int i=0; i<listChanged.size(); i++){
@@ -553,7 +583,7 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
             d = maxDay[month] + tmp;
 
         }
-        Log.d("kien", "day after calculate  " + String.valueOf(d) +" maxDay[month] "+ maxDay[month] +" month "+month+" day "+day);
+        // 0Log.d("kien", "day after calculate  " + String.valueOf(d) +" maxDay[month] "+ maxDay[month] +" month "+month+" day "+day);
         for(int i = 0; i< list_tv.length; i++){
             list_tv[i].setText( String.valueOf(d));
             list_tv[i].setTag(new Date(calendar.getTime().getYear(), month, d));

@@ -159,6 +159,8 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MainActivity.mNavAdapter.notifyItemChanged(MainActivity.mNavAdapter.getFocusedItem());
+                MainActivity.mNavAdapter.setFocusedItem(-1);
                 Fragment frag = MainFragment.newInstance();
                 AppTransaction.replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), frag);
             }

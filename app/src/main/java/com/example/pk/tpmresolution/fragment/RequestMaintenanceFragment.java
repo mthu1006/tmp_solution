@@ -266,6 +266,8 @@ public class RequestMaintenanceFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         mDialogError.dismiss();
+                        MainActivity.mNavAdapter.notifyItemChanged(MainActivity.mNavAdapter.getFocusedItem());
+                        MainActivity.mNavAdapter.setFocusedItem(-1);
                         Fragment frag = MainFragment.newInstance();
                         AppTransaction.replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), frag);
                     }
@@ -280,6 +282,8 @@ public class RequestMaintenanceFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     mDialogError.dismiss();
+                    MainActivity.mNavAdapter.notifyItemChanged(MainActivity.mNavAdapter.getFocusedItem());
+                    MainActivity.mNavAdapter.setFocusedItem(-1);
                     Fragment frag = MainFragment.newInstance();
                     AppTransaction.replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), frag);
                 }
@@ -301,6 +305,8 @@ public class RequestMaintenanceFragment extends Fragment {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.mNavAdapter.notifyItemChanged(MainActivity.mNavAdapter.getFocusedItem());
+                MainActivity.mNavAdapter.setFocusedItem(-1);
                 Fragment frag = MainFragment.newInstance();
                 AppTransaction.replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), frag);
             }

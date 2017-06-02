@@ -33,10 +33,6 @@ public class LoadPDFFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_load_pdf, container, false);
     }
 
-    public void onButtonPressed(Uri uri) {
-
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

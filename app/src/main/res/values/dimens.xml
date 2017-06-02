@@ -13,8 +13,6 @@
     <dimen name="navigation_icon_padding_bottom">5dp</dimen>
     <dimen name="main_header_height">160dp</dimen>
 
-    <color name="colorTab_bg">#eff4f7</color>
-
     <dimen name="font_30">11sp</dimen>
     <dimen name="font_36">12sp</dimen>
     <dimen name="font_40">13.3sp</dimen>
