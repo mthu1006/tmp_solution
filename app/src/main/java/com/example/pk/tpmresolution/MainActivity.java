@@ -30,7 +30,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -396,14 +395,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onItemClick(View v, int position) {
                 list_stack_fraggments.add(frag);
-                frag = ChangeLoctionFragment.newInstance();
+                frag = MainFragment.newInstance();
                 mPosition = position;
                 if (position == 0) {
                     frag = ChangeLoctionFragment.newInstance();
+                    AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), frag);
                 } else if (position == 1) {
                     frag = RefereneInfomationFragment.newInstance();
+                    AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), frag);
                 } else if (position == 2) {
                     frag = RequestMaintenanceFragment.newInstance();
+                    AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), frag);
 
                 } else if (position == 3) {
                     isToolManager = true;
@@ -411,11 +413,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 }else if (position == 4 ) {
                     frag = CheckListFragment.newInstance();
+                    AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), frag);
                 } else if (position == 5) {
                     frag = SettingFragment.newInstance();
+                    AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), frag);
                 }
 //                toolbar.setTitle(titleitems.get(position));
-                AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), frag);
+
                 drawer.closeDrawer(GravityCompat.START);
             }
         });

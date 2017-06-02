@@ -147,32 +147,6 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                 @Override
                 public void onClick(View view) {
                     mDialogError.dismiss();
-                    Fragment frag = MainFragment.newInstance();
-                    AppTransaction.replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), frag);
-                }
-            });
-        }
-
-
-        if(mItem == null){
-            cbDaily.setClickable(false);
-            cbDaily.setBackgroundResource(R.drawable.checkbox_red);
-            cbDaily.setTag(false);
-
-            cbWeekly.setClickable(false);
-            cbWeekly.setBackgroundResource(R.drawable.checkbox_red);
-            cbWeekly.setTag(false);
-
-            cbMonthly.setClickable(false);
-            cbMonthly.setBackgroundResource(R.drawable.checkbox_red);
-            cbMonthly.setTag(false);
-            ShowDialogError("Can not create checklist", "Please scan machine and try again!", false);
-            mDialogError.setCancelable(false);
-            mDialogError.setCanceledOnTouchOutside(false);
-            mBtn_dialog.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mDialogError.dismiss();
                     MainActivity.mNavAdapter.notifyItemChanged(MainActivity.mNavAdapter.getFocusedItem());
                     MainActivity.mNavAdapter.setFocusedItem(-1);
                     Fragment frag = MainFragment.newInstance();
