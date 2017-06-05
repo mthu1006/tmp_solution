@@ -87,7 +87,7 @@ public class AppDialogManager {
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);//chạm ở ngoài
         dialog.setContentView(view);
-
+        CustomFontButton btn = (CustomFontButton) view.findViewById(R.id.btn_accept);
         CustomFontButton btnDenice = (CustomFontButton) view.findViewById(R.id.btn_cancel);
         if(btnDenice!=null) {
             btnDenice.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +100,13 @@ public class AppDialogManager {
 
         AppCompatImageView img_close = (AppCompatImageView) view.findViewById(R.id.button_close);
         img_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        if(btn!=null)
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
