@@ -31,7 +31,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.daniribalbert.customfontlib.views.CustomFontButton;
 import com.daniribalbert.customfontlib.views.CustomFontEditText;
@@ -40,6 +39,7 @@ import com.example.pk.tpmresolution.adapter.NavAdapter;
 import com.example.pk.tpmresolution.fragment.ChangeLoctionFragment;
 import com.example.pk.tpmresolution.fragment.CheckListFragment;
 import com.example.pk.tpmresolution.fragment.MainFragment;
+import com.example.pk.tpmresolution.fragment.MaintenanceHistoryFragment;
 import com.example.pk.tpmresolution.fragment.RefereneInfomationFragment;
 import com.example.pk.tpmresolution.fragment.RequestMaintenanceFragment;
 import com.example.pk.tpmresolution.fragment.SettingFragment;
@@ -57,14 +57,12 @@ import com.example.pk.tpmresolution.utils.Validation;
 import com.github.akashandroid90.imageletter.MaterialLetterIcon;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -404,7 +402,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     frag = RefereneInfomationFragment.newInstance();
                     AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), frag);
                 } else if (position == 2) {
-                    frag = RequestMaintenanceFragment.newInstance();
+                    frag = MaintenanceHistoryFragment.newInstance();
                     AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), frag);
 
                 } else if (position == 3) {
@@ -462,16 +460,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
     }
-
-   /* public void validationText(TextView tv, String s){
-        if(!Validation.checkNullOrEmpty(s)) {
-           // Log.d("kien", "settext "+s);
-            tv.setText(s);
-        }else {
-           // Log.d("kien", "settext default");
-            tv.setText(AppConstants.DEFAULT_NULL_TEXT);
-        }
-    }*/
 
     void ShowDialogChoice() {
         final Dialog mDialog = AppDialogManager.onShowCustomDialog(this, R.layout.dialog_choice);

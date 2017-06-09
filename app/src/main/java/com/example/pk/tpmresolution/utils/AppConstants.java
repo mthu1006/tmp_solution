@@ -20,7 +20,6 @@ public class AppConstants {
     public static final String KEY_TOOL_ID = "TOOL_ID";
     public static final String KEY_MODEL_ID = "MODEL_ID";
     public static final String KEY_TOKEN = "TOKEN";
-    public static final String KEY_USER_ID = "USER_ID";
     public static final String KEY_DATE = "DATE";
     public static final String KEY_ID = "ID";
 

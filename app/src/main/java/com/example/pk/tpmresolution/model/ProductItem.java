@@ -17,7 +17,6 @@ public class ProductItem {
     String valid_date;
     String corporation;
     String corporation_id;
-    String master_code;
     String factory;
     String factory_id;
     String line;
@@ -26,36 +25,17 @@ public class ProductItem {
     String warehouse_id;
     String status;
     Bitmap avatar;
-    String[] listStatus;
-    String[] listStatusCode;
-
-
-    public String getCorporation_id() {
-        return corporation_id;
-    }
 
     public void setCorporation_id(String corporation_id) {
         this.corporation_id = corporation_id;
-    }
-
-    public String getFactory_id() {
-        return factory_id;
     }
 
     public void setFactory_id(String factory_id) {
         this.factory_id = factory_id;
     }
 
-    public String getLine_id() {
-        return line_id;
-    }
-
     public void setLine_id(String line_id) {
         this.line_id = line_id;
-    }
-
-    public String getWarehouse_id() {
-        return warehouse_id;
     }
 
     public void setWarehouse_id(String warehouse_id) {
@@ -68,33 +48,6 @@ public class ProductItem {
 
     public void setWarehouse(String warehouse) {
         this.warehouse = warehouse;
-    }
-
-    public String[] getListStatusCode() {
-        return listStatusCode;
-    }
-
-    public void setListStatusCode(String[] listStatusCode) {
-        this.listStatusCode = listStatusCode;
-    }
-
-
-
-
-    public String[] getListStatus() {
-        return listStatus;
-    }
-
-    public void setListStatus(String[] listStatus) {
-        this.listStatus = listStatus;
-    }
-
-    public String getMaster_code() {
-        return master_code;
-    }
-
-    public void setMaster_code(String master_code) {
-        this.master_code = master_code;
     }
 
     public String getMachineID() {

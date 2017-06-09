@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        tools:context="com.example.pk.tpmresolution.fragment.ChangeLoctionFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:weightSum="5"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/image_tungay"
+            android:layout_width="match_parent"
+            android:layout_weight="2.1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_notification_main" />
+
+        <com.daniribalbert.customfontlib.views.CustomFontTextView
+            android:id="@+id/txt_date_month_year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:paddingBottom="@dimen/space_64"
+            android:paddingTop="@dimen/space_64"
+            android:layout_marginLeft="@dimen/space_54"
+            android:textColor="@color/colorTab_orange"
+            android:textSize="@dimen/font_54"
+            app:font="Roboto_Medium" />
+
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/img_go"
+            android:layout_width="match_parent"
+            android:layout_weight="2.1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#000000" />
+
+            <LinearLayout
+                android:id="@+id/layout_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/draw_nghiphep_quanly"
+                android:padding="@dimen/space_60"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/draw_nghiphep_quanly" />
+            </LinearLayout>
+</LinearLayout>

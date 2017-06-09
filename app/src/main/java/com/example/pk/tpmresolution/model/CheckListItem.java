@@ -1,7 +1,7 @@
 package com.example.pk.tpmresolution.model;
 
 /**
- * Created by mthu1 on 3/21/2017.
+ * Created by kien on 3/21/2017.
  */
 
 public class CheckListItem {
@@ -11,7 +11,6 @@ public class CheckListItem {
     String checklist_status_id;
     String checklist_status_name;
     String checklist_user_name;
-    String checklist_cycle_name;
     String checklist_action_name;
 
     public String getChecklist_id() {
@@ -60,14 +59,6 @@ public class CheckListItem {
 
     public void setChecklist_user_name(String checklist_user_name) {
         this.checklist_user_name = checklist_user_name;
-    }
-
-    public String getChecklist_cycle_name() {
-        return checklist_cycle_name;
-    }
-
-    public void setChecklist_cycle_name(String checklist_cycle_name) {
-        this.checklist_cycle_name = checklist_cycle_name;
     }
 
     public String getChecklist_action_name() {

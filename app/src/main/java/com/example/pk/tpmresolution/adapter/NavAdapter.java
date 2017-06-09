@@ -17,7 +17,7 @@ import com.example.pk.tpmresolution.utils.AppTransaction;
 import java.util.List;
 
 /**
- * Created by vinh on 07/29/2016.
+ * Created by kien on 07/29/2016.
  */
 public class NavAdapter extends RecyclerView.Adapter<NavAdapter.MyViewHolder> {
 

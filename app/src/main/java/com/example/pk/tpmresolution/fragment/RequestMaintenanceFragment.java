@@ -30,9 +30,11 @@ import com.daniribalbert.customfontlib.views.CustomFontTextView;
 import com.example.pk.tpmresolution.LoginActivity;
 import com.example.pk.tpmresolution.MainActivity;
 import com.example.pk.tpmresolution.R;
+import com.example.pk.tpmresolution.adapter.CommonAdapter;
 import com.example.pk.tpmresolution.adapter.MaintenaceAdapter;
 import com.example.pk.tpmresolution.adapter.NavClickAdapter;
 import com.example.pk.tpmresolution.model.CommonClass;
+import com.example.pk.tpmresolution.model.HistoryItem;
 import com.example.pk.tpmresolution.model.PartBookItem;
 import com.example.pk.tpmresolution.model.ProductItem;
 import com.example.pk.tpmresolution.model.RequestMaintenace;
@@ -42,15 +44,12 @@ import com.example.pk.tpmresolution.utils.AppTransaction;
 import com.example.pk.tpmresolution.utils.DialogAcceptClickListener;
 import com.example.pk.tpmresolution.utils.HTTPRequest;
 import com.example.pk.tpmresolution.utils.Validation;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import butterknife.ButterKnife;
 
 public class RequestMaintenanceFragment extends Fragment {
@@ -61,29 +60,28 @@ public class RequestMaintenanceFragment extends Fragment {
     private ArrayList<PartBookItem> list;
     private ArrayList<PartBookItem> listPartBook;
     private ArrayList<CommonClass> listUnit;
-    String[] arrUnit;
-    String[] arrAcceptUsers;
-    String[] arrPartBook;
-    private Dialog mDialog;
+    String[] arrUnit, arrAcceptUsers, arrPartBook ;
+    private Dialog mDialog, mDialogError;
     ProductItem mItem = null;
     private RequestMaintenace mMaitainItem = null;
    // LinearLayout layoutContent;
     private ArrayAdapter<String> adapter;
-    private AppCompatSpinner spnUnit, spnName;
+    private AppCompatSpinner spnUnit, spnName, spnStatus;
     private CustomFontEditText edtQantity, edtPrice, edtReason;
-    private CustomFontButton btnAccept, btnCancel, btnOK;
-    CustomFontTextView txtModel, txtRequestDate, txtMachineID, txtName;
+    private CustomFontButton btnAccept, btnCancel, btnOK, mBtn_dialog;
+    CustomFontTextView txtModel, txtRequestDate, txtMachineID, txtName, txtTitle;
+    LinearLayout layoutStatus;
     AppCompatAutoCompleteTextView edtAcceptUser;
     MaterialDialog mDialogLoading;
-    CustomFontButton mBtn_dialog;
-    Dialog mDialogError;
     SharedPreferences prefs;
+    HistoryItem item;
 
-    public RequestMaintenanceFragment() {
+    public RequestMaintenanceFragment(HistoryItem item) {
+        this.item = item;
     }
 
-    public static RequestMaintenanceFragment newInstance() {
-        RequestMaintenanceFragment fragment = new RequestMaintenanceFragment();
+    public static RequestMaintenanceFragment newInstance(HistoryItem item) {
+        RequestMaintenanceFragment fragment = new RequestMaintenanceFragment(item);
 
         return fragment;
     }
@@ -255,10 +253,13 @@ public class RequestMaintenanceFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_request_maintenance, container, false);
         ((MainActivity)getActivity()).fab.setVisibility(View.VISIBLE);
-        
         ((MainActivity) getActivity()).toolbar.setTitle(getActivity().getResources().getTextArray(R.array.navigation_array_tile)[2]);
         ButterKnife.bind(getActivity());
         mItem = ((MainActivity) getActivity()).mItem;
+
+        txtTitle = (CustomFontTextView) root.findViewById(R.id.title_model);
+        layoutStatus = (LinearLayout) root.findViewById(R.id.layout_status);
+        spnStatus = (AppCompatSpinner)root.findViewById(R.id.spn_status);
         if(mItem!=null) {
             if (!mItem.getStatus().equalsIgnoreCase("Broken")) {
                 ShowDialogError("Machine is not broken", "Can not request maintenance", false);
@@ -492,6 +493,24 @@ public class RequestMaintenanceFragment extends Fragment {
         txtRequestDate.setText(sdf.format(Calendar.getInstance().getTime()));
         accessoriesAdapter.notifyDataSetChanged();
 
+        if(item!=null){
+            layoutStatus.setVisibility(View.VISIBLE);
+            txtTitle.setText(R.string.txt_created_date);
+            CommonAdapter adapter = new CommonAdapter(((MainActivity)getActivity()).stt_list,getActivity());
+            spnStatus.setAdapter(adapter);
+            for (int i = 0; i< ((MainActivity)getActivity()).stt_list.size(); i++ ){
+                if(((MainActivity)getActivity()).stt_list.get(i).getName().equals(item.getStatus())){
+                    spnStatus.setSelection(i);
+                }
+            }
+
+            edtAcceptUser.setText(item.getRequest_user());
+            edtAcceptUser.setEnabled(false);
+            txtModel.setText(item.getCreated_date());
+            txtRequestDate.setText(item.getRequest_date());
+            edtReason.setText(item.getReason());
+        }
+
     }
 
     void ShowDialogError(String title, String message, boolean isClose) {
@@ -547,4 +566,5 @@ public class RequestMaintenanceFragment extends Fragment {
         }
         return -1;
     }
+
 }

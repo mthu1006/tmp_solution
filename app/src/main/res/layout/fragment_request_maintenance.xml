@@ -66,6 +66,7 @@
                 android:paddingTop="@dimen/profile_padding_top">
 
                 <com.daniribalbert.customfontlib.views.CustomFontTextView
+                    android:id="@+id/title_model"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
@@ -142,6 +143,44 @@
                     android:layout_weight="1"
                     android:textSize="@dimen/font_48"
                     app:font="Roboto_Light" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#e6e6e6" />
+
+            <LinearLayout
+                android:id="@+id/layout_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/space_23"
+                android:paddingLeft="@dimen/space_40"
+                android:paddingRight="@dimen/space_40"
+                android:paddingTop="@dimen/space_23">
+
+                <com.daniribalbert.customfontlib.views.CustomFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="@string/txt_status"
+                    android:textSize="@dimen/font_48"
+                    app:font="Roboto_Regular" />
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/spn_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="@dimen/space_1"
+                    android:layout_marginTop="@dimen/space_1"
+                    android:background="@drawable/bg_spinner">
+
+                </android.support.v7.widget.AppCompatSpinner>
+
             </LinearLayout>
 
             <View

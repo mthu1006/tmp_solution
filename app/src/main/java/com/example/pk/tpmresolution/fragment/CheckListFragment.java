@@ -19,18 +19,15 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.TextView;
-
 import com.daniribalbert.customfontlib.views.CustomFontTextView;
 import com.example.pk.tpmresolution.MainActivity;
 import com.example.pk.tpmresolution.R;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

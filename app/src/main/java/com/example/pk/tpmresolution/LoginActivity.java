@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.view.View;
 import android.widget.RelativeLayout;
-
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
@@ -26,13 +25,10 @@ import com.example.pk.tpmresolution.utils.AppDialogManager;
 import com.example.pk.tpmresolution.utils.AppTransaction;
 import com.example.pk.tpmresolution.utils.HTTPRequest;
 import com.example.pk.tpmresolution.utils.Validation;
-
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

@@ -6,7 +6,6 @@ package com.example.pk.tpmresolution.model;
 
 public class InformationItem {
 
-    int ID;
     String Name;
     String displayName;
     String file_dir;
@@ -18,15 +17,6 @@ public class InformationItem {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
-    }
-
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 
     public String getName() {

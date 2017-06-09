@@ -146,7 +146,7 @@
     <string name="txt_jing_meterial">Jing Meterial</string>
 
     <string name="txt_part">Part</string>
-    <string name="txt_machine_model">Machine model</string>
+    <string name="txt_machine_model">Machine Model</string>
     <string name="txt_jing_type">Jing Type</string>
 
     <string name="txt_location">Location</string>
@@ -159,5 +159,12 @@
 
     <string name="txt_tool_code">Tool Code</string>
     <string name="txt_tool_name">Tool Name</string>
+
+    <string name="txt_id">Machine ID</string>
+    <string name="txt_request_user">Request User</string>
+    <string name="txt_created_date">Created Date</string>
+    <string name="txt_request_date">Request Date</string>
+    <string name="txt_purchase_user">Purchase User</string>
+    <string name="txt_update_date">Update Date</string>
 
 </resources>

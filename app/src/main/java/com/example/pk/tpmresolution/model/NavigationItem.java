@@ -3,7 +3,7 @@ package com.example.pk.tpmresolution.model;
 import android.graphics.drawable.Drawable;
 
 /**
- * Created by vinh on 07/28/2016.
+ * Created by kien on 07/28/2016.
  */
 public class NavigationItem {
     public Drawable icon;

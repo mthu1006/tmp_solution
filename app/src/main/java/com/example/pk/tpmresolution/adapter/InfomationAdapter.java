@@ -16,7 +16,7 @@ import com.example.pk.tpmresolution.model.InformationItem;
 import java.util.List;
 
 /**
- * Created by vinh on 07/29/2016.
+ * Created by kien on 07/29/2016.
  */
 public class InfomationAdapter extends RecyclerView.Adapter<InfomationAdapter.MyViewHolder> {
 

@@ -9,7 +9,6 @@ public class EmployeeItem {
     String employee_id;
     String employee_name;
     String employee_workbase;
-    String employee_token;
 
     public String getEmployee_id() {
         return employee_id;
@@ -35,11 +34,4 @@ public class EmployeeItem {
         this.employee_workbase = employee_workbase;
     }
 
-    public String getEmployee_token() {
-        return employee_token;
-    }
-
-    public void setEmployee_token(String employee_token) {
-        this.employee_token = employee_token;
-    }
 }

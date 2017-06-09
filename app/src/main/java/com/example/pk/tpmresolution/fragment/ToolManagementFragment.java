@@ -9,26 +9,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.daniribalbert.customfontlib.views.CustomFontButton;
+import com.daniribalbert.customfontlib.views.CustomFontEditText;
 import com.daniribalbert.customfontlib.views.CustomFontTextView;
 import com.example.pk.tpmresolution.MainActivity;
 import com.example.pk.tpmresolution.R;
 import com.example.pk.tpmresolution.model.ToolManagementtItem;
 import com.example.pk.tpmresolution.utils.AppConstants;
 import com.example.pk.tpmresolution.utils.AppDialogManager;
-
 import com.example.pk.tpmresolution.utils.Validation;
 import com.github.akashandroid90.imageletter.MaterialLetterIcon;
-
 
 public class ToolManagementFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     ToolManagementtItem mItem = null;
     private CustomFontTextView txtToolCode,txtStyleName, txtBuyerName, txtJingName, txtJingSeriarNo, txtJingMeterial, txtPart, txtMachineModel, txtJingType,
-                    txtCorporation,  txtFactory, txtLine, txtTitleLine, txtStatus, txtJingDate, txtVideoFile, txtPattemFile, txtAttachFile, txtProcess ;
+                    txtCorporation,  txtFactory, txtLine, txtTitleLine, txtStatus, txtJingDate, txtVideoFile, txtPattemFile, txtAttachFile ;
+    private CustomFontEditText  txtProcess;
     LinearLayout layoutLine;
     private MaterialLetterIcon imgAvatar;
     MaterialDialog mDialogLoading;
@@ -77,7 +76,7 @@ public class ToolManagementFragment extends Fragment {
         txtVideoFile = (CustomFontTextView) root.findViewById(R.id.txt_video_file);
         txtPattemFile = (CustomFontTextView) root.findViewById(R.id.txt_pattem_file_info);
         txtAttachFile = (CustomFontTextView) root.findViewById(R.id.txt_attach_file);
-        txtProcess = (CustomFontTextView) root.findViewById(R.id.txt_process);
+        txtProcess = (CustomFontEditText) root.findViewById(R.id.txt_process);
 
         layoutLine = (LinearLayout) root.findViewById(R.id.layout_line);
         imgAvatar = (MaterialLetterIcon) root.findViewById(R.id.img_avatar);

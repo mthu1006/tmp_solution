@@ -34,21 +34,16 @@ import com.example.pk.tpmresolution.utils.AppTransaction;
 import com.example.pk.tpmresolution.utils.HTTPRequest;
 import com.example.pk.tpmresolution.utils.Validation;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-
-import static android.R.id.message;
 import static com.example.pk.tpmresolution.R.id.layout_daily;
 import static com.example.pk.tpmresolution.R.id.layout_monthly;
 import static com.example.pk.tpmresolution.R.id.layout_weekly;
-import static com.example.pk.tpmresolution.R.id.view;
 
 public class DailyCheckListFragment extends Fragment implements View.OnClickListener{
     private ExpandableRelativeLayout expDaily, expWeekly, expMonthly;
@@ -511,27 +506,6 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
         listMonthly.get(position).setChecklist_status_id(status_list.get(spn.getSelectedItemPosition()).getId());
         listMonthly.get(position).setChecklist_status_name(status_list.get(spn.getSelectedItemPosition()).getName());
     }
-
-
-   /* private void checkRestoreStatus(){
-        // to make sure that all status not restore
-        for(CheckListItem item: listDaily)
-            for(int i=0;i<listChanged.size(); i++){
-                if(listChanged.get(i).getChecklist_id().equals(item.getChecklist_id()) && listChanged.get(i).getChecklist_status_name().equals(item.getChecklist_status_name()))
-                    listChanged.remove(i);
-            }
-        for(CheckListItem item: listWeekly)
-            for(int i=0;i<listChanged.size(); i++){
-                if(listChanged.get(i).getChecklist_id().equals(item.getChecklist_id()) && listChanged.get(i).getChecklist_status_name().equals(item.getChecklist_status_name()))
-                    listChanged.remove(i);
-            }
-
-        for(CheckListItem item: listMonthly)
-            for(int i=0;i<listChanged.size(); i++){
-                if(listChanged.get(i).getChecklist_id().equals(item.getChecklist_id()) && listChanged.get(i).getChecklist_status_name().equals(item.getChecklist_status_name()))
-                    listChanged.remove(i);
-            }
-    }*/
 
     private int CheckExist(String id){
         for (int i=0; i<listChanged.size(); i++){

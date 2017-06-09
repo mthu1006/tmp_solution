@@ -3,7 +3,7 @@
     <string-array name="navigation_array_tile">
         <item>Change Location</item>
         <item>Reference Infomation</item>
-        <item>Request Maintenance</item>
+        <item>Maintenance History</item>
         <item>Tool Management</item>
         <item>Create Check List</item>
         <item>Setting</item>

@@ -7,13 +7,11 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatSpinner;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.daniribalbert.customfontlib.views.CustomFontButton;
 import com.daniribalbert.customfontlib.views.CustomFontTextView;
@@ -29,7 +27,6 @@ import com.example.pk.tpmresolution.utils.AppUltils;
 import com.example.pk.tpmresolution.utils.HTTPRequest;
 import com.example.pk.tpmresolution.utils.Validation;
 import com.github.akashandroid90.imageletter.MaterialLetterIcon;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -136,8 +133,6 @@ public class MainFragment extends Fragment {
                                     }
                                 });
                             }
-
-
                         }
                     } catch (JSONException e) {
                         ShowDialogError("Server error, please try again!");
@@ -183,7 +178,6 @@ public class MainFragment extends Fragment {
                     }
                 }
             }else spn_status.setVisibility(View.GONE);
-
         }
     }
 
@@ -223,7 +217,4 @@ public class MainFragment extends Fragment {
         txt2.setText(message);
         mDialog.show();
     }
-
-
-
 }

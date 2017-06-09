@@ -9,11 +9,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.daniribalbert.customfontlib.views.CustomFontButton;
@@ -36,6 +40,7 @@ import com.example.pk.tpmresolution.adapter.MovingMachineAdapter;
 import com.example.pk.tpmresolution.adapter.NavClickAdapter;
 import com.example.pk.tpmresolution.model.CommonClass;
 import com.example.pk.tpmresolution.model.MachineForMoving;
+import com.example.pk.tpmresolution.model.PartBookItem;
 import com.example.pk.tpmresolution.model.ProductItem;
 import com.example.pk.tpmresolution.utils.AppConstants;
 import com.example.pk.tpmresolution.utils.AppDialogManager;
@@ -47,6 +52,7 @@ import com.example.pk.tpmresolution.utils.Validation;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -375,12 +381,6 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                 }else {
                     //ShowDialogError("Add machine failed", "Please scan QR code");
                     edtMachine.setError("Please scan QR code");
-                    return;
-                }
-                if(!factoryList.isEmpty() && spnFactory.getSelectedItemPosition() >=0)
-                    mc.setToFactory(factoryList.get(spnFactory.getSelectedItemPosition()).getId());
-                else {
-                    AppTransaction.Toast(getActivity(), "Factory can not null");
                     return;
                 }
                 if(!lineList.isEmpty() && radio_line.isChecked() && spnLine.getSelectedItemPosition() >=0)
