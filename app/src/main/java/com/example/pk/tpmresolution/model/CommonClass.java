@@ -5,6 +5,7 @@ package com.example.pk.tpmresolution.model;
  */
 
 public class CommonClass {
+
     String id, name;
 
     public String getId() {

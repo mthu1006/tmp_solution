@@ -5,6 +5,9 @@ package com.example.pk.tpmresolution.utils;
  */
 
 public class AppConstants {
+
+    public static final String SENDER_ID = "684941626917";
+    public static final String API_KEY = "AIzaSyCdkCxjgp_vRWsvBuUSA5b6JFGcyvTOwsQ";
     public static final String TAG = "tpm";
 //    public static final String ip = "http://203.113.151.193:35";
     public static final String ip = "http://113.161.168.2:35";

@@ -1,12 +1,12 @@
 package com.example.pk.tpmresolution.model;
 
 /**
- * Created by mthu1 on 4/13/2017.
+ * Created by kien on 4/13/2017.
  */
 
 public class RequestMaintenace {
-    String Model;
-    String Name;
+
+    String Model, Name;
 
     public String getModel() {
         return Model;

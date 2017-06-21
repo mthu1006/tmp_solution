@@ -1,18 +1,12 @@
 package com.example.pk.tpmresolution.model;
 
 /**
- * Created by Julian on 5/11/2017.
+ * Created by kien on 5/11/2017.
  */
 
 public class MachineForMoving {
-    String name;
-    String MachineId;
-    String FrFactory;
-    String FrLine;
-    String FrWh;
-    String ToFactory;
-    String ToLine;
-    String ToWh;
+
+    String name, MachineId, FrFactory, FrLine, FrWh, ToFactory, ToLine, ToWh;
 
     public String getName() {
         return name;

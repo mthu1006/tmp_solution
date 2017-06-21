@@ -5,13 +5,8 @@ package com.example.pk.tpmresolution.model;
  */
 
 public class CheckListItem {
-    String checklist_id;
-    String checklist_name;
-    String checklist_date;
-    String checklist_status_id;
-    String checklist_status_name;
-    String checklist_user_name;
-    String checklist_action_name;
+
+    String checklist_id, checklist_name, checklist_date, checklist_status_id, checklist_status_name, checklist_user_name, checklist_action_name;
 
     public String getChecklist_id() {
         return checklist_id;

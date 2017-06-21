@@ -3,28 +3,15 @@ package com.example.pk.tpmresolution.model;
 import android.graphics.Bitmap;
 
 /**
- * Created by mthu1 on 3/21/2017.
+ * Created by kien on 3/21/2017.
  */
 
 public class ProductItem {
-    String machineID;
-    String model_id;
-    String product_name;
-    String product_model;
-    String function;
-    String series_number;
-    String purchase_date;
-    String valid_date;
-    String corporation;
-    String corporation_id;
-    String factory;
-    String factory_id;
-    String line;
-    String line_id;
-    String warehouse;
-    String warehouse_id;
-    String status;
+
     Bitmap avatar;
+    String machineID, model_id, product_name, product_model, function, series_number, purchase_date, valid_date, corporation, corporation_id, factory,
+         factory_id, line, line_id, warehouse, warehouse_id, status;
+
 
     public void setCorporation_id(String corporation_id) {
         this.corporation_id = corporation_id;

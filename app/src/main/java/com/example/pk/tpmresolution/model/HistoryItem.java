@@ -5,6 +5,7 @@ package com.example.pk.tpmresolution.model;
  */
 
 public class HistoryItem {
+
     String machine_id, request_user, request_date, pwic_user, reason, created_date, status, update_date;
 
     public String getMachine_id() {

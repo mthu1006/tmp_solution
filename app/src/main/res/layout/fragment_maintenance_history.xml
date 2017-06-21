@@ -4,7 +4,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-
         tools:context="com.example.pk.tpmresolution.fragment.ChangeLoctionFragment">
 
     <LinearLayout
@@ -46,12 +45,16 @@
         android:layout_height="0.5dp"
         android:background="#000000" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/space_60">
+
             <LinearLayout
                 android:id="@+id/layout_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/draw_nghiphep_quanly"
-                android:padding="@dimen/space_60"
                 android:orientation="vertical">
 
                 <android.support.v7.widget.RecyclerView
@@ -60,4 +63,6 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/draw_nghiphep_quanly" />
             </LinearLayout>
+
+    </LinearLayout>
 </LinearLayout>

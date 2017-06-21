@@ -6,10 +6,7 @@ package com.example.pk.tpmresolution.model;
 
 public class InformationItem {
 
-    String Name;
-    String displayName;
-    String file_dir;
-
+    String Name, displayName, file_dir;
 
     public String getDisplayName() {
         return displayName;

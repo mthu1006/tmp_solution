@@ -5,13 +5,9 @@ package com.example.pk.tpmresolution.model;
  */
 
 public class PartBookItem {
-    String partbook_id;
-    String partbook_name;
-    int partbook_qty;
-    int partbook_price;
-    int partbook_total_money;
-    String partbook_unit_id;
-    String partbook_unit_name;
+
+    String partbook_id, partbook_name, partbook_unit_id, partbook_unit_name;
+    int partbook_qty, partbook_price, partbook_total_money;
 
     public String getPartbook_id() {
         return partbook_id;

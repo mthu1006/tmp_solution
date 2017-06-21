@@ -6,9 +6,7 @@ package com.example.pk.tpmresolution.model;
 
 public class EmployeeItem {
 
-    String employee_id;
-    String employee_name;
-    String employee_workbase;
+    String employee_id, employee_name, employee_workbase;
 
     public String getEmployee_id() {
         return employee_id;

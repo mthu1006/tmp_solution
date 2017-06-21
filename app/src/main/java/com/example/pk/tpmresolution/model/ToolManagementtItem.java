@@ -3,10 +3,11 @@ package com.example.pk.tpmresolution.model;
 import android.graphics.Bitmap;
 
 /**
- * Created by mthu1 on 3/21/2017.
+ * Created by kien on 3/21/2017.
  */
 
 public class ToolManagementtItem {
+    
     Bitmap avatar;
     String tool_code, style_name, buyer_name, jing_name, jing_serial_no, jing_meterial, part, machine_model, jing_type,
             corporation, line, warehouse, factory, status, video_file, pattem_file, attach_file, process;

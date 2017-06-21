@@ -70,7 +70,7 @@ public class HTTPRequest extends AsyncTask<String, Void, String> {
     }
 
     void ShowDialogError() {
-        Dialog mDialog = AppDialogManager.onShowCustomDialog(context, R.layout.dialog_error);
+        final Dialog mDialog = AppDialogManager.onShowCustomDialog(context, R.layout.dialog_error);
         CustomFontTextView txt = (CustomFontTextView) mDialog.findViewById(R.id.txt_content1);
         CustomFontTextView txt1 = (CustomFontTextView) mDialog.findViewById(R.id.txt_content2);
         txt.setText("No internet connection");
