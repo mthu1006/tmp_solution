@@ -10,7 +10,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatImageView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +28,6 @@ import com.example.pk.tpmresolution.utils.AppTransaction;
 import com.example.pk.tpmresolution.utils.HTTPRequest;
 import com.example.pk.tpmresolution.utils.Validation;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -46,7 +44,6 @@ public class SettingFragment extends Fragment {
     AppCompatImageView imgChangePss, imgLogout;
     Dialog mDialog;
     CustomFontButton mBtn_dialog;
-
 
     public SettingFragment() {
     }
@@ -143,7 +140,6 @@ public class SettingFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
     }
-
 
     private void savePassword(){
 

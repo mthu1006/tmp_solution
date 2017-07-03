@@ -27,7 +27,6 @@ public class AppConstants {
     public static final String KEY_ID = "ID";
 
 
-    //M.r Đông
     public static final String URL_LOGIN = ip+"/api/v1/Account/Login";
     public static final String URL_lOGOUT = ip+"/api/v1/Account/LogOut";
     public static final String URL_LOGIN_CHANGEPASS = ip+"/api/v1/Account/ChangePassword";

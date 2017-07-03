@@ -99,9 +99,9 @@
 
 
     <string name="setting_title">Change Password</string>
-    <string name="setting_pass">Password</string>
-    <string name="setting_repass">New password</string>
-    <string name="setting_new_repass">New password</string>
+    <string name="setting_pass">Current Password</string>
+    <string name="setting_repass">New Password</string>
+    <string name="setting_new_repass">Confirm Password</string>
     <string name="setting_btn_logout">Logout</string>
     <string name="setting_btn_refresh">Reset</string>
 

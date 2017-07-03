@@ -566,5 +566,4 @@ public class RequestMaintenanceFragment extends Fragment {
         }
         return -1;
     }
-
 }

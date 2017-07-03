@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.pk.tpmresolution.R;
 
 public class LoadPDFFragment extends Fragment {
@@ -43,7 +42,6 @@ public class LoadPDFFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
     }
-
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);

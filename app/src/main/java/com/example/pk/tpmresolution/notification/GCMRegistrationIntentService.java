@@ -4,7 +4,6 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-
 import com.example.pk.tpmresolution.utils.AppConstants;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
@@ -23,7 +22,6 @@ public class GCMRegistrationIntentService extends IntentService {
     public GCMRegistrationIntentService() {
         super("");
     }
-
 
     @Override
     protected void onHandleIntent(Intent intent) {

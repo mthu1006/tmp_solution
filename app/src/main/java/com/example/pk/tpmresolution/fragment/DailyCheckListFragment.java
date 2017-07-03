@@ -71,7 +71,6 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
     public DailyCheckListFragment() {
     }
 
-
     public static DailyCheckListFragment newInstance() {
         return new DailyCheckListFragment();
     }
@@ -81,7 +80,6 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
         super.onCreate(savedInstanceState);
 
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -515,7 +513,6 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
         }
         return -1;
     }
-
 
     public void setupWeek(Calendar calendar){
 

@@ -8,11 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-
 import com.daniribalbert.customfontlib.views.CustomFontTextView;
 import com.example.pk.tpmresolution.R;
 import com.example.pk.tpmresolution.model.InformationItem;
-
 import java.util.List;
 
 /**
@@ -46,7 +44,6 @@ public class InfomationAdapter extends RecyclerView.Adapter<InfomationAdapter.My
     public interface NavigationClickListener{
         void onItemClick(View v, int position);
     }
-
 
     public InfomationAdapter(Context context, List<InformationItem> moviesList, NavigationClickListener listener) {
         this.context = context;
@@ -126,7 +123,6 @@ public class InfomationAdapter extends RecyclerView.Adapter<InfomationAdapter.My
         holder.layoutView.setVisibility(View.VISIBLE);
         holder.itemView.setSelected(focusedItem == position);
     }
-
 
     @Override
     public int getItemCount() {

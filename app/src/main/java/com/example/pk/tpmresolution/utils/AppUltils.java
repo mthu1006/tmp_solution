@@ -9,7 +9,6 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,6 +19,7 @@ import java.util.Date;
 /**
  * Created by vinh on 08-Sep-16.
  */
+
 public class AppUltils {
 
     public static int onGetPositionTouch(Activity activity, View v) {
@@ -65,6 +65,7 @@ public class AppUltils {
         }
         return size;
     }
+
     public static double getScreenDimension(Context context){
         DisplayMetrics dm = new DisplayMetrics();
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(dm);

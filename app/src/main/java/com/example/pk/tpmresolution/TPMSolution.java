@@ -8,13 +8,12 @@ import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
-
 import com.example.pk.tpmresolution.notification.GCMRegistrationIntentService;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
 /**
- * Created by mthu1 on 6/5/2017.
+ * Created by kien on 6/5/2017.
  */
 
 public class TPMSolution extends Application {
@@ -78,6 +77,5 @@ public class TPMSolution extends Application {
         LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
                 new IntentFilter(GCMRegistrationIntentService.REGISTRATION_ERROR));
     }
-
 
 }

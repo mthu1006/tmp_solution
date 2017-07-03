@@ -1,7 +1,7 @@
 package com.example.pk.tpmresolution.model;
 
 /**
- * Created by Julian on 5/4/2017.
+ * Created by kien on 5/4/2017.
  */
 
 public class CommonClass {

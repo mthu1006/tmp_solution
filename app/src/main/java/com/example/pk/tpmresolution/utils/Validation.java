@@ -1,9 +1,6 @@
 package com.example.pk.tpmresolution.utils;
 
 import android.content.Context;
-import android.view.View;
-
-import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -29,22 +26,6 @@ public class Validation {
             else return false;
     }
 
-    public static boolean onCheckNoData(Integer size){
-        if(size>0)
-            return true;
-        else{
-           /* AppDialogManager.onCreate(mContext);
-            AppDialogManager.setContent(mContext.getString(R.string.txt_nodata));
-            AppDialogManager.setButton(mContext.getString(R.string.txt_login_error_try));
-            AppDialogManager.onCreateDialogESuccess(mContext, new DialogAcceptClickListener() {
-                @Override
-                public void onAcceptClick(View v) {
-
-                }
-            });*/
-            return false;
-        }
-    }
 
     public static boolean onCompareCurrentDate(String sDate){
         if (sDate==null){
@@ -64,6 +45,7 @@ public class Validation {
             return false;
         }
     }
+
     public static boolean onCompareSortDate(String sDateFrom, String sDateTo){
         //Neu mot trong hai ngay thang la rong
         if (sDateFrom==null || sDateTo==null){

@@ -43,14 +43,11 @@ import com.example.pk.tpmresolution.utils.AppTransaction;
 import com.example.pk.tpmresolution.utils.DialogAcceptClickListener;
 import com.example.pk.tpmresolution.utils.HTTPRequest;
 import com.example.pk.tpmresolution.utils.Validation;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import static com.example.pk.tpmresolution.R.id.spn_from;
 import static com.example.pk.tpmresolution.R.id.spn_to;
 

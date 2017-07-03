@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.pk.tpmresolution.MainActivity;
 import com.example.pk.tpmresolution.R;
 
@@ -35,8 +34,6 @@ public class WeeklyCheckListFragment extends Fragment {
         ((MainActivity) getActivity()).toolbar.setTitle(getActivity().getResources().getString(R.string.checklist_weekly));
         return inflater.inflate(R.layout.fragment_weekly_check_list, container, false);
     }
-
-
 
     @Override
     public void onAttach(Context context) {

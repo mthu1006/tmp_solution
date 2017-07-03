@@ -4,10 +4,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-
 import com.daniribalbert.customfontlib.views.CustomFontTextView;
 import com.example.pk.tpmresolution.R;
-
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -77,7 +75,6 @@ public class HTTPRequest extends AsyncTask<String, Void, String> {
         txt1.setText("Please connect to network and try again!");
         mDialog.show();
     }
-
 
     protected void onPostExecute(String s) {
         delegate.processFinish(s);

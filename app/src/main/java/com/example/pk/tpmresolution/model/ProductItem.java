@@ -6,7 +6,7 @@ import android.graphics.Bitmap;
  * Created by kien on 3/21/2017.
  */
 
-public class ProductItem {
+public class  ProductItem {
 
     Bitmap avatar;
     String machineID, model_id, product_name, product_model, function, series_number, purchase_date, valid_date, corporation, corporation_id, factory,

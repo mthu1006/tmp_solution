@@ -8,12 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-
 import com.daniribalbert.customfontlib.views.CustomFontTextView;
 import com.example.pk.tpmresolution.R;
 import com.example.pk.tpmresolution.model.NavigationItem;
-import com.example.pk.tpmresolution.utils.AppTransaction;
-
 import java.util.List;
 
 /**
@@ -47,7 +44,6 @@ public class NavAdapter extends RecyclerView.Adapter<NavAdapter.MyViewHolder> {
     public interface NavigationClickListener{
         void onItemClick(View v, int position);
     }
-
 
     public NavAdapter(Context context, List<NavigationItem> moviesList, NavigationClickListener listener) {
         this.context = context;
@@ -128,7 +124,6 @@ public class NavAdapter extends RecyclerView.Adapter<NavAdapter.MyViewHolder> {
         holder.layoutView.setVisibility(View.VISIBLE);
         holder.itemView.setSelected(focusedItem == position);
     }
-
 
     @Override
     public int getItemCount() {

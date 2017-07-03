@@ -5,11 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-
 import com.daniribalbert.customfontlib.views.CustomFontTextView;
 import com.example.pk.tpmresolution.R;
 import com.example.pk.tpmresolution.model.CommonClass;
-
 import java.util.ArrayList;
 
 /**
@@ -22,7 +20,6 @@ public class CommonAdapter extends BaseAdapter{
     int resource;
     ViewHolder viewHolder;
     ArrayList<CommonClass> list;
-
 
     private static class ViewHolder {
         private CustomFontTextView itemView;
@@ -73,6 +70,5 @@ public class CommonAdapter extends BaseAdapter{
 
         return convertView;
     }
-
 }
 

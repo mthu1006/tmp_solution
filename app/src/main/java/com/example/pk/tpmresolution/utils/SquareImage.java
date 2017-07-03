@@ -30,7 +30,4 @@ public class SquareImage extends ImageView {
                 MeasureSpec.makeMeasureSpec(originalWidth, MeasureSpec.EXACTLY),
                 MeasureSpec.makeMeasureSpec(originalWidth, MeasureSpec.EXACTLY));
 	}
-
-	
-
 }

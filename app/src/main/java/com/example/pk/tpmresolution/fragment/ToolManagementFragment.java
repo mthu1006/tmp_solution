@@ -86,7 +86,6 @@ public class ToolManagementFragment extends Fragment {
         return root;
     }
 
-
     private void setupToolManagement(){
         if(mItem!=null){
             if(mItem.getAvatar()!=null)

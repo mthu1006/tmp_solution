@@ -80,7 +80,6 @@ public class LoginActivity extends AppCompatActivity {
         imgslide.put("Pungkook building 4",R.drawable.pungkook4);
         imgslide.put("Pungkook building 5", R.drawable.pungkook5);
 
-
         for(String name : imgslide.keySet()){
 
             TextSliderView textSliderView = new TextSliderView(this);
@@ -91,7 +90,6 @@ public class LoginActivity extends AppCompatActivity {
                     .setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
                         @Override
                         public void onSliderClick(BaseSliderView slider) {
-
                         }
                     });
             textSliderView.bundle(new Bundle());
@@ -106,17 +104,14 @@ public class LoginActivity extends AppCompatActivity {
         sliderLayout.addOnPageChangeListener(new ViewPagerEx.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
-
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
     }

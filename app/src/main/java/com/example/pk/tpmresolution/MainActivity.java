@@ -31,6 +31,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.daniribalbert.customfontlib.views.CustomFontButton;
 import com.daniribalbert.customfontlib.views.CustomFontEditText;
@@ -41,7 +42,6 @@ import com.example.pk.tpmresolution.fragment.CheckListFragment;
 import com.example.pk.tpmresolution.fragment.MainFragment;
 import com.example.pk.tpmresolution.fragment.MaintenanceHistoryFragment;
 import com.example.pk.tpmresolution.fragment.RefereneInfomationFragment;
-import com.example.pk.tpmresolution.fragment.RequestMaintenanceFragment;
 import com.example.pk.tpmresolution.fragment.SettingFragment;
 import com.example.pk.tpmresolution.fragment.ToolManagementFragment;
 import com.example.pk.tpmresolution.model.CommonClass;
@@ -67,7 +67,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static RecyclerView mRecycler_nav;
     public static NavAdapter mNavAdapter;
@@ -92,8 +91,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public Fragment frag;
     String main_name;
     ArrayList<Fragment> list_stack_fraggments;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

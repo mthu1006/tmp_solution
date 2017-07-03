@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
-
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.daniribalbert.customfontlib.views.CustomFontButton;
 import com.daniribalbert.customfontlib.views.CustomFontTextView;
@@ -35,7 +34,6 @@ public class AppDialogManager {
         titles = context.getString(R.string.txt_thongbao1);
         button = context.getString(R.string.txt_profile10);
     }
-
 
     public static void onCreateDialogConfirm(Context context,String content, final DialogAcceptClickListener mclick) {
         final Dialog dialog = new Dialog(context);

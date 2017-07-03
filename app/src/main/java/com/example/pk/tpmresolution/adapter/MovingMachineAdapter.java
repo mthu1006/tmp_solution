@@ -6,11 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.daniribalbert.customfontlib.views.CustomFontTextView;
 import com.example.pk.tpmresolution.R;
 import com.example.pk.tpmresolution.model.MachineForMoving;
-
 import java.util.List;
 
 /**
@@ -39,8 +37,6 @@ public class MovingMachineAdapter extends RecyclerView.Adapter<MovingMachineAdap
 
         }
     }
-
-
 
     public MovingMachineAdapter(Context context, List<MachineForMoving> moviesList, NavClickAdapter listener) {
         this.context = context;

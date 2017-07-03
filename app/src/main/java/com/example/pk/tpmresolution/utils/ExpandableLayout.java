@@ -30,8 +30,8 @@ import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
-
 import com.example.pk.tpmresolution.R;
+
 public class ExpandableLayout extends LinearLayout {
 	private int mWidthMeasureSpec;
 	private int mHeightMeasureSpec;
@@ -165,26 +165,14 @@ public class ExpandableLayout extends LinearLayout {
 		return false;
 	}
 
-	/**
-	 * @return
-	 */
 	public boolean toggleExpansion() {
 		return this.setExpanded(!isExpanded(), true);
 	}
 
-	/**
-	 * @param isExpanded
-	 * @return
-	 */
 	public boolean setExpanded(boolean isExpanded) {
 		return this.setExpanded(isExpanded, false);
 	}
 
-	/**
-	 * @param isExpanded
-	 * @param shouldAnimate
-	 * @return
-	 */
 	public boolean setExpanded(boolean isExpanded, boolean shouldAnimate) {
 		boolean result = false;
 		View child = findExpandableView();
@@ -205,11 +193,6 @@ public class ExpandableLayout extends LinearLayout {
 		this.mListener = listenr;
 	}
 
-	/**
-	 * @param child
-	 * @param shouldAnimate
-	 * @return
-	 */
 	private boolean expand(View child, boolean shouldAnimate) {
 		boolean result = false;
 		if (!checkExpandableView(child)) {
@@ -278,11 +261,6 @@ public class ExpandableLayout extends LinearLayout {
 		mExpandAnimator.start();
 	}
 
-	/**
-	 * @param child
-	 * @param shouldAnimation
-	 * @return
-	 */
 	private boolean collapse(View child, boolean shouldAnimation) {
 		boolean result = false;
 		if (!checkExpandableView(child)) {

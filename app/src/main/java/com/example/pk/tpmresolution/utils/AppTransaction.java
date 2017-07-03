@@ -16,7 +16,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
-
 import com.example.pk.tpmresolution.R;
 
 /**
@@ -40,9 +39,6 @@ public class AppTransaction {
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         c.startActivity(i, bndlanimation);
     }
-
-
-
 
     public static void replaceActivityWithAnimationWithBundle(Context c, Class cls,Bundle bundle) {
         Intent i = new Intent(c, cls);

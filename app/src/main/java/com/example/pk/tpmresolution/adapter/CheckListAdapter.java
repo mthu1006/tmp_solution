@@ -8,14 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-
 import com.daniribalbert.customfontlib.views.CustomFontTextView;
 import com.example.pk.tpmresolution.R;
 import com.example.pk.tpmresolution.fragment.DailyCheckListFragment;
 import com.example.pk.tpmresolution.model.CheckListItem;
 import com.example.pk.tpmresolution.model.CommonClass;
 import com.example.pk.tpmresolution.utils.Validation;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -60,7 +58,6 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.MyVi
     public interface SpinnerItemClickListener{
         void onItemClick(int position, AppCompatSpinner spn);
     }
-
 
     public CheckListAdapter(Context context, List<CheckListItem> moviesList, ArrayList<CommonClass> list_stt, boolean isNew, int type, DailyCheckListFragment daily, SpinnerItemClickListener listener) {
         this.context = context;
@@ -166,7 +163,6 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.MyVi
 //        holder.layoutView.setVisibility(View.VISIBLE);
         holder.itemView.setSelected(focusedItem == position);
     }
-
 
     @Override
     public int getItemCount() {
