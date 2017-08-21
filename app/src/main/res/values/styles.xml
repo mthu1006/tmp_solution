@@ -61,4 +61,10 @@
         <item name="android:background">@drawable/bg_splash</item>
     </style>
 
+    <style name="DialogTheme">
+        <item name="android:windowEnterAnimation">@anim/in_animation</item>
+        <item name="android:windowExitAnimation">@anim/out_animation</item>
+    </style>
+
+
 </resources>

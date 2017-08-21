@@ -57,7 +57,6 @@ public class MaintenaceAdapter extends RecyclerView.Adapter<MaintenaceAdapter.My
                 notifyItemChanged(focusedItem);
                 focusedItem = pvh.getLayoutPosition();
                 notifyItemChanged(focusedItem);
-
             }
         });
         itemView.setOnLongClickListener(new View.OnLongClickListener() {

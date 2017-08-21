@@ -380,8 +380,8 @@
                     android:gravity="center"
                     android:paddingBottom="@dimen/space_002"
                     android:paddingTop="@dimen/space_002"
-                    android:paddingLeft="@dimen/space_61"
-                    android:paddingRight="@dimen/space_61"
+                    android:paddingLeft="@dimen/space_060"
+                    android:paddingRight="@dimen/space_060"
                     android:layout_height="match_parent">
 
                     <android.support.v7.widget.AppCompatCheckBox
@@ -490,8 +490,8 @@
                     android:gravity="center"
                     android:paddingBottom="@dimen/space_002"
                     android:paddingTop="@dimen/space_002"
-                    android:paddingLeft="@dimen/space_61"
-                    android:paddingRight="@dimen/space_61"
+                    android:paddingLeft="@dimen/space_060"
+                    android:paddingRight="@dimen/space_060"
                     android:layout_height="match_parent">
 
                     <android.support.v7.widget.AppCompatCheckBox
@@ -573,8 +573,8 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/space_002"
                 android:paddingTop="@dimen/space_002"
-                android:paddingLeft="@dimen/space_61"
-                android:paddingRight="@dimen/space_61"
+                android:paddingLeft="@dimen/space_060"
+                android:paddingRight="@dimen/space_060"
                 android:layout_height="match_parent">
 
                 <android.support.v7.widget.AppCompatCheckBox

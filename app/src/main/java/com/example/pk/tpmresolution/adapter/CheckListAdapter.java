@@ -38,14 +38,12 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.MyVi
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public CustomFontTextView txtName, txtActionName ;
         public AppCompatSpinner spnStatusCheckList;
-//        public LinearLayout layoutView;
 
         public MyViewHolder(View view) {
             super(view);
             txtName = (CustomFontTextView) view.findViewById(R.id.txt_checklist_name);
             txtActionName = (CustomFontTextView) view.findViewById(R.id.txt_description);
             spnStatusCheckList = (AppCompatSpinner) view.findViewById(R.id.spn_status_checklist);
-//            layoutView=(LinearLayout)view.findViewById(R.id.expandablelayout);
             view.setClickable(true);
         }
 
@@ -71,7 +69,6 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.MyVi
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_daily_item, parent, false);
         final MyViewHolder pvh = new MyViewHolder(itemView);
         itemView.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +98,6 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.MyVi
                         return tryMoveSelection(lm, -1);
                     }
                 }
-
                 return false;
             }
         });
@@ -116,7 +112,6 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.MyVi
             lm.scrollToPosition(focusedItem);
             return true;
         }
-
         return false;
     }
 
@@ -160,7 +155,6 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.MyVi
             holder.spnStatusCheckList.setFocusable(false);
             holder.spnStatusCheckList.setClickable(false);
         }
-//        holder.layoutView.setVisibility(View.VISIBLE);
         holder.itemView.setSelected(focusedItem == position);
     }
 
@@ -168,5 +162,4 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListAdapter.MyVi
     public int getItemCount() {
         return mListStatus.size();
     }
-
 }

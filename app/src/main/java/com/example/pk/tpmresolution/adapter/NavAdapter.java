@@ -62,7 +62,6 @@ public class NavAdapter extends RecyclerView.Adapter<NavAdapter.MyViewHolder> {
                 notifyItemChanged(focusedItem);
                 focusedItem = pvh.getLayoutPosition();
                 notifyItemChanged(focusedItem);
-
             }
         });
         return pvh;
@@ -71,7 +70,6 @@ public class NavAdapter extends RecyclerView.Adapter<NavAdapter.MyViewHolder> {
     @Override
     public void onAttachedToRecyclerView(final RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
-
         // Handle key up and key down and attempt to move selection
         recyclerView.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -86,7 +84,6 @@ public class NavAdapter extends RecyclerView.Adapter<NavAdapter.MyViewHolder> {
                         return tryMoveSelection(lm, -1);
                     }
                 }
-
                 return false;
             }
         });
@@ -103,7 +100,6 @@ public class NavAdapter extends RecyclerView.Adapter<NavAdapter.MyViewHolder> {
             lm.scrollToPosition(focusedItem);
             return true;
         }
-
         return false;
     }
 

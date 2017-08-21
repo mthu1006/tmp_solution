@@ -11,11 +11,9 @@ import com.example.pk.tpmresolution.R;
 
 public class WeeklyCheckListFragment extends Fragment {
 
-
     public WeeklyCheckListFragment() {
         // Required empty public constructor
     }
-
 
     public static WeeklyCheckListFragment newInstance() {
         return new WeeklyCheckListFragment();
@@ -24,7 +22,6 @@ public class WeeklyCheckListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -38,12 +35,10 @@ public class WeeklyCheckListFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
     }
-
 }

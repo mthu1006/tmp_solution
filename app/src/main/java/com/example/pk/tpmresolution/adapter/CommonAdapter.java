@@ -67,7 +67,6 @@ public class CommonAdapter extends BaseAdapter{
         if (item!= null) {
             viewHolder.itemView.setText(item.getName());
         }
-
         return convertView;
     }
 }

@@ -10,7 +10,7 @@ public class AppConstants {
     public static final String API_KEY = "AIzaSyCdkCxjgp_vRWsvBuUSA5b6JFGcyvTOwsQ";
     public static final String TAG = "tpm";
 //    public static final String ip = "http://203.113.151.193:35";
-    public static final String ip = "http://113.161.168.2:35";
+    public static final String ip = "http://203.113.151.193:35";
     public static final String PREF_KEY_LOGIN_REMEMBERLOGIN = "login_remember";
     public static final String PREF_KEY_LOGIN_USERNAME = "login_username";
     public static final String PREF_KEY_LOGIN_PASSWORD = "login_password";
@@ -25,7 +25,6 @@ public class AppConstants {
     public static final String KEY_TOKEN = "TOKEN";
     public static final String KEY_DATE = "DATE";
     public static final String KEY_ID = "ID";
-
 
     public static final String URL_LOGIN = ip+"/api/v1/Account/Login";
     public static final String URL_lOGOUT = ip+"/api/v1/Account/LogOut";
@@ -55,6 +54,5 @@ public class AppConstants {
     public static final String URL_GET_MACHINE_FOR_MOVING = ip+"/api/v1/Moving/GetMachineForMoving?corpId=CORPID&&key=KEY";
     public static final String URL_MOVING_MACHINE = ip+"/api/v1/Moving/MovingMachine";
 
-    public static final String URL_TOOL_MANGAGER = ip+"/api/v1/Scan/ToolScan?token="+KEY_TOKEN+"&toolId="+KEY_TOOL_ID;;
-
+    public static final String URL_TOOL_MANGAGER = ip+"/api/v1/Scan/ToolScan?token="+KEY_TOKEN+"&toolId="+KEY_TOOL_ID;
 }

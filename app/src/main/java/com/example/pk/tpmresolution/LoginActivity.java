@@ -8,8 +8,11 @@ import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatCheckBox;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
@@ -32,6 +35,7 @@ import java.util.HashMap;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import es.dmoral.toasty.Toasty;
 
 public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.edt_username) CustomFontEditText mEdtUser;
@@ -116,20 +120,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    void ShowDialogError(String message) {
-        final Dialog mDialog = AppDialogManager.onShowCustomDialog(this, R.layout.dialog_error);
-        CustomFontTextView txt = (CustomFontTextView) mDialog.findViewById(R.id.txt_content2);
-        CustomFontButton mBtn_dialog = (CustomFontButton) mDialog.findViewById(R.id.btn_accept);
-        txt.setText(message);
-        mBtn_dialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDialog.dismiss();
-            }
-        });
-        mDialog.show();
-    }
-
     @OnClick(R.id.btn_login)
     public void login(View view) {
         final String usn = mEdtUser.getText().toString();
@@ -148,10 +138,11 @@ public class LoginActivity extends AppCompatActivity {
                         @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                         @Override
                         public void processFinish(String output) {
-//                            Log.d("kien", "res: " + output);
+                            Log.d("kien", "res: " + output);
                             if (Validation.checkNullOrEmpty(output)) {
                                 mDialogLoading.dismiss();
-                                ShowDialogError("Invalid username or password");
+                                //ShowDialogError("Invalid username or password");
+                                Toasty.error(LoginActivity.this, "Invalid username or password!", Toast.LENGTH_SHORT, true).show();
                             } else {
                                 try {
                                     JSONObject obj = new JSONObject(output);
@@ -176,22 +167,23 @@ public class LoginActivity extends AppCompatActivity {
                                         editor.commit();
                                         finish();
                                     } else {
-                                        ShowDialogError(obj.getString("Message"));
+                                        //ShowDialogError(obj.getString("Message"));
+                                        Toasty.error(LoginActivity.this, obj.getString("Message"), Toast.LENGTH_SHORT, true).show();
                                         mDialogLoading.dismiss();
                                     }
                                 } catch (JSONException e) {
-                                    ShowDialogError("Server error. Please try again!");
+                                    //ShowDialogError("Server error. Please try again!");
+                                    Toasty.error(LoginActivity.this,"Server error. Please try again!", Toast.LENGTH_SHORT, true).show();
                                     mDialogLoading.dismiss();
-/*
                                     Log.d("Kien", "Error while parse json login" + e.toString());
-*/
+
                                 }
                             }
 
                         }
                     }, this).execute(AppConstants.URL_LOGIN, object.toString());
                 } catch (JSONException e) {
-                   // Log.d("Kien", "Error while parse json before login" + e.toString());
+                    Log.d("Kien", "Error while parse json before login" + e.toString());
                 }
         }
 

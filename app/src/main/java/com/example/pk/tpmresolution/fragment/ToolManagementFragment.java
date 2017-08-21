@@ -54,6 +54,7 @@ public class ToolManagementFragment extends Fragment {
         View root =  inflater.inflate(R.layout.fragment_tool_management, container, false);
         ((MainActivity) getActivity()).toolbar.setTitle(getActivity().getResources().getString(R.string.machine_information));
         ((MainActivity) getActivity()).frag = this;
+
         mDialogLoading = AppDialogManager.onCreateDialogLoading(getActivity());
         ((MainActivity)getActivity()).fab.setVisibility(View.GONE);
 
@@ -81,7 +82,7 @@ public class ToolManagementFragment extends Fragment {
         layoutLine = (LinearLayout) root.findViewById(R.id.layout_line);
         imgAvatar = (MaterialLetterIcon) root.findViewById(R.id.img_avatar);
 
-            setupToolManagement();
+        setupToolManagement();
 
         return root;
     }
@@ -106,8 +107,6 @@ public class ToolManagementFragment extends Fragment {
             validationText(txtProcess,mItem.getProcess());
             validationText(txtFactory,mItem.getFactory());
             validationText(txtCorporation,mItem.getCorporation());
-
-
 
             if(Validation.checkNullOrEmpty(mItem.getLine())){
                 if(!Validation.checkNullOrEmpty(mItem.getWarehouse())) {
@@ -142,23 +141,4 @@ public class ToolManagementFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
     }
-
-    /*void ShowDialogError(String message) {
-        final Dialog mDialog = AppDialogManager.onShowCustomDialog(getActivity(), R.layout.dialog_error);
-        CustomFontTextView txt1 = (CustomFontTextView) mDialog.findViewById(R.id.txt_content1);
-        CustomFontTextView txt2 = (CustomFontTextView) mDialog.findViewById(R.id.txt_content2);
-        mBtn_dialog = (CustomFontButton) mDialog.findViewById(R.id.btn_accept);
-        mBtn_dialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDialog.dismiss();
-            }
-        });
-        txt1.setText("Change status failed");
-        txt2.setText(message);
-        mDialog.show();
-    }
-
-*/
-
 }

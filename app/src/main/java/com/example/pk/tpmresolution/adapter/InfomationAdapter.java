@@ -34,7 +34,6 @@ public class InfomationAdapter extends RecyclerView.Adapter<InfomationAdapter.My
             layoutView=(LinearLayout)view.findViewById(R.id.expandablelayout);
             view.setClickable(true);
         }
-
         @Override
         public void onClick(View view) {
 
@@ -62,7 +61,6 @@ public class InfomationAdapter extends RecyclerView.Adapter<InfomationAdapter.My
                 notifyItemChanged(focusedItem);
                 focusedItem = pvh.getLayoutPosition();
                 notifyItemChanged(focusedItem);
-
             }
         });
         return pvh;
@@ -71,12 +69,10 @@ public class InfomationAdapter extends RecyclerView.Adapter<InfomationAdapter.My
     @Override
     public void onAttachedToRecyclerView(final RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
-
         recyclerView.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 RecyclerView.LayoutManager lm = recyclerView.getLayoutManager();
-
                 // Return false if scrolled to the bounds and allow focus to move off the list
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
                     if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
@@ -85,7 +81,6 @@ public class InfomationAdapter extends RecyclerView.Adapter<InfomationAdapter.My
                         return tryMoveSelection(lm, -1);
                     }
                 }
-
                 return false;
             }
         });

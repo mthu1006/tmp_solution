@@ -1,6 +1,5 @@
 package com.example.pk.tpmresolution.fragment;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -31,7 +30,6 @@ public class MaintenanceHistoryFragment extends Fragment {
     RecyclerView recycler;
     HistoryAdapter historyAdapter;
     ArrayList<HistoryItem>list;
-    Dialog mDialogError;
     SharedPreferences prefs;
 
     public MaintenanceHistoryFragment() {
@@ -39,14 +37,12 @@ public class MaintenanceHistoryFragment extends Fragment {
 
     public static MaintenanceHistoryFragment newInstance() {
         MaintenanceHistoryFragment fragment = new MaintenanceHistoryFragment();
-
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     public void validationText(TextView tv, String s){
@@ -56,9 +52,7 @@ public class MaintenanceHistoryFragment extends Fragment {
     }
 
     private void loadList(){
-
         recycler.setHasFixedSize(true);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recycler.setLayoutManager(linearLayoutManager);
@@ -98,7 +92,6 @@ public class MaintenanceHistoryFragment extends Fragment {
         ((MainActivity) getActivity()).toolbar.setTitle(getActivity().getResources().getTextArray(R.array.navigation_array_tile)[2]);
         ButterKnife.bind(getActivity());
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
         imgGo = (AppCompatImageView) root.findViewById(R.id.img_go);
         imgGo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,5 +125,4 @@ public class MaintenanceHistoryFragment extends Fragment {
         super.onAttach(context);
 
     }
-
 }

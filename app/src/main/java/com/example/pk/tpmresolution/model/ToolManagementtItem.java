@@ -12,7 +12,6 @@ public class ToolManagementtItem {
     String tool_code, style_name, buyer_name, jing_name, jing_serial_no, jing_meterial, part, machine_model, jing_type,
             corporation, line, warehouse, factory, status, video_file, pattem_file, attach_file, process;
 
-
     public Bitmap getAvatar() {
         return avatar;
     }

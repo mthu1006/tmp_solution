@@ -1,4 +1,4 @@
-package com.example.pk.tpmresolution.notification;
+package com.example.pk.tpmresolution.service;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -11,7 +11,6 @@ import com.google.android.gms.iid.InstanceID;
 /**
  * Created by mthu1 on 6/3/2017.
  */
-
 
 public class GCMRegistrationIntentService extends IntentService {
     //Constants for success and errors

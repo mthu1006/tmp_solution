@@ -31,7 +31,6 @@ public class MovingMachineAdapter extends RecyclerView.Adapter<MovingMachineAdap
             mId = (CustomFontTextView) view.findViewById(R.id.txt_machine_id);
             view.setClickable(true);
         }
-
         @Override
         public void onClick(View view) {
 
@@ -55,7 +54,6 @@ public class MovingMachineAdapter extends RecyclerView.Adapter<MovingMachineAdap
                 notifyItemChanged(focusedItem);
                 focusedItem = pvh.getLayoutPosition();
                 notifyItemChanged(focusedItem);
-
             }
         });
         itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -75,8 +73,6 @@ public class MovingMachineAdapter extends RecyclerView.Adapter<MovingMachineAdap
         holder.mId.setText(menu.getMachineId());
         //Picasso.with(context).load().into(holder.image);
         holder.itemView.setSelected(focusedItem == position);
-
-
     }
 
     @Override

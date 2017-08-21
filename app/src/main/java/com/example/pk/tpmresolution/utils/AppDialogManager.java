@@ -112,5 +112,4 @@ public class AppDialogManager {
         });
         return dialog;
     }
-
 }

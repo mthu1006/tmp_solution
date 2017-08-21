@@ -1,4 +1,4 @@
-package com.example.pk.tpmresolution.notification;
+package com.example.pk.tpmresolution.service;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;

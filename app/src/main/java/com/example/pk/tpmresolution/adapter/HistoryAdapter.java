@@ -33,7 +33,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
             txtStatus = (CustomFontTextView) view.findViewById(R.id.txt_status);
             view.setClickable(true);
         }
-
         @Override
         public void onClick(View view) {
 
@@ -57,7 +56,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
                 notifyItemChanged(focusedItem);
                 focusedItem = pvh.getLayoutPosition();
                 notifyItemChanged(focusedItem);
-
             }
         });
         itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -85,5 +83,4 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
     public int getItemCount() {
         return mList.size();
     }
-
 }

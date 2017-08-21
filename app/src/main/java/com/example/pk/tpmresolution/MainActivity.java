@@ -1,15 +1,21 @@
 package com.example.pk.tpmresolution;
 
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.nfc.NdefMessage;
+import android.nfc.NdefRecord;
+import android.nfc.NfcAdapter;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
@@ -34,7 +40,6 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.daniribalbert.customfontlib.views.CustomFontButton;
-import com.daniribalbert.customfontlib.views.CustomFontEditText;
 import com.daniribalbert.customfontlib.views.CustomFontTextView;
 import com.example.pk.tpmresolution.adapter.NavAdapter;
 import com.example.pk.tpmresolution.fragment.ChangeLoctionFragment;
@@ -66,6 +71,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import es.dmoral.toasty.Toasty;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static RecyclerView mRecycler_nav;
@@ -92,14 +98,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String main_name;
     ArrayList<Fragment> list_stack_fraggments;
 
+    private NfcAdapter mNfcAdapter;
+    PendingIntent mNfcPendingIntent;
+    IntentFilter ndefDetected;
+    IntentFilter[] mNdefExchangeFilters;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
          toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPref.edit();
+
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         mRecycler_nav = (RecyclerView)findViewById(R.id.recycler_nav);
@@ -137,6 +151,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ShowDialogChoice();
             }
         });
+
+        mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
+
+        if(mNfcAdapter == null) {
+            AppTransaction.Toast(this, "NFC not available on this device!");
+            return;
+        }
+
+        mNfcPendingIntent = PendingIntent.getActivity(this, 0,
+                new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+
+        // Intent filters for reading a note from a tag or exchanging over p2p (android to android).
+        ndefDetected = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
+        try {
+            ndefDetected.addDataType("text/plain");
+        } catch (IntentFilter.MalformedMimeTypeException e) {
+            e.printStackTrace();
+        }
+        mNdefExchangeFilters = new IntentFilter[] { ndefDetected };
 
     }
 
@@ -263,7 +296,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     item.setWarehouse(obj_product.getString("WarehouseName"));
                     item.setWarehouse_id(obj_product.getString("WarehouseId"));
 
-
                     item.setStatus(obj_product.getString("MachineStatus"));
 
                     PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
@@ -282,24 +314,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), MainFragment.newInstance());
                 }else{
                     mDialogLoading.dismiss();
-                    ShowDialogError(object.getString("Message"));
-                    if (object.getString("Type").equals("Login")) {
-                        mBtn_dialog.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit().putBoolean(AppConstants.PREF_KEY_LOGIN_REMEMBERLOGIN, false).commit();
-                                AppTransaction.replaceActivityWithAnimation(MainActivity.this, LoginActivity.class);
-                            }
-                        });
-                    }else {
-                        mBtn_dialog.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                            mDialog.dismiss();
-                            }
-                        });
-
-                    }
+                    //ShowDialogError(object.getString("Message"));
+                    Toasty.error(this, object.getString("Message"), Toast.LENGTH_SHORT, true).show();
+//                    if (object.getString("Type").equals("Login")) {
+//                        mBtn_dialog.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit().putBoolean(AppConstants.PREF_KEY_LOGIN_REMEMBERLOGIN, false).commit();
+//                                AppTransaction.replaceActivityWithAnimation(MainActivity.this, LoginActivity.class);
+//                            }
+//                        });
+//                    }else {
+//                        mBtn_dialog.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                            mDialog.dismiss();
+//                            }
+//                        });
+//
+//                    }
                 }
 
             } catch (JSONException e) {
@@ -374,7 +407,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    private void LoadNav(){
+    private void LoadNav() {
         AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), MainFragment.newInstance());
         mRecycler_nav.setLayoutManager(new LinearLayoutManager(this));
         mListNav = new ArrayList<NavigationItem>();
@@ -402,14 +435,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     frag = MaintenanceHistoryFragment.newInstance();
                     AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), frag);
 
-                } else if (position == 3) {
+                }/* else if (position == 3) {
                     isToolManager = true;
                     ShowDialogChoice();
 
-                }else if (position == 4 ) {
+                }*/else if (position == 3 ) {
                     frag = CheckListFragment.newInstance();
                     AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), frag);
-                } else if (position == 5) {
+                } else if (position == 4) {
                     frag = SettingFragment.newInstance();
                     AppTransaction.replaceFragmentWithAnimation(getSupportFragmentManager(), frag);
                 }
@@ -460,20 +493,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     void ShowDialogChoice() {
         final Dialog mDialog = AppDialogManager.onShowCustomDialog(this, R.layout.dialog_choice);
-        final AppCompatImageView choice1 = (AppCompatImageView) mDialog.findViewById(R.id.btn_choice1);
-        LinearLayout choice2 = (LinearLayout) mDialog.findViewById(R.id.layout_scan);
-        final CustomFontEditText txt = (CustomFontEditText) mDialog.findViewById(R.id.edt_content);
+        final ImageView choice1 = (ImageView) mDialog.findViewById(R.id.img_nfc);
+        final ImageView choice2 = (ImageView) mDialog.findViewById(R.id.img_qr_code);
         choice1.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View view) {
-                if(!Validation.checkNullOrEmpty(txt.getText().toString())) {
-                    if(!isToolManager)
-                    requestMachine(txt.getText().toString().toUpperCase());
-                    else requestToolManager(txt.getText().toString().toUpperCase());
-                    mDialog.dismiss();
-                }
-                else txt.setError("Please enter machine id");
+                mDialog.dismiss();
+                mDialogLoading.show();
+                isRequest = true;
+                enableNdefExchangeMode();
+
             }
         });
         choice2.setOnClickListener(new View.OnClickListener() {
@@ -509,20 +539,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDialog.show();
     }
 
-    void ShowDialogError(String message) {
-        mDialog = AppDialogManager.onShowCustomDialog(this, R.layout.dialog_error);
-        CustomFontTextView txt = (CustomFontTextView) mDialog.findViewById(R.id.txt_content2);
-        mBtn_dialog = (CustomFontButton) mDialog.findViewById(R.id.btn_accept);
-        mBtn_dialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDialog.dismiss();
-            }
-        });
-        txt.setText(message);
-        mDialog.show();
-    }
-
     boolean doubleBackToExitPressedOnce = false;
 
     @Override
@@ -553,5 +569,79 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
 
+    }
+
+    public void enableNdefExchangeMode() {
+        if(mNfcAdapter == null) { return; }
+
+        if(Build.VERSION.SDK_INT < 14) {
+            mNfcAdapter.enableForegroundNdefPush(this, getNoteAsNdef());
+        } else {
+            mNfcAdapter.setNdefPushMessage(getNoteAsNdef(), this);
+        }
+    /* Register foreground dispatch to handler notes from inside our application
+    * This will give give priority to the foreground activity when dispatching a discovered Tag to an application. */
+        mNfcAdapter.enableForegroundDispatch(this, mNfcPendingIntent, mNdefExchangeFilters, null);
+    }
+
+    // receive
+    protected void onNewIntent(Intent intent) {
+        // NDEF exchange mode
+        if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(intent.getAction())) {
+            NdefMessage[] msgs = getNdefMessages(intent);
+            //Replace current text with new pay-load
+            mDialogLoading.dismiss();
+            promptForContent(msgs[0]);
+        }
+    }
+
+    // send
+    private NdefMessage getNoteAsNdef() {
+        byte[] textBytes = "hello".getBytes();
+        NdefRecord textRecord = new NdefRecord(NdefRecord.TNF_MIME_MEDIA, "text/plain".getBytes(),
+                new byte[]{}, textBytes);
+        return new NdefMessage(new NdefRecord[]{
+                textRecord
+        });
+    }
+
+    private void promptForContent(final NdefMessage msg) {
+        String msgPayload = new String(msg.getRecords()[0].getPayload());
+        String body = new String(msgPayload);
+        //setNoteBody(body);
+        Log.d("MainActivity", body);
+        String id = body.split("\n")[0].substring(3);
+        Log.d("MainActivity", id);
+        if(!isRequest) ((ChangeLoctionFragment)frag).getMachine(id);
+        else requestMachine(id);
+    }
+
+    private NdefMessage[] getNdefMessages(Intent intent) {
+        // Parse the intent
+        NdefMessage[] msgs = null;
+        String action = intent.getAction();
+
+        //when a tag with NDEF pay-load is discovered.
+        if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) {
+            Parcelable[] rawMsgs = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
+            if (rawMsgs != null) {
+                msgs = new NdefMessage[rawMsgs.length];
+                for (int i = 0; i < rawMsgs.length; i++) {
+                    msgs[i] = (NdefMessage) rawMsgs[i];
+                }
+            } else {
+                // Unknown tag type
+                byte[] empty = new byte[] {};
+                NdefRecord record = new NdefRecord(NdefRecord.TNF_UNKNOWN, empty, empty, empty);
+                NdefMessage msg = new NdefMessage(new NdefRecord[] {
+                        record
+                });
+                msgs = new NdefMessage[] {msg};
+            }
+        } else {
+            Log.d(AppConstants.TAG, "Unknown intent.");
+            finish();
+        }
+        return msgs;
     }
 }

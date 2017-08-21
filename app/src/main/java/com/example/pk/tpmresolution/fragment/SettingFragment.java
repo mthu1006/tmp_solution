@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.daniribalbert.customfontlib.views.CustomFontButton;
@@ -30,6 +31,8 @@ import com.example.pk.tpmresolution.utils.Validation;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import es.dmoral.toasty.Toasty;
 
 public class SettingFragment extends Fragment {
     CustomFontButton btnSavePass;
@@ -68,7 +71,6 @@ public class SettingFragment extends Fragment {
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         editor = sharedPref.edit();
         mDialogLoading = AppDialogManager.onCreateDialogLoading(getActivity());
-
 
         txtID = (CustomFontTextView)root.findViewById(R.id.txtName);
         txtName = (CustomFontTextView)root.findViewById(R.id.txtDOB);
@@ -128,7 +130,6 @@ public class SettingFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
     }
 
     @Override
@@ -142,7 +143,6 @@ public class SettingFragment extends Fragment {
     }
 
     private void savePassword(){
-
         final String pwd = edtPass.getText().toString();
         final String new_pwd = edtNewPass.getText().toString();
         final String renew_pwd = edtReNewPass.getText().toString();
@@ -161,7 +161,6 @@ public class SettingFragment extends Fragment {
             mDialogLoading.show();
             JSONObject object = new JSONObject();
             try {
-
                 object.put("Token", sharedPref.getString(AppConstants.PREF_KEY_LOGIN_TOKEN, ""));
                 object.put("OldPassword", pwd);
                 object.put("NewPassword", new_pwd);
@@ -176,7 +175,8 @@ public class SettingFragment extends Fragment {
                    // Log.d("kien", "res: " + output);
                     if (Validation.checkNullOrEmpty(output)) {
                         mDialogLoading.dismiss();
-                        ShowDialogError("Server error, please try again!");
+                        //ShowDialogError("Server error, please try again!");
+                        Toasty.error(getActivity(), "Server error, please try again!", Toast.LENGTH_SHORT, true).show();
                     } else {
                         mDialogLoading.dismiss();
                         try {
@@ -185,7 +185,8 @@ public class SettingFragment extends Fragment {
                                 editor.putString(AppConstants.PREF_KEY_LOGIN_PASSWORD, renew_pwd).commit();
                                 AppTransaction.Toast(getActivity(), obj.getString("Message"));
                             }else {
-                                ShowDialogError(obj.getString("Message"));
+                                //ShowDialogError(obj.getString("Message"));
+                                Toasty.error(getActivity(), obj.getString("Message"), Toast.LENGTH_SHORT, true).show();
                                 if (obj.getString("Type").equals("Login")) {
                                     mBtn_dialog.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -195,14 +196,11 @@ public class SettingFragment extends Fragment {
                                         }
                                     });
                                 }
-
                             }
-
                         } catch (JSONException e) {
                            // Log.d("Kien", "Error while parse json login" + e.toString());
                         }
                     }
-
                 }
             }, getActivity()).execute(AppConstants.URL_LOGIN_CHANGEPASS, object.toString());
         }
@@ -219,7 +217,6 @@ public class SettingFragment extends Fragment {
                 final JSONObject obj =  new JSONObject();
                 try {
                     obj.put("Token", sharedPref.getString(AppConstants.PREF_KEY_LOGIN_TOKEN, ""));
-
                     new HTTPRequest(new HTTPRequest.AsyncResponse() {
                         @Override
                         public void processFinish(String output) {
@@ -230,7 +227,8 @@ public class SettingFragment extends Fragment {
                                     AppTransaction.replaceActivityWithAnimation(getActivity(), LoginActivity.class);
                                     mDialog.dismiss();
                                 }else {
-                                    ShowDialogError(object.getString("Message"));
+                                    //ShowDialogError(object.getString("Message"));
+                                    Toasty.error(getActivity(), object.getString("Message"), Toast.LENGTH_SHORT, true).show();
                                     if (obj.getString("Type").equals("Login")) {
                                         mBtn_dialog.setOnClickListener(new View.OnClickListener() {
                                             @Override
@@ -244,13 +242,11 @@ public class SettingFragment extends Fragment {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-
                         }
                     }, getActivity()).execute(AppConstants.URL_lOGOUT, obj.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
         });
         mBtDeny.setOnClickListener(new View.OnClickListener() {
@@ -268,14 +264,6 @@ public class SettingFragment extends Fragment {
                 mDialog.dismiss();
             }
         });
-        mDialog.show();
-    }
-
-    void ShowDialogError(String message) {
-        Dialog mDialog = AppDialogManager.onShowCustomDialog(getActivity(), R.layout.dialog_error);
-        CustomFontTextView txt = (CustomFontTextView) mDialog.findViewById(R.id.txt_content2);
-        mBtn_dialog = (CustomFontButton) mDialog.findViewById(R.id.btn_accept);
-        txt.setText(message);
         mDialog.show();
     }
 }

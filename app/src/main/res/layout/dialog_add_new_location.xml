@@ -74,6 +74,7 @@
                     android:id="@+id/edt_seach_machine"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:layout_weight="0.5"
                     android:gravity="center"
                     android:text="@string/txt_please"
@@ -92,8 +93,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="@dimen/space_48"
-                    android:layout_marginTop="@dimen/space_48"
                     android:layout_marginRight="@dimen/space_40"
+                    android:layout_marginTop="@dimen/space_48"
                     android:background="?android:attr/selectableItemBackground"
                     android:gravity="center_vertical"
                     android:src="@drawable/ic_hamburger" />
@@ -185,19 +186,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="@dimen/space_29"
-            android:paddingTop="@dimen/space_29"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/space_29"
+            android:paddingTop="@dimen/space_29">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginTop="@dimen/space_27"
-                android:paddingRight="@dimen/space_60"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingRight="@dimen/space_60">
 
                 <android.support.v7.widget.AppCompatCheckBox
                     android:id="@+id/check_line"
@@ -239,7 +240,7 @@
 
         </LinearLayout>
 
-       <!-- <RadioGroup
+        <!-- <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"

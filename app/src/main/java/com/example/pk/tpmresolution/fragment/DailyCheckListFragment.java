@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.daniribalbert.customfontlib.views.CustomFontButton;
@@ -41,6 +42,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
+import es.dmoral.toasty.Toasty;
+
 import static com.example.pk.tpmresolution.R.id.layout_daily;
 import static com.example.pk.tpmresolution.R.id.layout_monthly;
 import static com.example.pk.tpmresolution.R.id.layout_weekly;
@@ -289,7 +293,8 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                             AppTransaction.Toast(getActivity(), obj.getString("Message"));
                         } else {
                             mDialogLoading.dismiss();
-                            ShowDialogError("Message from server:",obj.getString("Message"), true);
+                            //ShowDialogError("Message from server:",obj.getString("Message"), true);
+                            Toasty.error(getActivity(), obj.getString("Message"), Toast.LENGTH_SHORT, true).show();
                         }
                     } catch (JSONException e) {
                         mDialogLoading.dismiss();
@@ -297,7 +302,7 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                     }
                 }
             }, getActivity()).execute(AppConstants.URL_CHANGE_STATUS_CHECKLIST, object.toString());
-        }else ShowDialogError("Can not send to server","Please check one of 3 checkboxs above!", true);
+        }else Toasty.error(getActivity(), "Can not send to server, Please check one of 3 checkboxs above!", Toast.LENGTH_SHORT, true).show();
     }
 
     private void getChecklist(Date date) {
@@ -456,7 +461,7 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
                             mBtn_dialog.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mDialogError.dismiss();
+                                   mDialogError.dismiss();
                                     AppTransaction.replaceFragmentWithAnimation(getActivity().getSupportFragmentManager(), MainFragment.newInstance());
                                 }
                             });
@@ -503,15 +508,6 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
         Log.d("Kien","Update status monthly name: "+status_list.get(spn.getSelectedItemPosition()).getName()+" code: "+status_list.get(spn.getSelectedItemPosition()).getId());
         listMonthly.get(position).setChecklist_status_id(status_list.get(spn.getSelectedItemPosition()).getId());
         listMonthly.get(position).setChecklist_status_name(status_list.get(spn.getSelectedItemPosition()).getName());
-    }
-
-    private int CheckExist(String id){
-        for (int i=0; i<listChanged.size(); i++){
-            if(listChanged.get(i).getChecklist_id().equals(id)){
-                return i;
-            }
-        }
-        return -1;
     }
 
     public void setupWeek(Calendar calendar){
@@ -593,7 +589,8 @@ public class DailyCheckListFragment extends Fragment implements View.OnClickList
             getChecklist((Date) tv.getTag());
             choosedDate = (Date) tv.getTag();
         }else {
-            AppTransaction.Toast(getActivity(), "Can not choose future date!");
+           // AppTransaction.Toast(getActivity(), "Can not choose future date!");
+            Toasty.error(getActivity(), "Can not choose future date!", Toast.LENGTH_SHORT, true).show();
         }
     }
 

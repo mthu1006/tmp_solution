@@ -51,6 +51,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 
 public class RequestMaintenanceFragment extends Fragment {
     ImageView mImgAdd;
@@ -136,7 +137,7 @@ public class RequestMaintenanceFragment extends Fragment {
                     price = edtPrice.getText().toString();
 
                     if (Validation.checkNullOrEmpty(name)) {
-                        ShowDialogError("Add partbook failed", "Please place name from spiner name", true);
+                        Toasty.error(getActivity(), "Add partbook failed, Please choose name from spiner name", Toast.LENGTH_SHORT, true).show();
                     } else if (Validation.checkNullOrEmpty(price)) {
                         edtPrice.setError("Please enter price!");
                     } else if (Validation.checkNullOrEmpty(quantity)) {
@@ -174,13 +175,11 @@ public class RequestMaintenanceFragment extends Fragment {
         edtPrice.setText(String.valueOf(price));
         edtQantity.setText(String.valueOf(Quantity));
         btnAccept.setText("Update");
-
         for (int i = 0; i< spnUnit.getAdapter().getCount(); i++){
             if(unit.equals(spnUnit.getAdapter().getItem(i).toString())){
                 spnUnit.setSelection(i);
             }
         }
-
         btnAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -191,7 +190,7 @@ public class RequestMaintenanceFragment extends Fragment {
                 String quantity  = edtQantity.getText().toString();
                 String price = edtPrice.getText().toString();
                 if (Validation.checkNullOrEmpty(name)) {
-                    ShowDialogError("Add partbook failed", "Please choose name from spiner name", true);
+                    Toasty.error(getActivity(), "Add partbook failed, Please choose name from spiner name", Toast.LENGTH_SHORT, true).show();
                 } else if (Validation.checkNullOrEmpty(price)) {
                     edtPrice.setError("Please enter price!");
                 }else if (Validation.checkNullOrEmpty(quantity)) {
@@ -386,7 +385,8 @@ public class RequestMaintenanceFragment extends Fragment {
                         JSONObject obj = new JSONObject(output);
                         if (obj.getString("Status").equals("Y")) Toast.makeText(getActivity(), "Save request maintenance success", Toast.LENGTH_LONG).show();
                         else {
-                            ShowDialogError("Save request maintenance failed", obj.getString("Message"), true);
+                            //ShowDialogError("Save request maintenance failed", obj.getString("Message"), true);
+                            Toasty.error(getActivity(), obj.getString("Message"), Toast.LENGTH_SHORT, true).show();
                             if (obj.getString("Type").equals("Login")) {
                                 mBtn_dialog.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -521,7 +521,6 @@ public class RequestMaintenanceFragment extends Fragment {
         if(!isClose) img_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
         mBtn_dialog = (CustomFontButton) mDialogError.findViewById(R.id.btn_accept);

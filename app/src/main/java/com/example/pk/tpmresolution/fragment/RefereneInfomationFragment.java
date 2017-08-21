@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.daniribalbert.customfontlib.views.CustomFontButton;
@@ -40,6 +41,8 @@ import org.solovyev.android.views.llm.DividerItemDecoration;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+
+import es.dmoral.toasty.Toasty;
 
 public class RefereneInfomationFragment extends Fragment {
     private LinearLayout layoutVideo, layoutPDF;
@@ -109,7 +112,6 @@ public class RefereneInfomationFragment extends Fragment {
                 }else {
                     imgPDF.setImageResource(R.drawable.ic_down);
                 }
-
             }
         });
 
@@ -153,9 +155,7 @@ public class RefereneInfomationFragment extends Fragment {
                             } catch (Exception e) {
                                // Log.d("kien", "error while writing file " + e.toString() );
                             }
-
                             copyReadAssets();
-
                         }
                     }).execute(url);
                 } catch (Exception e) {
@@ -189,11 +189,10 @@ public class RefereneInfomationFragment extends Fragment {
                            // Log.d("Kien", inf.getDisplayName());
                         }
                         setupRecyclerview();
-
                         //Log.d("Kien", "recyclePDF heihgt 1 :"+ String.valueOf(recyclePDF.getLayoutParams().height));
-
                     }else{
-                        ShowDialogError(object.getString("Message"));
+                        //ShowDialogError(object.getString("Message"));
+                        Toasty.error(getActivity(), object.getString("Message"), Toast.LENGTH_SHORT, true).show();
                         if (object.getString("Type").equals("Login")) {
                             mBtn_dialog.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -240,15 +239,5 @@ public class RefereneInfomationFragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
-    }
-
-    void ShowDialogError(String message) {
-        Dialog mDialog = AppDialogManager.onShowCustomDialog(getActivity(), R.layout.dialog_error);
-        CustomFontTextView txt1 = (CustomFontTextView) mDialog.findViewById(R.id.txt_content1);
-        CustomFontTextView txt2 = (CustomFontTextView) mDialog.findViewById(R.id.txt_content2);
-        mBtn_dialog = (CustomFontButton) mDialog.findViewById(R.id.btn_accept);
-        txt1.setText("Change status failed");
-        txt2.setText(message);
-        mDialog.show();
     }
 }

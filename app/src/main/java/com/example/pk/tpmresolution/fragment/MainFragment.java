@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.daniribalbert.customfontlib.views.CustomFontButton;
 import com.daniribalbert.customfontlib.views.CustomFontTextView;
@@ -29,6 +31,8 @@ import com.example.pk.tpmresolution.utils.Validation;
 import com.github.akashandroid90.imageletter.MaterialLetterIcon;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import es.dmoral.toasty.Toasty;
 
 public class MainFragment extends Fragment {
 
@@ -122,7 +126,8 @@ public class MainFragment extends Fragment {
                              AppTransaction.Toast(getActivity(),"Change status successfully");
 
                         }else {
-                            ShowDialogError(obj.getString("Message"));
+                           // ShowDialogError(obj.getString("Message"));
+                            Toasty.error(getActivity(), obj.getString("Message"), Toast.LENGTH_SHORT, true).show();
                             mDialogLoading.dismiss();
                             if (obj.getString("Type").equals("Login")) {
                                 mBtn_dialog.setOnClickListener(new View.OnClickListener() {
@@ -135,7 +140,8 @@ public class MainFragment extends Fragment {
                             }
                         }
                     } catch (JSONException e) {
-                        ShowDialogError("Server error, please try again!");
+                        //ShowDialogError("Server error, please try again!");
+                        Toasty.error(getActivity(), "Server error, please try again!", Toast.LENGTH_SHORT, true).show();
                         mDialogLoading.dismiss();
                        // Log.d("Kien", "Loi parse json "+e.toString());
                     }
@@ -202,19 +208,4 @@ public class MainFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    void ShowDialogError(String message) {
-        final Dialog mDialog = AppDialogManager.onShowCustomDialog(getActivity(), R.layout.dialog_error);
-        CustomFontTextView txt1 = (CustomFontTextView) mDialog.findViewById(R.id.txt_content1);
-        CustomFontTextView txt2 = (CustomFontTextView) mDialog.findViewById(R.id.txt_content2);
-        mBtn_dialog = (CustomFontButton) mDialog.findViewById(R.id.btn_accept);
-        mBtn_dialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDialog.dismiss();
-            }
-        });
-        txt1.setText("Change status failed");
-        txt2.setText(message);
-        mDialog.show();
-    }
 }

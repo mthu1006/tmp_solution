@@ -4,7 +4,7 @@
         <item>Change Location</item>
         <item>Reference Infomation</item>
         <item>Maintenance History</item>
-        <item>Tool Management</item>
+       <!-- <item>Tool Management</item>-->
         <item>Create Check List</item>
         <item>Setting</item>
 
@@ -13,7 +13,7 @@
         <item>@drawable/ic_bangdiem</item>
         <item>@drawable/ic_diemdanh</item>
         <item>@drawable/ic_giaovien</item>
-         <item>@drawable/ic_solienlac_dientu</item>
+        <!-- <item>@drawable/ic_solienlac_dientu</item>-->
          <item>@drawable/ic_thoikhoabieu</item>
         <item>@drawable/ic_thietlap</item>
 

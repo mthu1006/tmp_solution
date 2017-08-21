@@ -46,6 +46,7 @@ dependencies {
     compile 'com.daniribalbert:custom-font-lib:0.9.8'
     compile 'com.android.support:support-v4:24.2.1'
     compile 'com.journeyapps:zxing-android-embedded:3.4.0'
+
     compile 'com.afollestad.material-dialogs:core:0.8.6.2'
     compile 'com.github.akashandroid90:imageletter:1.8@aar'
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
@@ -55,6 +56,9 @@ dependencies {
     compile 'com.github.aakira:expandable-layout:1.6.0@aar'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.daimajia.slider:library:1.1.5@aar'
+
+    compile 'com.github.GrenderG:Toasty:1.2.5'
+
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.1.0'
 }

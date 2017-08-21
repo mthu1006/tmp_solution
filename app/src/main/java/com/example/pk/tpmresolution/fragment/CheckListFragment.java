@@ -41,21 +41,18 @@ public class CheckListFragment extends Fragment  implements DatePickerDialog.OnD
     DailyCheckListFragment daily;
     public static Calendar calendar;
 
-
     public CheckListFragment() {
         // Required empty public constructor
     }
 
     public static CheckListFragment newInstance() {
         CheckListFragment fragment = new CheckListFragment();
-
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
