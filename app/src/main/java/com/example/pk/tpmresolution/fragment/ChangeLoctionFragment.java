@@ -14,6 +14,7 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,9 +51,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import es.dmoral.toasty.Toasty;
-
 import static com.example.pk.tpmresolution.R.id.spn_from;
 import static com.example.pk.tpmresolution.R.id.spn_to;
 
@@ -74,11 +73,13 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
     private Dialog mDialog;
     CommonAdapter factoryAdapter, lineAdapter, warehouseAdapter;
     private AppCompatSpinner spnFrom, spnTo, spnFactory, spnLine, spnWarehouse;
+
     private CheckBox radio_line, radio_warehouse;
     LinearLayout layout_line, layout_warehouse;
     String[] arrReceiveUser;
     ProductItem machine_for_moving;
     MovingMachineAdapter machineAdapter;
+    Dialog mDialogError;
 
     public ChangeLoctionFragment() {
     }
@@ -363,7 +364,6 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
             @Override
             public void onClick(View view) {
                 if(edtMachine.getText().equals("Scan qr code or nfc")) {
-                    //ShowDialogError("Save failed", "Please scan QR code");
                     Toasty.error(getActivity(), "Save failed, Cannot find machine id", Toast.LENGTH_SHORT, true).show();
                     return;
                 }
@@ -376,8 +376,13 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                     mc.setFrWh(machine_for_moving.getWarehouse());
                     mc.setMachineId(machine_for_moving.getMachineID());
                 }else {
-                    //ShowDialogError("Add machine failed", "Please scan QR code");
-                    edtMachine.setError("Please scan QR code");
+                    edtMachine.setError("Please scan pr code or nfc");
+                    return;
+                }
+                if(!factoryList.isEmpty() && spnFactory.getSelectedItemPosition() >=0)
+                    mc.setToFactory(factoryList.get(spnFactory.getSelectedItemPosition()).getId());
+                else {
+                    AppTransaction.Toast(getActivity(), "Factory can not null");
                     return;
                 }
                 if(!lineList.isEmpty() && radio_line.isChecked() && spnLine.getSelectedItemPosition() >=0)
@@ -391,7 +396,6 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                     machine_for_moving = null;
 
                 }else {
-                    //ShowDialogError("Machine has already added", "Please scan another machine!");
                     Toasty.error(getActivity(), "Machine has already added, Please scan another machine!", Toast.LENGTH_SHORT, true).show();
                     mBtn_dialog.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -494,7 +498,6 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
             @Override
             public void processFinish(String output) {
                 try {
-
                     JSONArray arr = new JSONArray(output);
                     for(int i=0; i< arr.length(); i++){
                         CommonClass c = new CommonClass();
@@ -659,16 +662,15 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
         String accept_user = edtReveiceUser.getText().toString().split(" - ")[0];
         JSONObject object = new JSONObject();
         try {
-
             object.put("Token", prefs.getString(AppConstants.PREF_KEY_LOGIN_TOKEN, ""));
             if(fromCorpList.get(spnFrom.getSelectedItemPosition()).getId().equals(toCorpList.get(spnTo.getSelectedItemPosition()).getId()))
                 object.put("Type", "ApprovalN");
             else
                 object.put("Type", "ApprovalY");
-
+            String fDate = edtDate.getText().toString().replace("/", "_");
             object.put("FromCorp", fromCorpList.get(spnFrom.getSelectedItemPosition()).getId());
             object.put("ToCorp", toCorpList.get(spnTo.getSelectedItemPosition()).getId());
-            object.put("MovingDate", edtDate.getText().toString());
+            object.put("MovingDate", fDate);
             object.put("ReceiveUser", accept_user);
             object.put("Remarks", edtRemark.getText().toString());
             JSONArray array = new JSONArray();
@@ -684,6 +686,7 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                 array.put(obj);
             }
             object.put("ListMachineMove", array);
+            String finalJsonStr = object.toString().replace("_", "/");
 
             new HTTPRequest(new HTTPRequest.AsyncResponse() {
                 @Override
@@ -694,9 +697,9 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                         if(res.getString("Status").equals("Y")){
                             AppTransaction.Toast(getActivity(), res.getString("Message"));
                         }else {
-                            //ShowDialogError("Save request change location failed", res.getString("Message"));
                             Toasty.error(getActivity(), res.getString("Message"), Toast.LENGTH_SHORT, true).show();
                             if (res.getString("Type").equals("Login")) {
+                                ShowDialogError("Save request change location failed", res.getString("Message"), false);
                                 mBtn_dialog.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
@@ -707,14 +710,37 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
                             }
                         }
                     } catch (JSONException e) {
-                       // Log.d("Kien", "Loi json "+e.toString());
+                        Log.d("Kien", "Loi json "+e.toString());
                     }
                 }
-            }, getActivity()).execute(AppConstants.URL_MOVING_MACHINE, object.toString());
+            }, getActivity()).execute(AppConstants.URL_MOVING_MACHINE, finalJsonStr);
 
         } catch (JSONException e) {
-           // Log.d("Kien", "Loi json "+e.toString());
+            Log.d("Kien", "Loi json "+e.toString());
         }
+    }
+
+    void ShowDialogError(String title, String message, boolean isClose) {
+        mDialogError = AppDialogManager.onShowCustomDialog(getActivity(), R.layout.dialog_error);
+        CustomFontTextView txt1 = (CustomFontTextView) mDialogError.findViewById(R.id.txt_content1);
+        CustomFontTextView txt2 = (CustomFontTextView) mDialogError.findViewById(R.id.txt_content2);
+        AppCompatImageView img_close = (AppCompatImageView) mDialogError.findViewById(R.id.button_close);
+        if(!isClose) img_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mBtn_dialog = (CustomFontButton) mDialogError.findViewById(R.id.btn_accept);
+        mBtn_dialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDialogError.dismiss();
+            }
+        });
+        txt1.setText(title);
+        txt2.setText(message);
+        mDialogError.show();
     }
 
     @Override
@@ -731,7 +757,13 @@ public class ChangeLoctionFragment extends Fragment implements DatePickerDialog.
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        edtDate.setText(String.valueOf(dayOfMonth)+"/"+String.valueOf(month+1)+"/"+String.valueOf(year));
+        String day = String.valueOf(dayOfMonth);
+        String month_tmp = String.valueOf(month+1);
+        if(dayOfMonth<10)
+            day = "0" + day;
+        if(month+1<10)
+            month_tmp = "0" + month_tmp;
+         edtDate.setText(day+"/"+month_tmp+"/"+String.valueOf(year));
     }
 
     public interface OnFragmentInteractionListener {
